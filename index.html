@@ -2,7 +2,10 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Red Espacio Maker - Corpus Christi</title>
+  <title>Inicio</title>
+
+  <!-- Viewport para móviles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Fuentes elegantes -->
   <link href="https://fonts.googleapis.com/css2?family=Warbler+Text:ital,wght@1,700&family=Montserrat:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
@@ -23,7 +26,7 @@
     /* ENCABEZADO CON IMAGEN */
     .encabezado {
       position: relative;
-      height: 100vh;
+      height: 100vh; /* En PC ocupa toda la pantalla */
       overflow: hidden;
     }
 
@@ -56,10 +59,8 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-       /* Azul Francia transparente */
       background-color: rgba(0, 114, 187, 0.5);
       color: white;
-
       transition: background-color 0.3s ease;
     }
 
@@ -85,8 +86,8 @@
       text-decoration: underline;
     }
 
-    /* Ícono Instagram */
-    .instagram-icon {
+    /* Íconos redes */
+    .instagram-icon, .facebook-icon {
       font-size: 26px;
       color: white;
       text-decoration: none;
@@ -96,34 +97,23 @@
       color: #E4405F;
     }
 
-    /* Ícono Facebook */
     .facebook-icon {
-      font-size: 26px;
-      color: white;
-      text-decoration: none;
       margin-left: 15px;
     }
 
     .facebook-icon:hover {
-      color: #1877F2; /* Azul oficial de Facebook */
+      color: #1877F2;
     }
 
     /* CONTENIDO PRINCIPAL */
     .contenido {
-      flex: 1; /* Para que el footer quede al final */
+      flex: 1;
       max-width: 1000px;
       margin: 40px auto;
       padding: 30px;
-
-      /* Fondo suave transparente */
       background-color: rgba(255, 255, 255, 0.90);
-
-      /* Bordes redondeados */
       border-radius: 15px;
-
-      /* Sombra elegante */
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-
       text-align: center;
     }
 
@@ -143,16 +133,22 @@
     /* PIE DE PÁGINA */
     footer {
       text-align: center;
-      padding: 20px;
-      font-size: 21px;
+      padding: 15px;
+      font-size: 18px;
       font-style: italic;
       font-family: 'Lucida Bright', sans-serif;
-
-      /* Azul Francia */
       background-color: rgba(0, 92, 153);
       color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
 
-      transition: background-color 0.3s ease;
+    footer img {
+      max-width: 80px;
+      height: auto;
     }
 
     footer a {
@@ -167,6 +163,15 @@
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
+      /* Encabezado más chico en celular */
+      .encabezado {
+        height: 60vh;
+      }
+
+      .encabezado img {
+        object-position: center 50%; /* centra mejor en pantallas chicas */
+      }
+
       .texto-encima {
         font-size: 32px;
         padding: 0 10px;
@@ -200,6 +205,16 @@
       .contenido p {
         font-size: 18px;
       }
+
+      footer {
+        flex-direction: column;
+        font-size: 16px;
+        padding: 10px;
+      }
+
+      footer img {
+        max-width: 90px;
+      }
     }
   </style>
 </head>
@@ -208,7 +223,6 @@
   <!-- ENCABEZADO CON IMAGEN -->
   <div class="encabezado">
     <img src="ps.jpg" alt="Corpus Christi">
-    <div class="texto-encima"></div>
   </div>
 
   <!-- BARRA DE MENÚ -->
@@ -220,12 +234,9 @@
       <a href="Eventos.html">Eventos</a>
       <a href="mapa.html">Mapa</a>
     </div>
-    <!-- Ícono Instagram -->
     <a href="https://www.instagram.com/municipalidaddecorpus/" target="_blank" class="instagram-icon">
       <i class="fab fa-instagram"></i>
     </a>
-
-    <!-- Ícono Facebook -->
     <a href="https://www.facebook.com/p/Municipalidad-de-Corpus-Christi-100069083864591/" target="_blank" class="facebook-icon">
       <i class="fab fa-facebook"></i>
     </a>
@@ -239,9 +250,9 @@
 
   <!-- PIE DE PÁGINA -->
   <footer>
-    <img src="BLANCO1.png" alt="Imagen 2" style="width:170px; height:70px; margin-top:-30px; padding-right:20px; transform: translateY(22px);"/>
+    <img src="BLANCO1.png" alt="Logo 1">
     &copy; 2025 Red Espacio Maker - Corpus Christi
-    <img src="C:\Users\dayva\OneDrive\Escritorio\Página Web/00.png" alt="Imagen 3" style="width:150px; height:70px; margin-top:-30px; padding-left:20px; transform: translateY(20px);"/>
+    <img src="00.png" alt="Logo 2">
   </footer>
 
 </body>
