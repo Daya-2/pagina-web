@@ -7,62 +7,38 @@
     body {
       font-family: 'Times New Roman', serif;
       margin: 0;
-      
     }
-    /* ENCABEZADO CON COLOR */
+
+    /* ENCABEZADO */
     header {
-      height:15vh;
+      height: 15vh;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
-      background-color: rgba(0, 92, 153); /* Azul Francia semi-transparente */
-      color: white;
-      font-size: 1.5em;
-      font-family: 'Times New Roman', serif;
-    }
-
-     /* PIE DE PÁGINA */
-  footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 21px;
-      font-style: italic;
-      font-family: 'Lucida Bright', sans-serif;
-
-      /* Azul Francia transparente */
       background-color: rgba(0, 92, 153);
       color: white;
-
-      transition: background-color 0.3s ease;
-    }
-
-    footer a {
-      margin-left: 10px;
-      
-    }
-
-    footer a:hover {
-      color: #E4405F;
-    }
-
-    nav {
-      text-align: center;
+      font-size: 1.8em;
       padding: 10px;
-      font-size:22px ;
-      background-color: rgba(0, 114, 187, 0.5); /* Azul Francia semi-transparente */
+    }
+
+    /* MENÚ DE NAVEGACIÓN */
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 15px 20px;
+      background-color: rgba(0, 114, 187, 0.5);
       color: white;
-      transition: background-color 0.3s ease;
     }
 
     nav a {
       color: white;
       text-decoration: none;
-      margin: 0 25px;
+      margin: 8px 20px;
       font-family: 'Warbler Text', serif;
-      font-size: 30px;
+      font-size: 24px;
       font-style: italic;
-      display: inline-block;
       padding: 8px 12px;
       border-radius: 5px;
       transition: background-color 0.3s;
@@ -72,6 +48,7 @@
       background-color: #2e7d32;
     }
 
+    /* TARJETAS DE EVENTOS */
     .evento {
       max-width: 900px;
       margin: 30px auto;
@@ -80,12 +57,11 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       transition: transform 0.3s;
-       font-size: 20px;
+      font-size: 20px;
     }
 
     .evento:hover {
       transform: translateY(-3px);
-       font-size: 18px;
     }
 
     .evento img {
@@ -124,7 +100,7 @@
       border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
-      font-size: 20px;
+      font-size: 18px;
       font-family: 'Perpetua';
       font-style: italic;
       border: none;
@@ -143,19 +119,41 @@
       border-left: 4px solid #820014;
       border-radius: 5px;
       font-family: 'Playfair Display', serif;
-      font-size: 17px;
+      font-size: 16px;
     }
 
-    /* Responsive */
+    /* FOOTER */
+    footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      text-align: center;
+      padding: 20px;
+      font-size: 18px;
+      font-style: italic;
+      font-family: 'Lucida Bright', sans-serif;
+      background-color: rgba(0, 92, 153);
+      color: white;
+    }
+
+    footer img {
+      max-width: 120px;
+      height: auto;
+    }
+
+    /* RESPONSIVE */
     @media (max-width: 768px) {
-      nav {
-        padding: 15px 10px;
+      header {
+        font-size: 1.4em;
+        height: auto;
+        padding: 20px 10px;
       }
 
       nav a {
-        margin: 8px 12px;
-        font-size: 18px;
-        padding: 10px 14px;
+        margin: 6px 12px;
+        font-size: 20px;
       }
 
       .evento {
@@ -168,13 +166,22 @@
 
       .ver-mas {
         font-size: 16px;
-        padding: 8px 16px;
+        padding: 8px 14px;
+      }
+
+      footer {
+        font-size: 16px;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      footer img {
+        max-width: 100px;
       }
     }
 
     @media (max-width: 480px) {
       nav {
-        display: flex;
         flex-direction: column;
         align-items: center;
       }
@@ -182,33 +189,15 @@
       nav a {
         margin: 8px 0;
         width: 90%;
-        font-size: 18px;
-        padding: 12px 0;
-      }
-
-      .evento {
-        margin: 15px 5px;
-        border-radius: 0;
-      }
-
-      .evento-contenido {
-        padding: 12px;
+        text-align: center;
       }
 
       .evento p {
-        font-size: 15px;
-      }
-
-      .ver-mas {
         font-size: 16px;
-        padding: 10px 12px;
-        width: 100%;
-        box-sizing: border-box;
       }
 
       .texto-oculto {
         font-size: 15px;
-        padding: 12px;
       }
     }
   </style>
@@ -216,13 +205,8 @@
 <body>
 
 <header>
-  <h1> Eventos en Corpus Christi</h1>
+  <h1>Eventos en Corpus Christi</h1>
 </header>
-
- <!-- ENCABEZADO CON IMAGEN -->
-  <div class="encabezado">
-    <div class="texto-encima"></div>
-  </div>
 
 <nav>
   <a href="index.html">Inicio</a>
@@ -272,9 +256,9 @@
 
 <!-- Evento 4 -->
 <div class="evento">
-  <img src="ñ.jpg" alt="Congreso Internacional de Turismo, Educación Intercultural y Desarrollo Local de las Misiones Jesuíticas de los Guaraníes del Mercosur / Festejo de Aniversario del Pueblo" />
+  <img src="ñ.jpg" alt="Congreso Internacional" />
   <div class="evento-contenido">
-    <h2>Congreso Internacional de Turismo, Educación Intercultural y Desarrollo Local de las Misiones Jesuíticas de los Guaraníes del Mercosur</h2>
+    <h2>Congreso Internacional de Turismo, Educación Intercultural y Desarrollo Local de las Misiones Jesuíticas</h2>
     <p>Espacio para el Intercambio Cultural y Académico.</p>
     <button class="ver-mas" onclick="mostrarTexto(this)">Ver más</button>
     <div class="texto-oculto">
@@ -295,12 +279,13 @@
     </div>
   </div>
 </div>
-  <!-- PIE DE PÁGINA -->
-  <footer>
-    <img src="BLANCO1.png" alt="Imagen 2" style="width:170px; height:70px; margin-top:-30px; padding-right:20px;transform: translateY(22px);"/>
-    &copy; 2025 Red Espacio Maker - Corpus Christi
-    <img src="00.png" alt="Imagen 3" style="width:150px; height:70px; margin-top:-30px; padding-left:20px; transform: translateY(20px);"/>
-  </footer>
+
+<!-- PIE DE PÁGINA -->
+<footer>
+  <img src="BLANCO1.png" alt="Logo 1">
+  &copy; 2025 Red Espacio Maker - Corpus Christi
+  <img src="00.png" alt="Logo 2">
+</footer>
 
 <script>
   function mostrarTexto(boton) {
@@ -317,10 +302,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
