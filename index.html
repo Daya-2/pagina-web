@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Red Espacio Maker - Corpus Christi</title>
+
+  <!-- Fuentes elegantes -->
+  <link href="https://fonts.googleapis.com/css2?family=Warbler+Text:ital,wght@1,700&family=Montserrat:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+
+  <!-- Iconos Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      flex-direction: column;
+      background-color: #ffffff;
+    }
+
+    /* ENCABEZADO CON IMAGEN */
+    .encabezado {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .encabezado img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 68%;
+      display: block;
+      filter: brightness(60%);
+    }
+
+    .texto-encima {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+      font-family: 'Warbler Text', serif;
+      font-size: 60px;
+      font-style: italic;
+      text-shadow: 3px 3px 6px black;
+    }
+
+    /* MENÚ DE NAVEGACIÓN */
+    nav {
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+       /* Azul Francia transparente */
+      background-color: rgba(0, 114, 187, 0.5);
+      color: white;
+
+      transition: background-color 0.3s ease;
+    }
+
+    .menu-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      flex: 1;
+    }
+
+    .menu-links a {
+      color: white;
+      text-decoration: none;
+      margin: 0 25px;
+      font-family: 'Warbler Text', serif;
+      font-size: 30px;
+      font-style: italic;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .menu-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Ícono Instagram */
+    .instagram-icon {
+      font-size: 26px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .instagram-icon:hover {
+      color: #E4405F;
+    }
+
+    /* CONTENIDO PRINCIPAL */
+    .contenido {
+      flex: 1; /* Para que el footer quede al final */
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 30px;
+
+      /* Fondo suave transparente */
+      background-color: rgba(255, 255, 255, 0.90);
+
+      /* Bordes redondeados */
+      border-radius: 15px;
+
+      /* Sombra elegante */
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+
+      text-align: center;
+    }
+
+    .contenido h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      color: #FF0D00;
+      margin-bottom: 20px;
+    }
+
+    .contenido p {
+      font-size: 20px;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    /* PIE DE PÁGINA */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 21px;
+      font-style: italic;
+     font-family: 'Lucida Bright', sans-serif;
+
+      /* Azul Francia transparente */
+      background-color: rgba(0, 92, 153);
+      color: white;
+
+      transition: background-color 0.3s ease;
+    }
+
+    footer a {
+      margin-left: 10px;
+      color: white;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #E4405F;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .texto-encima {
+        font-size: 32px;
+        padding: 0 10px;
+      }
+
+      .menu-links {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .menu-links a {
+        display: block;
+        margin: 10px 0;
+        font-size: 20px;
+      }
+
+      .instagram-icon {
+        font-size: 24px;
+        margin-top: 10px;
+      }
+
+      .contenido {
+        margin: 20px 10px;
+        padding: 20px;
+      }
+
+      .contenido h1 {
+        font-size: 30px;
+      }
+
+      .contenido p {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ENCABEZADO CON IMAGEN -->
+  <div class="encabezado">
+    <img src="ps.jpg" alt="Corpus Christi">
+    <div class="texto-encima"></div>
+  </div>
+
+  <!-- BARRA DE MENÚ -->
+  <nav>
+    <div class="menu-links">
+      <a href="index.html">Inicio</a>
+      <a href="lugares.html">Lugares Turísticos</a>
+      <a href="Hospedajes.html">Hospedajes</a>
+      <a href="Eventos.html">Eventos</a>
+      <a href="mapa.html">Mapa</a>
+    </div>
+    <!-- Ícono Instagram -->
+    <a href="https://www.instagram.com/municipalidaddecorpus/" target="_blank" class="instagram-icon">
+      <i class="fab fa-instagram"></i>
+    </a>
+  </nav>
+
+  <!-- CONTENIDO INTRODUCTORIO -->
+  <div class="contenido">
+    <h1>Descubrí Corpus Christi</h1>
+    <p>Bienvenido a una Tierra de Historia, Cultura y Naturaleza. En esta Página descubrirás los Rincones más Emblemáticos de Corpus Christi, sus Tradiciones, su gente y todo lo que tiene para ofrecer. Desde su Herencia Jesuítica hasta sus Eventos Actuales, te invitamos a conocer más y ser parte de esta experiencia única.</p>
+  </div>
+
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    <img src="BLANCO1.png" alt="Imagen 2" style="width:170px; height:70px; margin-top:-30px; padding-right:20px; transform: translateY(22px);"/>
+    &copy; 2025 Red Espacio Maker - Corpus Christi
+    <img src="C:\Users\dayva\OneDrive\Escritorio\Página Web/00.png" alt="Imagen 3" style="width:150px; height:70px; margin-top:-30px; padding-left:20px; transform: translateY(20px);"/>
+  </footer>
+
+</body>
+</html>
+
