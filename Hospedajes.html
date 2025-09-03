@@ -76,10 +76,12 @@
     /* ====== CONTENEDOR PRINCIPAL ====== */
     .container{
       display:flex;
-      flex:1;
+      flex:1;                              /* ocupa todo el alto restante → permite estirar columnas */
       width:min(92vw, var(--maxw));
       margin:clamp(10px, 3vh, 20px) auto;
       gap:clamp(10px, 2vw, 16px);
+      align-items:stretch;                 /* 👈 hace que las columnas se estiren a la misma altura */
+      min-height:0;                        /* evita overflow en algunos navegadores */
     }
 
     /* ====== MENU LATERAL ====== */
@@ -90,12 +92,17 @@
       color:#fff;
       border-radius:8px;
       box-shadow:var(--sombra);
-      align-self:flex-start;
+      display:flex;                        /* 👈 convierte al nav en contenedor flexible */
+      flex-direction:column;
+      align-self:stretch;                  /* 👈 asegura que nav se estire hasta abajo */
     }
-    nav ul{ list-style:none; padding-left:0; margin:0; }
+    nav ul{
+      list-style:none; padding-left:0; margin:0;
+      display:flex; flex-direction:column; gap:8px;
+      flex:1;                              /* 👈 hace que la lista llene el alto disponible */
+    }
     nav ul li{
       padding:10px 12px;
-      margin-bottom:8px;
       cursor:pointer;
       border-radius:8px;
       transition:background-color .25s ease;
@@ -103,6 +110,7 @@
       font-size:clamp(16px, 2.2vw, 22px);
       font-family:'Warbler Text', serif;
       font-style:italic;
+      background:transparent;
     }
     nav ul li:hover, nav ul li.active{ background-color:#FF6D52; }
 
@@ -112,6 +120,8 @@
       padding:clamp(10px, 2vw, 20px);
       background:#fff;
       max-width:900px;
+      display:flex;
+      flex-direction:column;
     }
 
     .card{
@@ -157,62 +167,57 @@
       .card img:hover{ transform:scale(1.035); box-shadow:0 0 15px rgba(70,170,70,1); }
     }
 
-    /* ====== PIE DE PÁGINA ====== */
+    /* ========= PIE DE PÁGINA (CLON DE “LUGARES”) ========= */
     footer{
-      background-color: var(--azul-osc);
-      color:#fff;
-      text-align:center;
-      padding:clamp(12px, 2.6vh, 20px);
-      font-size:clamp(12px, 2.2vw, 18px);
-      font-style:italic;
-      font-family:'Lucida Bright', serif;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      flex-wrap:wrap;
-      gap:clamp(10px, 2vw, 15px);
+      text-align: center;
+      padding: 15px;
+      font-size: 18px;
+      font-style: italic;
+      font-family: 'Lucida Bright', sans-serif;
+      background-color: rgba(0, 92, 153, 0.9);   /* mismo color/transparencia que Lugares */
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;                                 /* misma separación */
+      flex-wrap: wrap;                            /* si no entra, baja ordenado */
     }
-    footer img{ max-width:clamp(90px, 16vw, 150px); height:auto; }
-    footer a{ color:#fff; text-decoration:none; }
-    @media (hover:hover){ footer a:hover{ color:#E4405F; } }
-
-    /* ====== LIGHTBOX ====== */
-    .lightbox{
-      position:fixed;
-      inset:0;
-      width:100%; height:100%;
-      background:rgba(0,0,0,.8);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      z-index:9999;
-      padding:2vw;
+    footer img{
+      max-width: 80px;                            /* igual que Lugares en desktop/tablet */
+      height: auto;
     }
-    .lightbox img{
-      max-width:92vw;
-      max-height:92vh;
-      border-radius:10px;
-      box-shadow:0 0 20px #4caf50;
+    footer a{
+      color: white;
+      text-decoration: none;
+      margin-left: 10px;
     }
-    .lightbox .cerrar{
-      position:absolute;
-      top:20px; right:30px;
-      font-size:clamp(26px, 5vw, 36px);
-      color:#fff;
-      cursor:pointer;
-      font-weight:bold;
-      user-select:none;
-    }
+    footer a:hover{ color: #E4405F; }
 
     /* ====== RESPONSIVE LAYOUT ====== */
     @media (max-width: 900px){
       .container{ flex-direction:column; }
-      nav{ width:100%; text-align:center; }
+      nav{
+        width:100%;
+        text-align:center;
+        align-self:auto;                   /* al apilarse, deja de forzar estirado */
+      }
     }
+
+    /* ====== BREAKPOINTS DEL FOOTER (IGUALES A “Lugares”) ====== */
+    @media (max-width: 768px){
+      footer{
+        font-size: 16px;
+        padding: 10px;
+      }
+      footer img{
+        max-width: 70px;                   /* igual que Lugares en tablet/landscape móvil */
+      }
+    }
+
     @media (max-width: 480px){
-      .topnav{ gap:8px; }
-      nav ul li{ font-size:16px; }
-      footer{ flex-direction:column; gap:10px; }
+      footer img{
+        max-width: 60px;                   /* igual que Lugares en celular */
+      }
     }
 
     /* Accesibilidad: respeta “reducir movimiento” */
@@ -236,7 +241,7 @@
 
 <!-- CONTENIDO PRINCIPAL -->
 <div class="container">
-  <!-- Menú lateral -->
+  <!-- Menú lateral (se estira hasta abajo en desktop/tablet) -->
   <nav>
     <ul id="menu-list">
       <li class="active" data-target="posada">🏡 Posada Los Azahares</li>
@@ -291,7 +296,7 @@
   </main>
 </div>
 
-<!-- ====== PIE DE PÁGINA ====== -->
+<!-- ====== PIE DE PÁGINA (igual a “Lugares”) ====== -->
 <footer>
   <img src="BLANCO1.png" alt="Logo Corpus Christi">
   &copy; 2025 Red Espacio Maker - Corpus Christi
@@ -341,3 +346,4 @@
 
 </body>
 </html>
+
