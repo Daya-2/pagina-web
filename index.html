@@ -2,251 +2,194 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Inicio</title>
+  <title>Corpus Christi</title>
 
-  <!-- Viewport para móviles -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Viewport responsive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Fuentes -->
-  <link href="https://fonts.googleapis.com/css2?family=Warbler+Text:ital,wght@1,700&family=Montserrat:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
-
-  <!-- Iconos -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Fuentes e iconos -->
+  <link href="https://fonts.googleapis.com/css2?family=Warbler+Text:ital,wght@1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
   <style>
     :root{
       --azul: rgba(0,114,187,0.9);
-      --azul-footer: rgba(0,92,153,0.95);
+      --azul-osc: rgba(0,92,153,0.95);
       --rojo: #FF0D00;
-      --maxw: 1000px;        /* ancho máximo de contenidos en desktop */
+      --maxw: 1150px;
+      --radio: 16px;
+      --sombra: 0 10px 26px rgba(0,0,0,.18);
     }
 
-    /* ====== BASE ====== */
+    /* ===== base ===== */
     *{ box-sizing: border-box; }
     html, body{ height:100%; }
     body{
       margin:0;
-      min-height:100vh;
-      font-family:'Montserrat', sans-serif;
+      font-family: 'Montserrat', system-ui, Arial, sans-serif;
+      color:#222;
+      background:#fff;
       display:flex;
       flex-direction:column;
-      background:#ffffff;
+      min-height:100vh;
     }
-    img{ max-width:100%; height:auto; display:block; }  /* imágenes fluidas */
+    img{ max-width:100%; height:auto; display:block; }
 
-    /* ====== ENCABEZADO/HERO ====== */
+    /* ===== encabezado/hero ===== */
     .encabezado{
       position:relative;
       width:100%;
-      height:60vh;          /* móvil: 60% de alto visible */
-      min-height:320px;     /* evita altura demasiado chica */
+      height: clamp(50vh, 70vh, 90vh);
       overflow:hidden;
     }
     .encabezado img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      object-position:center 68%;
-      filter:brightness(60%);
-    }
-    /* Si querés un título sobre la imagen, activá el bloque .texto-encima más abajo */
-    .texto-encima{
-      position:absolute;
-      inset:0;
-      display:grid;
-      place-items:center;
-      color:#fff;
-      text-align:center;
-      font-family:'Warbler Text', serif;
-      font-style:italic;
-      text-shadow:3px 3px 6px #000;
-      padding:0 12px;
-      font-size:6vw;        /* escala según ancho de pantalla */
-      line-height:1.1;
+      width:100%; height:100%;
+      object-fit: cover;
+      object-position: center 68%;
+      filter: brightness(65%);
     }
 
-    /* ====== MENÚ RESPONSIVE (CSS-only) ====== */
+    /* ===== NAV centrado ===== */
     nav{
-      position:relative;
+      background: var(--azul);
+      padding: 12px 16px;
+    }
+    .nav-inner{
+      max-width: var(--maxw);
+      margin: 0 auto;
       display:flex;
-      align-items:center;
-      justify-content:space-between;
-      background:var(--azul);
-      padding:1.2rem 1rem;
-      gap:.75rem;
-      width:100%;
+      flex-direction:column;
+      align-items:center;      /* centra logo y lista en vertical */
+      gap: 8px;
     }
     .logo a{
-      color:#fff;
+      color:#fff; text-decoration:none;
       font-family:'Warbler Text', serif;
-      font-size:clamp(20px, 3.2vw, 28px);
-      text-decoration:none;
-      font-style:italic;
-      white-space:nowrap;
+      font-style: italic;
+      font-size: clamp(22px, 3.2vw, 30px);
+      display:inline-block;
     }
-
-    /* Toggle (checkbox) */
-    #menu-toggle{ display:none; }
-
-    /* Botón hamburguesa en móvil/tablet */
-    .hamburger{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      width:44px; height:44px;
-      border-radius:10px;
-      cursor:pointer;
-      color:#fff;
-    }
-    .hamburger i{ font-size:22px; }
-
-    /* Lista colapsada por defecto (móvil) */
     .menu-links{
-      list-style:none;
-      margin:0;
-      padding:0;
-      display:none;              /* se abre con el toggle */
-      flex-direction:column;
-      gap:.75rem;
-      width:100%;
-      background:var(--azul);
-      border-top:1px solid rgba(255,255,255,0.25);
-      padding:.75rem 0;
+      list-style:none; margin:0; padding:0;
+      display:flex;
+      flex-wrap: wrap;
+      justify-content: center; /* 👈 centrado real */
+      align-items:center;
+      gap: clamp(10px, 2.2vw, 28px);
     }
-    .menu-links li{ white-space:nowrap; }
     .menu-links a{
-      color:#fff;
-      text-decoration:none;
-      font-size:1rem;
-      display:block;
-      padding:.35rem .75rem;
+      color:#fff; text-decoration:none;
+      font-size: clamp(14px, 1.8vw, 18px);
+      padding: 8px 10px;
+      border-radius: 10px;
+      transition: background .2s ease;
+      white-space: nowrap;
     }
-    .menu-links a:hover{ text-decoration:underline; }
-    .instagram-icon, .facebook-icon{ font-size:1.25rem; }
+    @media (hover:hover){
+      .menu-links a:hover{ background: rgba(255,255,255,.14); }
+    }
+    .menu-links .icono{
+      font-size: clamp(18px, 2.2vw, 20px);
+    }
 
-    /* Abrir menú */
-    #menu-toggle:checked ~ .menu-links{ display:flex; }
-
-    /* ====== CONTENIDO ====== */
+    /* ===== tarjeta central de bienvenida ===== */
     .contenido{
-      flex:1;
-      width:min(92vw, var(--maxw));
-      margin:clamp(16px, 4vh, 40px) auto;
-      padding:clamp(16px, 3vw, 30px);
-      background:rgba(255,255,255,0.90);
-      border-radius:15px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.5);
+      width: min(92vw, var(--maxw));
+      margin: -40px auto 28px; /* se superpone un poquito al nav */
+      background:#fff;
+      border-radius: var(--radio);
+      box-shadow: var(--sombra);
+      padding: clamp(16px, 4vw, 36px);
       text-align:center;
     }
     .contenido h1{
-      font-family:'Playfair Display', serif;
-      font-size:clamp(26px, 5vw, 42px);
-      color:var(--rojo);
-      margin:0 0 .6em 0;
+      color: var(--rojo);
+      font-family: 'Warbler Text', serif;
+      font-style: italic;
+      font-size: clamp(26px, 5.2vw, 46px);
+      margin: 0 0 .5em 0;
     }
     .contenido p{
-      font-size:clamp(16px, 2.2vw, 20px);
-      line-height:1.7;
+      font-size: clamp(15px, 2.1vw, 20px);
+      line-height: 1.75;
       color:#444;
       margin:0 auto;
-      max-width:800px;
+      max-width: 900px;
     }
 
-    /* ====== FOOTER ====== */
+    /* ===== footer centrado y junto ===== */
     footer{
-      background:var(--azul-footer);
+      background: var(--azul-osc);
       color:#fff;
-      padding:1rem;
-      width:100%;
+      padding: 16px;
+      margin-top:auto;
     }
     .footer-content{
-      width:min(92vw, var(--maxw));
-      margin:0 auto;
+      max-width: var(--maxw);
+      margin: 0 auto;
       display:flex;
+      justify-content:center;  /* 👈 todo junto al centro */
       align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;                     /* se acomoda solo en varias filas si hace falta */
+      flex-wrap: wrap;         /* si no entra, baja a otra línea */
+      gap: 14px;
+      text-align:center;
     }
     .footer-content img{
-      max-width:100px; height:auto; flex:0 0 auto;
+      max-width: clamp(80px, 12vw, 110px);
+      height:auto;
     }
     .footer-content p{
       margin:0;
-      font-size:clamp(14px, 2.2vw, 16px);
-      text-align:center;
-      flex:1 1 220px;                     /* texto central flexible */
+      font-size: clamp(13px, 1.8vw, 16px);
     }
 
-    /* ====== BREAKPOINTS ====== */
-
-    /* ≥ 768px (tablet) */
-    @media (min-width:768px){
-      .encabezado{ height:70vh; }
-      .hamburger{ display:none; }
-      .menu-links{
-        display:flex !important;
-        flex-direction:row;
-        align-items:center;
-        gap:1rem;
-        width:auto;
-        border-top:0;
-        padding:0;
-      }
-      nav{ padding:14px 20px; }
-      .instagram-icon, .facebook-icon{ font-size:1.35rem; }
-    }
-
-    /* ≥ 1024px (desktop) */
-    @media (min-width:1024px){
-      .encabezado{ height:100vh; }   /* hero a pantalla completa en PC */
-      .instagram-icon, .facebook-icon{ font-size:1.5rem; }
-      .footer-content img{ max-width:110px; }
+    /* ===== ajustes celulares ===== */
+    @media (max-width: 480px){
+      nav{ padding: 10px 12px; }
+      .menu-links{ gap: 10px; }
+      .menu-links a{ padding: 6px 8px; font-size: 14px; }
+      .contenido{ margin: -28px auto 18px; padding: 16px; }
+      .footer-content{ gap: 10px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ENCABEZADO CON IMAGEN -->
+  <!-- hero -->
   <div class="encabezado">
+    <!-- tu imagen de portada -->
     <img src="ps.jpg" alt="Corpus Christi">
-    <!-- Título sobre la foto (opcional): descomentar para mostrar
-    <div class="texto-encima">Corpus Christi</div>
-    -->
   </div>
 
-  <!-- MENÚ HORIZONTAL -->
+  <!-- NAV centrado -->
   <nav>
-    <div class="logo">
-      <a href="index.html">Corpus Christi</a>
+    <div class="nav-inner">
+      <div class="logo"><a href="index.html">Corpus Christi</a></div>
+      <ul class="menu-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="lugares.html">Lugares Turísticos</a></li>
+        <li><a href="Hospedajes.html">Hospedajes</a></li>
+        <li><a href="Eventos.html">Eventos</a></li>
+        <li><a href="mapa.html">Mapa</a></li>
+        <li>
+          <a class="icono" href="https://www.instagram.com/municipalidaddecorpus/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a class="icono" href="https://www.facebook.com/p/Municipalidad-de-Corpus-Christi-100069083864591/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        </li>
+      </ul>
     </div>
-
-    <!-- Botón hamburguesa -->
-    <label for="menu-toggle" class="hamburger" aria-label="Abrir menú">
-      <i class="fas fa-bars"></i>
-    </label>
-    <input type="checkbox" id="menu-toggle" aria-label="Alternar menú">
-
-    <ul class="menu-links">
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="lugares.html">Lugares Turísticos</a></li>
-      <li><a href="Hospedajes.html">Hospedajes</a></li>
-      <li><a href="Eventos.html">Eventos</a></li>
-      <li><a href="mapa.html">Mapa</a></li>
-      <li>
-        <a href="https://www.instagram.com/municipalidaddecorpus/" target="_blank" class="instagram-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.facebook.com/p/Municipalidad-de-Corpus-Christi-100069083864591/" target="_blank" class="facebook-icon" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-      </li>
-    </ul>
   </nav>
 
-  <!-- CONTENIDO -->
+  <!-- tarjeta de bienvenida -->
   <div class="contenido">
     <h1>Descubrí Corpus Christi</h1>
-    <p>Bienvenido a una Tierra de Historia, Cultura y Naturaleza. En esta Página descubrirás los Rincones más Emblemáticos de Corpus Christi, sus Tradiciones, su gente y todo lo que tiene para ofrecer. Desde su Herencia Jesuítica hasta sus Eventos Actuales, te invitamos a conocer más y ser parte de esta experiencia única.</p>
+    <p>
+      Bienvenido a una Tierra de Historia, Cultura y Naturaleza. En esta Página descubrirás
+      los Rincones más Emblemáticos de Corpus Christi, sus Tradiciones, su gente y todo lo que tiene para ofrecer.
+      Desde su Herencia Jesuítica hasta sus Eventos Actuales, te invitamos a conocer más y ser parte de esta experiencia única.
+    </p>
   </div>
 
-  <!-- PIE DE PÁGINA -->
+  <!-- footer centrado -->
   <footer>
     <div class="footer-content">
       <img src="BLANCO1.png" alt="Logo 1">
@@ -257,3 +200,6 @@
 
 </body>
 </html>
+
+
+
