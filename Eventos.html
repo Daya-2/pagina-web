@@ -3,202 +3,210 @@
 <head>
   <meta charset="UTF-8" />
   <title>Eventos - Corpus Christi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    body {
+    :root{
+      --azul: rgba(0,114,187,.5);
+      --azul-osc: rgba(0,92,153,1);
+      --bordo: #820014;
+      --maxw: 1100px;
+      --radio: 12px;
+      --sombra: 0 8px 20px rgba(0,0,0,.12);
+    }
+
+    /* ===== Base ===== */
+    *{ box-sizing: border-box; }
+    html, body{ height:100%; }
+    body{
       font-family: 'Times New Roman', serif;
       margin: 0;
+      color:#222;
+      background:#fff;
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+    }
+    img{ max-width:100%; height:auto; display:block; } /* imágenes fluidas */
+
+    /* ===== Encabezado ===== */
+    header{
+      min-height:clamp(66px, 12vh, 120px);
+      padding:clamp(12px, 2.6vh, 20px) clamp(12px, 4vw, 24px);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      background-color: var(--azul-osc);
+      color: #fff;
+      box-shadow: var(--sombra);
+    }
+    header h1{
+      margin:0;
+      font-size:clamp(22px, 4.6vw, 36px);
+      line-height:1.2;
     }
 
-    /* ENCABEZADO */
-    header {
-      height: 15vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background-color: rgba(0, 92, 153);
-      color: white;
-      font-size: 1.8em;
-      padding: 10px;
+    /* ===== Menú de navegación ===== */
+    nav{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:clamp(8px, 2vw, 20px);
+      padding:clamp(10px, 2vh, 16px) clamp(12px, 4vw, 24px);
+      background-color: var(--azul);
+      color:#fff;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      backdrop-filter: saturate(115%) blur(2px);
     }
-
-    /* MENÚ DE NAVEGACIÓN */
-    nav {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      padding: 15px 20px;
-      background-color: rgba(0, 114, 187, 0.5);
-      color: white;
-    }
-
-    nav a {
-      color: white;
+    nav a{
+      color: #fff;
       text-decoration: none;
-      margin: 8px 20px;
+      margin: 0;
       font-family: 'Warbler Text', serif;
-      font-size: 24px;
+      font-size:clamp(16px, 2.6vw, 24px);
       font-style: italic;
-      padding: 8px 12px;
-      border-radius: 5px;
-      transition: background-color 0.3s;
+      padding: .35rem .7rem;
+      border-radius: 8px;
+      transition: background-color .2s ease;
+      white-space: nowrap;
+    }
+    @media (hover:hover){
+      nav a:hover{ background-color: #2e7d32; }
     }
 
-    nav a:hover {
-      background-color: #2e7d32;
+    /* ===== Contenedor de eventos (grid responsive) ===== */
+    .eventos-grid{
+      width:min(92vw, var(--maxw));
+      margin:clamp(14px, 3vh, 26px) auto;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:clamp(14px, 2.4vw, 22px);
+    }
+    @media (min-width: 720px){
+      .eventos-grid{ grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 1100px){
+      .eventos-grid{ grid-template-columns: 1fr 1fr 1fr; }
     }
 
-    /* TARJETAS DE EVENTOS */
-    .evento {
-      max-width: 900px;
-      margin: 30px auto;
+    /* ===== Tarjeta de evento ===== */
+    .evento{
       background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: var(--radio);
+      box-shadow: var(--sombra);
       overflow: hidden;
-      transition: transform 0.3s;
-      font-size: 20px;
+      transition: transform .25s ease, box-shadow .25s ease;
+      display:flex;
+      flex-direction:column;
+    }
+    @media (hover:hover){
+      .evento:hover{ transform: translateY(-3px); box-shadow: 0 12px 26px rgba(0,0,0,.18); }
     }
 
-    .evento:hover {
-      transform: translateY(-3px);
-    }
-
-    .evento img {
+    .evento img{
       width: 100%;
       height: auto;
       display: block;
-      transition: filter 0.3s ease;
+      aspect-ratio: 16/9;             /* mantiene proporción agradable en grilla */
+      object-fit: cover;
+      transition: filter .25s ease;
+    }
+    @media (hover:hover){
+      .evento img:hover{ filter: brightness(110%) contrast(105%); }
     }
 
-    .evento img:hover {
-      filter: brightness(110%) contrast(105%);
-    }
-
-    .evento-contenido {
-      padding: 20px;
+    .evento-contenido{
+      padding: clamp(14px, 2.2vw, 20px);
       font-family: 'Georgia', serif;
+      display:flex;
+      flex-direction:column;
+      gap:.5rem;
+      flex:1;                          /* empuja el botón hacia abajo si hay poco texto */
+    }
+    .evento h2{
+      color: var(--bordo);
+      margin: 0;
+      font-size: clamp(18px, 2.6vw, 24px);
+      line-height:1.25;
+    }
+    .evento p{
+      margin: 0;
+      font-size: clamp(15px, 2.2vw, 18px);
+      line-height: 1.55;
+      color:#333;
     }
 
-    .evento h2 {
-      color: #820014;
-      margin-top: 0;
-    }
-
-    .evento p {
-      font-size: 18px;
-      line-height: 1.5;
-    }
-
-    .ver-mas {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #820014;
+    .ver-mas{
+      display:inline-block;
+      align-self:flex-start;
+      margin-top:.6rem;
+      padding: .55rem 1rem;
+      background-color: var(--bordo);
       color: white;
       text-decoration: none;
-      border-radius: 8px;
+      border-radius: 10px;
       font-weight: bold;
       cursor: pointer;
-      font-size: 18px;
+      font-size: clamp(14px, 2.2vw, 18px);
       font-family: 'Perpetua';
       font-style: italic;
       border: none;
-      transition: background-color 0.3s;
+      transition: background-color .2s ease, transform .2s ease;
     }
-
-    .ver-mas:hover {
-      background-color: rgba(0, 92, 153);
+    @media (hover:hover){
+      .ver-mas:hover{ background-color: var(--azul-osc); }
     }
+    .ver-mas:active{ transform: translateY(1px); }
 
-    .texto-oculto {
+    .texto-oculto{
       display: none;
-      margin-top: 15px;
+      margin-top: .75rem;
       background-color: #f1f8e9;
-      padding: 15px;
-      border-left: 4px solid #820014;
-      border-radius: 5px;
+      padding: .9rem;
+      border-left: 4px solid var(--bordo);
+      border-radius: 8px;
       font-family: 'Playfair Display', serif;
-      font-size: 16px;
+      font-size: clamp(14px, 2.1vw, 16px);
+      color:#1b1b1b;
     }
 
-    /* FOOTER */
-    footer {
+    /* ===== Footer ===== */
+    footer{
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 20px;
+      gap: clamp(10px, 2.4vw, 20px);
       flex-wrap: wrap;
       text-align: center;
-      padding: 20px;
-      font-size: 18px;
+      padding: clamp(12px, 2.8vh, 20px);
+      font-size: clamp(12px, 2.2vw, 18px);
       font-style: italic;
-      font-family: 'Lucida Bright', sans-serif;
-      background-color: rgba(0, 92, 153);
+      font-family: 'Lucida Bright', serif;
+      background-color: var(--azul-osc);
       color: white;
+      margin-top:auto;
     }
-
-    footer img {
-      max-width: 120px;
+    footer img{
+      max-width: clamp(90px, 18vw, 120px);
       height: auto;
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      header {
-        font-size: 1.4em;
-        height: auto;
-        padding: 20px 10px;
-      }
-
-      nav a {
-        margin: 6px 12px;
-        font-size: 20px;
-      }
-
-      .evento {
-        margin: 20px 10px;
-      }
-
-      .evento-contenido {
-        padding: 15px;
-      }
-
-      .ver-mas {
-        font-size: 16px;
-        padding: 8px 14px;
-      }
-
-      footer {
-        font-size: 16px;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      footer img {
-        max-width: 100px;
-      }
+    /* ===== Ajustes extra para pantallas chicas ===== */
+    @media (max-width: 768px){
+      /* header se adapta con clamp arriba */
+      /* nav ya es wrap; links con clamp */
+    }
+    @media (max-width: 480px){
+      nav{ flex-direction: column; }
+      nav a{ width: 100%; text-align:center; }
     }
 
-    @media (max-width: 480px) {
-      nav {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      nav a {
-        margin: 8px 0;
-        width: 90%;
-        text-align: center;
-      }
-
-      .evento p {
-        font-size: 16px;
-      }
-
-      .texto-oculto {
-        font-size: 15px;
-      }
+    /* Accesibilidad: respeta reducir movimiento */
+    @media (prefers-reduced-motion: reduce){
+      .evento, .evento img, .ver-mas{ transition: none; }
     }
   </style>
 </head>
@@ -215,69 +223,74 @@
   <a href="mapa.html">Mapa</a>
 </nav>
 
-<!-- Evento 1 -->
-<div class="evento">
-  <img src="car.jpg" alt="Carnavales en Corpus Christi" />
-  <div class="evento-contenido">
-    <h2>Carnavales</h2>
-    <p>Una Celebración llena de Alegría y Tradición.</p>
-    <button class="ver-mas" onclick="mostrarTexto(this)">Ver más</button>
-    <div class="texto-oculto">
-      Los Carnavales de Corpus Christi son una Tradición Centenaria realizada en el Mes de Febrero. Destacan las Mascaritas, Personajes con Trajes de Papel y Máscaras que sorprenden al Pueblo. También hay Comparsas, Música y alegría en familia.
-    </div>
-  </div>
-</div>
+<!-- GRID DE EVENTOS -->
+<div class="eventos-grid">
 
-<!-- Evento 2 -->
-<div class="evento">
-  <img src="md33.webp" alt="Fiesta Patronal" />
-  <div class="evento-contenido">
-    <h2>Fiesta Patronal</h2>
-    <p>Una Mezcla de Raíces Guaraníes y Cristianas.</p>
-    <button class="ver-mas" onclick="mostrarTexto(this)">Ver más</button>
-    <div class="texto-oculto">
-      La Fiesta de Corpus Christi tiene Raíces Guaraníes y Cristianas realizada en el Mes de Junio. Incluye Procesiones, Altares con Hojas de Pindó, Antorchas y mucha devoción popular. Refleja la fusión Cultural de la Región.
+  <!-- Evento 1 -->
+  <div class="evento">
+    <img src="car.jpg" alt="Carnavales en Corpus Christi" />
+    <div class="evento-contenido">
+      <h2>Carnavales</h2>
+      <p>Una Celebración llena de Alegría y Tradición.</p>
+      <button class="ver-mas" onclick="mostrarTexto(this)">Ver más</button>
+      <div class="texto-oculto">
+        Los Carnavales de Corpus Christi son una Tradición Centenaria realizada en el Mes de Febrero. Destacan las Mascaritas, Personajes con Trajes de Papel y Máscaras que sorprenden al Pueblo. También hay Comparsas, Música y alegría en familia.
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Evento 3 -->
-<div class="evento">
-  <img src="md1.webp" alt="Aniversario del Pueblo" />
-  <div class="evento-contenido">
-    <h2>Aniversario del Pueblo</h2>
-    <p>Celebración de la refundación del pueblo.</p>
-    <button class="ver-mas" onclick="mostrarTexto(this)">Ver más</button>
-    <div class="texto-oculto">
-      La Fundación Moderna fue el 27 de Septiembre de 1877. Se celebra con Actos Cívicos, muestras culturales y actividades para toda la comunidad, recordando la Historia de la Reducción Jesuítica.
+  <!-- Evento 2 -->
+  <div class="evento">
+    <img src="md33.webp" alt="Fiesta Patronal" />
+    <div class="evento-contenido">
+      <h2>Fiesta Patronal</h2>
+      <p>Una Mezcla de Raíces Guaraníes y Cristianas.</p>
+      <button class="ver-mas" onclick="mostrarTexto(this)">Ver más</button>
+      <div class="texto-oculto">
+        La Fiesta de Corpus Christi tiene Raíces Guaraníes y Cristianas realizada en el Mes de Junio. Incluye Procesiones, Altares con Hojas de Pindó, Antorchas y mucha devoción popular. Refleja la fusión Cultural de la Región.
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Evento 4 -->
-<div class="evento">
-  <img src="ñ.jpg" alt="Congreso Internacional" />
-  <div class="evento-contenido">
-    <h2>Congreso Internacional de Turismo, Educación Intercultural y Desarrollo Local de las Misiones Jesuíticas</h2>
-    <p>Espacio para el Intercambio Cultural y Académico.</p>
-    <button class="ver-mas" onclick="mostrarTexto(this)">Ver más</button>
-    <div class="texto-oculto">
-      Se celebra cada año con la participación de Expertos en Turismo, Cultura y Educación. Destaca el papel de las Misiones Jesuíticas y promueve el desarrollo regional sostenible.
+  <!-- Evento 3 -->
+  <div class="evento">
+    <img src="md1.webp" alt="Aniversario del Pueblo" />
+    <div class="evento-contenido">
+      <h2>Aniversario del Pueblo</h2>
+      <p>Celebración de la refundación del pueblo.</p>
+      <button class="ver-mas" onclick="mostrarTexto(this)">Ver más</button>
+      <div class="texto-oculto">
+        La Fundación Moderna fue el 27 de Septiembre de 1877. Se celebra con Actos Cívicos, muestras culturales y actividades para toda la comunidad, recordando la Historia de la Reducción Jesuítica.
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Evento 5 -->
-<div class="evento">
-  <img src="Corpus5.jpeg" alt="Remada Internacional" />
-  <div class="evento-contenido">
-    <h2>Remada Internacional</h2>
-    <p>Espacio para el Intercambio Cultural y Académico.</p>
-    <button class="ver-mas" onclick="mostrarTexto(this)">Ver más</button>
-    <div class="texto-oculto">
-      Es un Evento Deportivo que busca conectar con la Naturaleza y la Energía del Agua, además de promover la participación de la comunidad y fomentar el Deporte Acuático. El mismo se desarrolla entre Puerto Maní y el Club de Caza y Pesca Corpus-Roca.
+  <!-- Evento 4 -->
+  <div class="evento">
+    <img src="ñ.jpg" alt="Congreso Internacional" />
+    <div class="evento-contenido">
+      <h2>Congreso Internacional de Turismo, Educación Intercultural y Desarrollo Local de las Misiones Jesuíticas</h2>
+      <p>Espacio para el Intercambio Cultural y Académico.</p>
+      <button class="ver-mas" onclick="mostrarTexto(this)">Ver más</button>
+      <div class="texto-oculto">
+        Se celebra cada año con la participación de Expertos en Turismo, Cultura y Educación. Destaca el papel de las Misiones Jesuíticas y promueve el desarrollo regional sostenible.
+      </div>
     </div>
   </div>
+
+  <!-- Evento 5 -->
+  <div class="evento">
+    <img src="Corpus5.jpeg" alt="Remada Internacional" />
+    <div class="evento-contenido">
+      <h2>Remada Internacional</h2>
+      <p>Espacio para el Intercambio Cultural y Académico.</p>
+      <button class="ver-mas" onclick="mostrarTexto(this)">Ver más</button>
+      <div class="texto-oculto">
+        Es un Evento Deportivo que busca conectar con la Naturaleza y la Energía del Agua, además de promover la participación de la comunidad y fomentar el Deporte Acuático. El mismo se desarrolla entre Puerto Maní y el Club de Caza y Pesca Corpus-Roca.
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <!-- PIE DE PÁGINA -->
@@ -288,15 +301,16 @@
 </footer>
 
 <script>
-  function mostrarTexto(boton) {
+  function mostrarTexto(boton){
     const texto = boton.nextElementSibling;
-    if (texto.style.display === "block") {
-      texto.style.display = "none";
-      boton.textContent = "Ver más";
-    } else {
-      texto.style.display = "block";
-      boton.textContent = "Ver menos";
+    const abierto = texto.style.display === "block";
+    // cerrar todos los detalles del resto de tarjetas en pantallas chicas (opcional)
+    if (window.matchMedia("(max-width: 480px)").matches){
+      document.querySelectorAll('.texto-oculto').forEach(el => el.style.display = "none");
+      document.querySelectorAll('.ver-mas').forEach(b => b.textContent = "Ver más");
     }
+    texto.style.display = abierto ? "none" : "block";
+    boton.textContent = abierto ? "Ver más" : "Ver menos";
   }
 </script>
 
