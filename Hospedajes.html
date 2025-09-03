@@ -4,98 +4,143 @@
   <meta charset="UTF-8" />
   <title>Hospedajes - Corpus Christi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fuentes -->
   <link href="https://fonts.googleapis.com/css2?family=Warbler+Text:ital,wght@1,700&display=swap" rel="stylesheet">
+
   <style>
-    :root{ --azul: rgba(0,114,187,0.5); --azul-osc: rgba(0,92,153,0.9); --maxw:1100px; --sombra:0 6px 18px rgba(0,0,0,.12); }
+    :root{
+      --azul: rgba(0,114,187,0.9);
+      --azul-osc: rgba(0,92,153,0.95);
+      --maxw: 1100px;
+    }
 
     *{ box-sizing:border-box; }
     body{
-      margin:0; background:#fff; color:#333; font-family:'Times New Roman', serif;
-      display:flex; flex-direction:column; min-height:100vh;
+      margin:0; font-family:'Times New Roman', serif; display:flex;
+      flex-direction:column; min-height:100vh; background:#fff; color:#333;
     }
     img{ max-width:100%; height:auto; display:block; }
 
+    /* ===== PORTADA (achicada) ===== */
     .portada{
-      background:var(--azul-osc); color:#fff; text-align:center;
-      padding:clamp(16px,4vh,30px) 10px; font-size:clamp(28px,6.2vw,48px);
+      background-color: var(--azul-osc);
+      color:#fff;
+      text-align:center;
+      padding:clamp(10px, 3vh, 20px) 8px;   /* más baja */
+      font-family:'Times New Roman', serif;
+      font-size:clamp(22px, 4vw, 34px);     /* texto más chico */
     }
 
-    /* MENÚ SUPERIOR UNIFICADO */
-    .topnav{
+    /* ===== MENÚ UNIFICADO ===== */
+    nav.topnav{
       display:flex; justify-content:center; align-items:center; flex-wrap:wrap;
-      background:var(--azul); padding:10px; gap:clamp(8px,2vw,18px);
-      font-family:'Warbler Text', serif; font-style:italic; position:sticky; top:0; z-index:3;
+      gap:20px; background:var(--azul); padding:12px 20px;
+      font-family:'Warbler Text', serif; font-style:italic;
+      position:sticky; top:0; z-index:5;
     }
-    .topnav a{ color:#fff; text-decoration:none; font-size:clamp(16px,2.6vw,26px); }
-    .topnav a:hover{ text-decoration:underline; }
+    nav.topnav a{ color:#fff; text-decoration:none; font-size:22px; }
+    nav.topnav a:hover{ text-decoration:underline; }
 
+    /* ===== CONTENEDOR PRINCIPAL ===== */
     .container{
-      display:flex; flex:1 0 auto; align-items:stretch;
-      width:min(92vw, var(--maxw)); margin:clamp(12px,2.6vh,20px) auto;
-      gap:clamp(10px,2vw,16px);
+      display:flex; flex:1; width:min(92vw, var(--maxw)); margin:20px auto; gap:20px;
+      align-items:stretch; /* fuerza al sidebar a estirar */
     }
 
-    /* SIDEBAR hasta abajo */
-    nav{
-      width:clamp(240px,26vw,260px); background:#2f2f2f; color:#fff;
-      border-radius:8px; box-shadow:var(--sombra);
-      padding:clamp(12px,2vw,20px) 10px;
-      display:flex; flex-direction:column;
+    /* ===== MENU LATERAL ===== */
+    aside{
+      width:260px; padding:20px 10px; background:#333; color:#fff;
+      border-radius:8px; display:flex; flex-direction:column;
     }
-    nav ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; flex:1; }
-    nav li{
-      padding:12px 14px; border-radius:8px; font-weight:bold;
-      font-family:'Warbler Text', serif; font-style:italic; font-size:clamp(16px,2.2vw,22px); cursor:pointer;
+    aside ul{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px; }
+    aside li{
+      padding:10px 12px; cursor:pointer; border-radius:8px;
+      transition:background .25s ease; font-weight:bold; font-size:20px;
+      font-family:'Warbler Text', serif; font-style:italic;
     }
-    nav li:hover, nav li.active{ background:#FF6D52; }
+    aside li:hover, aside li.active{ background:#FF6D52; }
 
-    main{ flex:1; max-width:900px; display:flex; flex-direction:column; gap:clamp(20px,3vh,30px); padding:clamp(10px,2vw,20px); }
+    /* ===== CONTENIDO ===== */
+    main{ flex:1; padding:20px; }
+    .card{
+      background:#f9f9f9; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,.12);
+      padding:20px; margin-bottom:25px;
+    }
+    .card h2{
+      margin-top:0; color:#000;
+      font-family:'Warbler Text', serif; font-style:italic; font-size:24px;
+    }
+    .card p{ font-family:'Warbler Text', serif; font-size:18px; line-height:1.6; }
 
-    .card{ background:#f9f9f9; border-radius:10px; box-shadow:var(--sombra); padding:clamp(14px,2.2vw,20px); }
-    .card h2{ margin:0 0 10px; font-family:'Warbler Text', serif; font-style:italic; font-size:clamp(20px,2.6vw,27px); }
-    .card p{ font-family:'Warbler Text', serif; font-size:clamp(15px,2.2vw,20px); line-height:1.55; }
-
-    /* GALERÍA: fotos grandes y apiladas */
+    /* Imágenes grandes y apiladas */
     .card img{
-      width:100% !important; height:auto !important; max-height:none !important;
-      display:block !important; margin:12px 0 !important; object-fit:cover;
-      border-radius:10px; box-shadow:0 0 10px rgba(110,190,110,.8);
+      width:100%; border-radius:10px; margin-bottom:15px;
+      box-shadow:0 0 10px rgba(110,190,110,.8);
+      transition:transform .25s ease;
     }
+    .card img:hover{ transform:scale(1.03); box-shadow:0 0 15px rgba(70,170,70,1); }
 
-    /* FOOTER UNIFICADO */
+    /* ===== FOOTER (idéntico al index) ===== */
     footer{
-      text-align:center; padding:15px; font-size:18px; font-style:italic;
-      font-family:'Lucida Bright', sans-serif; background-color:var(--azul-osc); color:#fff;
-      display:flex; justify-content:center; align-items:center; gap:15px; flex-wrap:wrap; margin-top:auto;
+      background:var(--azul-osc); color:#fff; padding:1rem; margin-top:auto;
     }
-    footer img{ max-width:80px; height:auto; }
+    .footer-content{
+      width:min(92vw, 1000px); margin:0 auto;
+      display:flex; align-items:center; justify-content:center;
+      gap:14px; flex-wrap:wrap;
+    }
+    .footer-content img{ max-width:100px; height:auto; }
+    .footer-content p{
+      margin:0; font-size:clamp(14px,2.2vw,16px);
+      font-family:'Lucida Bright', serif; font-style:italic; text-align:center;
+    }
 
-    /* Responsivo */
-    @media (max-width:900px){ .container{ flex-direction:column; } nav{ width:100%; text-align:center; } }
-    @media (max-width:768px){ footer{ font-size:16px; padding:12px; } footer img{ max-width:70px; } }
-    @media (max-width:480px){ footer{ flex-direction:column; gap:10px; font-size:14px; } footer img{ max-width:60px; } }
+    /* ===== RESPONSIVE ===== */
+    @media(max-width:900px){
+      .container{ flex-direction:column; }
+      aside{ width:100%; }
+    }
+    @media(max-width:768px){
+      nav.topnav a{ font-size:20px; }
+      .footer-content img{ max-width:80px; }
+      .footer-content p{ font-size:14px; }
+    }
+    @media(max-width:480px){
+      nav.topnav{ flex-direction:column; gap:12px; }
+      nav.topnav a{ font-size:16px; }
+      aside li{ font-size:16px; }
+      .footer-content{ flex-direction:column; gap:10px; }
+      .footer-content img{ max-width:70px; }
+    }
   </style>
 </head>
 <body>
 
+<!-- PORTADA (achicada) -->
 <div class="portada">Hospedajes de Corpus</div>
 
-<div class="topnav">
+<!-- MENÚ UNIFICADO -->
+<nav class="topnav">
   <a href="index.html">Inicio</a>
   <a href="lugares.html">Lugares Turísticos</a>
+  <a href="Hospedajes.html">Hospedajes</a>
   <a href="Eventos.html">Eventos</a>
   <a href="mapa.html">Mapa</a>
-</div>
+</nav>
 
+<!-- CONTENIDO -->
 <div class="container">
-  <nav>
+  <!-- MENU LATERAL -->
+  <aside>
     <ul id="menu-list">
       <li class="active" data-target="posada">🏡 Posada Los Azahares</li>
       <li data-target="cabaña">🏡 Cabaña La Gloriosa</li>
       <li data-target="ypora">🏡 Alojamiento Ypora</li>
     </ul>
-  </nav>
+  </aside>
 
+  <!-- SECCIONES -->
   <main>
     <section id="posada" class="card" style="display:block;">
       <h2>🏡 Posada Los Azahares</h2>
@@ -105,9 +150,9 @@
       <img src="ññ.jpeg" alt="Posada Los Azahares">
       <p>Alojamiento Familiar en el Centro de Corpus Christi, rodeado de naturaleza.</p>
       <h4>Servicios</h4>
-      <p>Piscina, Aire acondicionado, Direct TV, Estacionamiento, Parrilla/Quincho, Desayuno incluido, Opcional Cena.</p>
+      <p>Piscina, Aire acondicionado, Direct TV, Estacionamiento, Uso de Parrilla y Quincho Compartidos, Desayuno incluido, Opcional Cena.</p>
       <h4>Condiciones</h4>
-      <p>Check-in 12:00 · Check-out 10:00 · Mínimo 2 noches · Limpieza incluida · Admite mascotas.</p>
+      <p>Check-in a las 12:00, Check-out a las 10:00, Estadía Mínima 2 Noches. Limpieza Incluida. Admite Mascotas.</p>
     </section>
 
     <section id="cabaña" class="card" style="display:none;">
@@ -116,13 +161,13 @@
       <img src="mmm.avif" alt="Cabaña La Gloriosa">
       <img src="rrr.webp" alt="Cabaña La Gloriosa">
       <img src="tt.jpeg" alt="Cabaña La Gloriosa">
-      <p>Rural, familiar, en Estancia. Parte del Circuito Jesuitas y Ruta de la Yerba Mate.</p>
-      <h4>📍 Características</h4>
-      <p>Hasta 6 huéspedes · 2 dormitorios · 2 baños.</p>
+      <p>La Gloriosa Cabaña Natural es un Alojamiento Rural de estilo Familiar ubicado en una Estancia y parte del Circuito de los Jesuitas y la Ruta de la Yerba Mate. Ideal para desconectar y disfrutar del entorno natural.</p>
+      <h4>📍 Características del Alojamiento</h4>
+      <p>Hasta 6 Huéspedes · 2 Dormitorios · 2 Baños.</p>
       <h4>Servicios</h4>
-      <p>Cocina, estacionamiento, calefacción, toallas y ropa blanca.</p>
+      <p>Cocina, Estacionamiento, Calefacción, Toallas y Ropa blanca. Atención personalizada por sus Dueños Locales.</p>
       <h4>🍽️ Gastronomía</h4>
-      <p>Restaurante Oliva (reserva previa). Cocina mediterránea con inspiración yerbatera.</p>
+      <p>Restaurante Oliva (reserva previa). Cocina mediterránea con inspiración de yerba mate.</p>
     </section>
 
     <section id="ypora" class="card" style="display:none;">
@@ -131,36 +176,44 @@
       <img src="VVV.jpg" alt="Alojamiento Ypora">
       <img src="FF.jpg" alt="Alojamiento Ypora">
       <img src="XXX.jpg" alt="Alojamiento Ypora">
-      <p>Alojamiento diario. Camas matrimoniales, triples y cuádruples.</p>
+      <p>Alojamiento Diario en Corpus Christi, Misiones. Camas matrimoniales, triples y cuádruples.</p>
       <h4>Reservas</h4>
       <p>+54 9 3743 44-3041 · +54 9 376 4810459</p>
     </section>
   </main>
 </div>
 
+<!-- FOOTER (idéntico al index) -->
 <footer>
-  <img src="BLANCO1.png" alt="Logo 1">
-  &copy; 2025 Red Espacio Maker - Corpus Christi
-  <img src="00.png" alt="Logo 2">
+  <div class="footer-content">
+    <img src="BLANCO1.png" alt="Logo Corpus Christi">
+    <p>&copy; 2025 Red Espacio Maker - Corpus Christi</p>
+    <img src="00.png" alt="Logo Red Maker">
+  </div>
 </footer>
 
 <script>
-  const items = document.querySelectorAll('#menu-list li');
-  const secs = document.querySelectorAll('main section');
-  items.forEach(item=>{
-    item.addEventListener('click', ()=>{
-      items.forEach(i=>i.classList.remove('active'));
-      secs.forEach(s=>s.style.display='none');
+  const menuItems = document.querySelectorAll('#menu-list li');
+  const sections = document.querySelectorAll('main section');
+
+  menuItems.forEach(item => {
+    item.addEventListener('click', () => {
+      menuItems.forEach(i => i.classList.remove('active'));
+      sections.forEach(sec => sec.style.display = 'none');
+
       item.classList.add('active');
-      const id = item.getAttribute('data-target');
-      const sec = document.getElementById(id);
-      if(sec) sec.style.display='block';
-      window.scrollTo({ top:0, behavior:'smooth' });
+      const targetId = item.getAttribute('data-target');
+      const targetSection = document.getElementById(targetId);
+      if (targetSection) targetSection.style.display = 'block';
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
 </script>
+
 </body>
 </html>
+
 
 
 
