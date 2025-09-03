@@ -183,6 +183,8 @@
     /* ≥ 768px (tablet) */
     @media (min-width:768px){
       .encabezado{ height:70vh; }
+
+      /* Muestra menú en fila; logo queda a la izquierda, enlaces centrados */
       .hamburger{ display:none; }
       .menu-links{
         display:flex !important;
@@ -192,8 +194,23 @@
         width:auto;
         border-top:0;
         padding:0;
+        background:transparent;
       }
-      nav{ padding:14px 20px; }
+
+      /* — CENTRADO EXACTO DEL MENÚ EN PANTALLAS GRANDES — */
+      nav{
+        justify-content:center;           /* centramos el bloque de enlaces */
+        padding:14px 24px;
+      }
+      .logo{
+        position:absolute;                /* fijamos el logo a la izquierda */
+        left:24px; top:50%;
+        transform:translateY(-50%);
+        margin:0;
+      }
+      .menu-links{
+        justify-content:center !important; /* enlaces realmente centrados */
+      }
       .instagram-icon, .facebook-icon{ font-size:1.35rem; }
     }
 
@@ -204,29 +221,15 @@
       .footer-content img{ max-width:110px; }
     }
 
-    /* ====== AJUSTES NUEVOS (solo sobrescriben; no borran nada) ====== */
+    /* ====== AJUSTES DE CENTRADO GLOBALES ====== */
 
-    /* 1) Menú centrado en tablet/desktop */
-    @media (min-width: 768px){
-      nav{
-        justify-content:center;     /* evita extremos separados */
-        flex-direction:column;      /* logo arriba, menú debajo */
-        gap:10px;
-      }
-      .logo{ text-align:center; }
-      .menu-links{
-        justify-content:center;     /* 👈 centra los ítems */
-        width:auto;
-      }
-    }
-
-    /* 2) Footer todo junto y centrado */
+    /* Footer todo junto y centrado (como en tus capturas) */
     .footer-content{
-      justify-content:center;       /* 👈 centra logos + texto */
+      justify-content:center;     /* logos + texto centrados */
       gap:14px;
     }
 
-    /* 3) Celular más compacto: que entre todo */
+    /* Celular más compacto: que entre todo sin apretarse */
     @media (max-width:480px){
       .menu-links{ gap:10px; }
       .menu-links a{ font-size:14px; padding:6px 8px; }
@@ -287,7 +290,3 @@
 
 </body>
 </html>
-
-
-
-
