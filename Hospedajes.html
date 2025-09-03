@@ -8,258 +8,223 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:ital,wght@1,400&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family:'Times New Roman', serif;
-      margin: 0;
-      background: #ffffff;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      color: #333;
+    :root{
+      --azul: rgba(0,114,187,0.5);
+      --azul-osc: rgba(0,92,153,1);
+      --maxw: 1100px;
+      --radio: 10px;
+      --sombra: 0 6px 18px rgba(0,0,0,.12);
     }
 
+    /* ====== BASE ====== */
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+    body{
+      font-family:'Times New Roman', serif;
+      margin:0;
+      background:#fff;
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+      color:#333;
+    }
+    img{ max-width:100%; height:auto; display:block; } /* imágenes fluidas */
+
     /* ====== PORTADA ====== */
-    .portada {
-      background-color: rgba(0, 92, 153);
-      color: #ffffff;
-      text-align: center;
-      padding: 30px 10px;
-      font-family: 'Times New Roman', serif;
-      font-size: 4em;
-      transition: background-color 0.3s ease;
+    .portada{
+      background-color: var(--azul-osc);
+      color:#fff;
+      text-align:center;
+      padding:clamp(16px, 4vh, 30px) 10px;
+      font-family:'Times New Roman', serif;
+      font-size:clamp(28px, 6.2vw, 48px);
+      transition:background-color .3s ease;
     }
 
     /* ====== MENÚ SUPERIOR ====== */
-    .topnav {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      background-color: rgba(0, 114, 187, 0.5);
-      font-family: 'Warbler Text', serif;
-      font-size: 22px;
-      font-style: italic;
-      padding: 10px;
+    .topnav{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+      background-color: var(--azul);
+      font-family:'Warbler Text', serif;
+      font-size:clamp(16px, 2.2vw, 22px);
+      font-style:italic;
+      padding:10px;
+      gap:clamp(8px, 2vw, 18px);
+      position:sticky;
+      top:0;
+      z-index:5;
+      backdrop-filter:saturate(120%) blur(2px);
     }
-
-    .topnav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-size: 26px;
-      font-style: italic;
+    .topnav a{
+      color:#fff;
+      text-decoration:none;
+      margin:0 4px;
+      font-size:clamp(16px, 2.6vw, 26px);
+      font-style:italic;
+      padding:.2rem .5rem;
+      border-radius:8px;
+      transition:background .2s ease;
+      white-space:nowrap;
     }
-
-    .topnav a:hover {
-      text-decoration: underline;
+    @media (hover:hover){
+      .topnav a:hover{ text-decoration:underline; background:rgba(255,255,255,.12); }
     }
 
     /* ====== CONTENEDOR PRINCIPAL ====== */
-    .container {
-      display: flex;
-      flex: 1;
-      margin-top: 0;
-      gap: 1rem;
+    .container{
+      display:flex;
+      flex:1;
+      width:min(92vw, var(--maxw));
+      margin:clamp(10px, 3vh, 20px) auto;
+      gap:clamp(10px, 2vw, 16px);
     }
 
     /* ====== MENU LATERAL ====== */
-    nav {
-      width: 250px;
-      min-height: 100%;
-      padding: 20px 10px;
-      background-color: #333333;
-      color: white;
-      border-radius: 8px;
+    nav{
+      width: clamp(240px, 26vw, 260px);
+      padding:clamp(12px, 2vw, 20px) 10px;
+      background-color:#333;
+      color:#fff;
+      border-radius:8px;
+      box-shadow:var(--sombra);
+      align-self:flex-start;
     }
-
-    nav ul {
-      list-style: none;
-      padding-left: 0;
+    nav ul{ list-style:none; padding-left:0; margin:0; }
+    nav ul li{
+      padding:10px 12px;
+      margin-bottom:8px;
+      cursor:pointer;
+      border-radius:8px;
+      transition:background-color .25s ease;
+      font-weight:bold;
+      font-size:clamp(16px, 2.2vw, 22px);
+      font-family:'Warbler Text', serif;
+      font-style:italic;
     }
-
-    nav ul li {
-      padding: 10px 15px;
-      margin-bottom: 8px;
-      cursor: pointer;
-      border-radius: 8px;
-      transition: background-color 0.3s;
-      font-weight: bold;
-      font-size: 22px;
-      font-family: 'Warbler Text', serif;
-      font-style: italic;
-    }
-
-    nav ul li:hover,
-    nav ul li.active {
-      background-color: #FF6D52;
-    }
+    nav ul li:hover, nav ul li.active{ background-color:#FF6D52; }
 
     /* ====== CONTENIDO ====== */
-    main {
-      flex: 1;
-      padding: 20px;
-      max-width: 900px;
-      background: #fff;
+    main{
+      flex:1;
+      padding:clamp(10px, 2vw, 20px);
+      background:#fff;
+      max-width:900px;
     }
 
-    .card {
-      background: #f9f9f9;
-      border-radius: 10px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-      padding: 20px;
-      margin-bottom: 30px;
+    .card{
+      background:#f9f9f9;
+      border-radius:10px;
+      box-shadow:var(--sombra);
+      padding:clamp(14px, 2.2vw, 20px);
+      margin-bottom:clamp(20px, 3vh, 30px);
+    }
+    .card h2{
+      color:#000;
+      margin:0 0 10px 0;
+      font-family:'Warbler Text', serif;
+      font-size:clamp(20px, 2.6vw, 27px);
+      font-style:italic;
+    }
+    .card p{
+      font-family:'Warbler Text', serif;
+      font-size:clamp(15px, 2.2vw, 20px);
+      line-height:1.55;
     }
 
-    .card h2 {
-      color: black;
-      margin-top: 0;
-      font-family: 'Warbler Text', serif;
-      font-size: 27px;
-      font-style: italic;
+    /* —— Galería dentro de cada card: 1 col (móvil), 2 col (tablet), 3 col (desktop) —— */
+    .card img{
+      width:100%;
+      max-height:300px;
+      object-fit:cover;
+      border-radius:10px;
+      margin-bottom:12px;
+      box-shadow:0 0 10px rgba(110,190,110,.8);
+      cursor:pointer;
+      transition:transform .25s ease, box-shadow .25s ease;
     }
-
-    .card p {
-      font-family: 'Warbler Text', serif;
-      font-size: 20px;
-      line-height: 1.5;
+    @media (min-width:600px){
+      .card img{ width:calc(50% - 8px); display:inline-block; margin-right:12px; vertical-align:top; }
+      .card img:nth-child(2n){ margin-right:0; }
     }
-
-    .card img {
-      width: 100%;
-      max-height: 300px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      box-shadow: 0 0 10px rgba(110, 190, 110, 0.8);
-      cursor: pointer;
-      transition: transform 0.3s ease;
+    @media (min-width:1000px){
+      .card img{ width:calc(33.333% - 8px); }
+      .card img:nth-child(3n){ margin-right:0; }
     }
-
-    .card img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px rgba(70, 170, 70, 1);
+    @media (hover:hover){
+      .card img:hover{ transform:scale(1.035); box-shadow:0 0 15px rgba(70,170,70,1); }
     }
 
     /* ====== PIE DE PÁGINA ====== */
-    footer {
-      background-color: rgba(0, 92, 153);
-      color: white;
-      text-align: center;
-      padding: 20px;
-      font-size: 18px;
-      font-style: italic;
-      font-family: 'Lucida Bright', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 15px;
+    footer{
+      background-color: var(--azul-osc);
+      color:#fff;
+      text-align:center;
+      padding:clamp(12px, 2.6vh, 20px);
+      font-size:clamp(12px, 2.2vw, 18px);
+      font-style:italic;
+      font-family:'Lucida Bright', serif;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:clamp(10px, 2vw, 15px);
     }
-
-    footer img {
-      max-width: 150px;
-      height: auto;
-    }
-
-    footer a:hover {
-      color: #E4405F;
-    }
+    footer img{ max-width:clamp(90px, 16vw, 150px); height:auto; }
+    footer a{ color:#fff; text-decoration:none; }
+    @media (hover:hover){ footer a:hover{ color:#E4405F; } }
 
     /* ====== LIGHTBOX ====== */
-    .lightbox {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
+    .lightbox{
+      position:fixed;
+      inset:0;
+      width:100%; height:100%;
+      background:rgba(0,0,0,.8);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+      padding:2vw;
+    }
+    .lightbox img{
+      max-width:92vw;
+      max-height:92vh;
+      border-radius:10px;
+      box-shadow:0 0 20px #4caf50;
+    }
+    .lightbox .cerrar{
+      position:absolute;
+      top:20px; right:30px;
+      font-size:clamp(26px, 5vw, 36px);
+      color:#fff;
+      cursor:pointer;
+      font-weight:bold;
+      user-select:none;
     }
 
-    .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 10px;
-      box-shadow: 0 0 20px #4caf50;
+    /* ====== RESPONSIVE LAYOUT ====== */
+    @media (max-width: 900px){
+      .container{ flex-direction:column; }
+      nav{ width:100%; text-align:center; }
+    }
+    @media (max-width: 480px){
+      .topnav{ gap:8px; }
+      nav ul li{ font-size:16px; }
+      footer{ flex-direction:column; gap:10px; }
     }
 
-    .lightbox .cerrar {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 36px;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-      user-select: none;
-    }
-
-    /* ====== RESPONSIVE ====== */
-    @media (max-width: 900px) {
-      .container {
-        flex-direction: column;
-      }
-
-      nav {
-        width: 100%;
-        text-align: center;
-      }
-
-      nav ul li {
-        font-size: 18px;
-      }
-
-      main {
-        max-width: 100%;
-      }
-
-      .portada {
-        font-size: 2.5em;
-      }
-
-      .topnav a {
-        font-size: 20px;
-        margin: 5px 10px;
-      }
-
-      footer {
-        font-size: 14px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .portada {
-        font-size: 2em;
-        padding: 20px 5px;
-      }
-
-      .topnav a {
-        font-size: 16px;
-      }
-
-      nav ul li {
-        font-size: 16px;
-      }
-
-      .card p {
-        font-size: 16px;
-      }
-
-      footer {
-        flex-direction: column;
-        gap: 10px;
-        font-size: 12px;
-      }
+    /* Accesibilidad: respeta “reducir movimiento” */
+    @media (prefers-reduced-motion: reduce){
+      .card img, .topnav a{ transition:none; }
     }
   </style>
 </head>
 <body>
 
 <!-- PORTADA -->
-<div class="portada">
-  Hospedajes de Corpus
-</div>
+<div class="portada">Hospedajes de Corpus</div>
 
 <!-- MENÚ SUPERIOR -->
 <div class="topnav">
@@ -282,7 +247,7 @@
 
   <!-- Secciones -->
   <main>
-    <section id="posada" class="card" style="display: block;">
+    <section id="posada" class="card" style="display:block;">
       <h2>🏡 Posada Los Azahares</h2>
       <img src="ll.jpeg" alt="Posada Los Azahares" onclick="abrirLightbox(this.src)">
       <img src="mm.jpeg" alt="Posada Los Azahares" onclick="abrirLightbox(this.src)">
@@ -295,7 +260,7 @@
       <p>Check-in a las 12:00, Check-out a las 10:00, Estadía Mínima 2 Noches. Limpieza Incluida. Admite Mascotas.</p>
     </section>
 
-    <section id="cabaña" class="card" style="display: none;">
+    <section id="cabaña" class="card" style="display:none;">
       <h2>🏡 Cabaña La Gloriosa</h2>
       <img src="lll.avif" alt="Cabaña La Gloriosa" onclick="abrirLightbox(this.src)">
       <img src="mmm.avif" alt="Cabaña La Gloriosa" onclick="abrirLightbox(this.src)">
@@ -311,7 +276,7 @@
       <p>El Restaurante del Complejo (Restaurante Oliva) ofrece Cocina Mediterránea con inspiración de sabores de Yerba Mate, a Cargo de la Chef Concepción "Concha" Alarcos. Funciona solo con reserva previa.</p>
     </section>
 
-    <section id="ypora" class="card" style="display: none;">
+    <section id="ypora" class="card" style="display:none;">
       <h2>🏡 Alojamiento Ypora</h2>
       <img src="qq.jpg" alt="Alojamiento Ypora" onclick="abrirLightbox(this.src)">
       <img src="VVV.jpg" alt="Alojamiento Ypora" onclick="abrirLightbox(this.src)">
@@ -376,18 +341,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
