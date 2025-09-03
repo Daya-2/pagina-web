@@ -221,20 +221,64 @@
       .footer-content img{ max-width:110px; }
     }
 
-    /* ====== AJUSTES DE CENTRADO GLOBALES ====== */
+    /* ====== OVERRIDES FINALES PARA VERLO COMO EN TUS FOTOS ====== */
 
-    /* Footer todo junto y centrado (como en tus capturas) */
-    .footer-content{
-      justify-content:center;     /* logos + texto centrados */
-      gap:14px;
+    /* Footer centrado (logos + texto juntos) */
+    footer .footer-content{
+      display:flex !important;
+      justify-content:center !important;
+      align-items:center !important;
+      gap:16px !important;
+      flex-wrap:wrap !important;
+      text-align:center !important;
+    }
+    footer .footer-content img{ max-width:100px !important; height:auto !important; }
+    footer .footer-content p{ margin:0 !important; font-size:16px !important; }
+
+    /* Desktop/Tablet: menú centrado con logo a la izquierda */
+    @media (min-width: 992px){
+      nav{
+        position:relative !important;
+        display:flex !important;
+        align-items:center !important;
+        justify-content:center !important;     /* centra el bloque de enlaces */
+        padding:14px 24px !important;
+      }
+      nav .logo{
+        position:absolute !important;
+        left:24px !important;
+        top:50% !important;
+        transform:translateY(-50%) !important;
+        margin:0 !important;
+        text-align:left !important;
+      }
+      nav .hamburger,
+      nav #menu-toggle{ display:none !important; }
+
+      nav .menu-links{
+        display:flex !important;
+        flex-direction:row !important;
+        align-items:center !important;
+        justify-content:center !important;     /* 👈 centrado real */
+        gap:26px !important;
+        width:auto !important;
+        padding:0 !important;
+        border-top:0 !important;
+        background:transparent !important;
+      }
+      nav .menu-links a{
+        font-size:18px !important;
+        padding:10px 12px !important;
+      }
     }
 
-    /* Celular más compacto: que entre todo sin apretarse */
-    @media (max-width:480px){
-      .menu-links{ gap:10px; }
-      .menu-links a{ font-size:14px; padding:6px 8px; }
-      .footer-content img{ max-width:80px; }
-      .contenido{ margin: 16px auto; padding: 16px; }
+    /* Celular: que entre todo cómodo */
+    @media (max-width: 480px){
+      nav .menu-links{ gap:10px !important; }
+      nav .menu-links a{ font-size:14px !important; padding:6px 8px !important; }
+      .contenido{ padding:16px !important; margin:16px auto !important; }
+      footer .footer-content img{ max-width:80px !important; }
+      footer .footer-content p{ font-size:14px !important; }
     }
   </style>
 </head>
@@ -290,3 +334,4 @@
 
 </body>
 </html>
+
