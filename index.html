@@ -95,58 +95,32 @@
     }
 
     /* ====== FOOTER ====== */
-    footer{
-      background:var(--azul-footer);
-      color:#fff;
-      padding:15px;
-    }
-    .footer-content{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-      text-align:center;
-    }
-    .footer-content img{
-      max-width:80px;
-      height:auto;
-    }
-    .footer-content p{
-      margin:0;
-      font-size:16px;
-      font-style:italic;
-      font-family:'Times New Roman', serif;
-    }
-
-    /* ====== RESPONSIVE ====== */
-    @media (min-width:768px){
-      /* Tablet y PC: encabezado más grande */
-      .encabezado{ height:80vh; }
-
-      /* Footer más grande */
-      .footer-content img{ max-width:110px; }
-      .footer-content p{ font-size:18px; }
-    }
-
-    @media (min-width:1024px){
-      /* En PC pantalla completa */
-      .encabezado{ height:100vh; }
-      .footer-content img{ max-width:130px; }
-      .footer-content p{ font-size:20px; }
-    }
-
-    @media (max-width:768px){
-      .contenido{ margin:20px 10px; padding:20px; }
-      nav a{ font-size:18px; margin:5px; }
-      .footer-content img{ max-width:70px; }
-      .footer-content p{ font-size:14px; }
-    }
-    @media (max-width:480px){
-      .contenido{ margin:10px; padding:15px; }
-      nav a{ font-size:16px; margin:3px; }
-      .footer-content{ flex-direction:column; gap:8px; }
-      .footer-content img{ max-width:60px; }
+    /* ===== FOOTER ===== */
+   footer{
+  background:rgba(0,92,153,0.95);
+  color:#fff;
+  padding:1rem;
+  width:100%;
+}
+.footer-content{
+  width:min(92vw, 1000px);
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;  /* 👈 centrado */
+  gap:14px;                /* 👈 logos y texto juntos */
+  flex-wrap:wrap;
+}
+.footer-content img{ max-width:100px; height:auto; }
+.footer-content p{
+  margin:0;
+  font-size:clamp(14px, 2.2vw, 16px);
+  text-align:center;
+}
+@media (max-width:480px){
+  .footer-content img{ max-width:80px; }
+  .footer-content p{ font-size:14px; }
+}
     }
   </style>
 </head>
@@ -175,16 +149,17 @@
   </div>
 
   <!-- PIE DE PÁGINA -->
-  <footer>
-    <div class="footer-content">
-      <img src="BLANCO1.png" alt="Logo 1">
-      <p>&copy; 2025 Red Espacio Maker - Corpus Christi</p>
-      <img src="00.png" alt="Logo 2">
-    </div>
-  </footer>
+   <footer>
+  <div class="footer-content">
+    <img src="BLANCO1.png" alt="Logo 1">
+    <p>&copy; 2025 Red Espacio Maker - Corpus Christi</p>
+    <img src="00.png" alt="Logo 2">
+  </div>
+</footer>
 
 </body>
 </html>
+
 
 
 
