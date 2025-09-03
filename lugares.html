@@ -5,259 +5,217 @@
   <title>Lugares Turísticos - Corpus Christi</title>
   <link href="https://fonts.googleapis.com/css2?family=Warbler+Text:ital,wght@1,700&display=swap" rel="stylesheet">
   <style>
-    /* Reset y fondo general */
-    body {
-      font-family: 'Times New Roman', serif;
-      margin: 0;
-      background-color: white;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+    :root{
+      --azul: rgba(0,114,187,0.9);
+      --azul-oscuro: rgba(0,92,153,0.9);
+      --maxw: 1100px;          /* ancho máximo en desktop */
+      --radio: 10px;
+      --sombra: 0 8px 20px rgba(0,0,0,.18);
     }
 
-    /* HEADER */
-    header {
-      height: 15vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background-color: rgba(0, 92, 153, 0.9);
-      color: white;
-      font-size: 1.5em;
-      font-family: 'Times New Roman', serif;
+    /* ===== Reset y base ===== */
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0;
+      background:#fff;
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+      font-family:'Times New Roman', serif;
+    }
+    img{ max-width:100%; height:auto; display:block; } /* imágenes fluidas */
+
+    /* ===== HEADER ===== */
+    header{
+      min-height:clamp(64px, 12vh, 120px);
+      padding:clamp(10px, 2.5vh, 18px) clamp(12px, 4vw, 24px);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      background:var(--azul-oscuro);
+      color:#fff;
+      box-shadow:var(--sombra);
+    }
+    header h1{
+      margin:0;
+      font-family:'Times New Roman', serif;
+      font-size:clamp(20px, 4.2vw, 34px);
+      line-height:1.2;
     }
 
-    /* MENU */
-    nav {
-      background-color: rgba(0, 114, 187, 0.9);
-      color: white;
-      text-align: center;
-      padding: 10px 0;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
+    /* ===== MENU ===== */
+    nav{
+      background:var(--azul);
+      color:#fff;
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:clamp(6px, 1.6vw, 18px);
+      padding:clamp(6px, 1.4vh, 12px) clamp(8px, 4vw, 24px);
+      position:sticky;
+      top:0;
+      z-index:5;
+    }
+    nav a{
+      color:#fff;
+      text-decoration:none;
+      font-family:'Warbler Text', serif;
+      font-style:italic;
+      font-size:clamp(16px, 2.6vw, 25px);
+      padding:.25rem .5rem;
+      border-radius:8px;
+      transition:background .2s ease;
+      white-space:nowrap;
+    }
+    @media (hover:hover){
+      nav a:hover{ background:rgba(255,255,255,.12); }
     }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-family: 'Warbler Text', serif;
-      font-size: 25px;
-      font-style: italic;
-      padding: 5px 10px;
-      transition: all 0.3s ease;
+    /* ===== CONTENIDO ===== */
+    section{
+      flex:1;
+      width:min(92vw, var(--maxw));
+      margin:clamp(12px, 3vh, 24px) auto;
+      padding:clamp(12px, 3vw, 20px);
+      background:#fff;
+      border-radius:var(--radio);
     }
 
-    nav a:hover {
-      text-decoration: underline;
+    .titulo-lugar{
+      cursor:pointer;
+      color:#820014;
+      margin:clamp(10px, 2vh, 16px) 0 6px;
+      user-select:none;
+      font-weight:bold;
+      font-size:clamp(18px, 3.6vw, 26px);
+      font-family:'Lucida Bright', serif;
     }
 
-    /* SECCIONES DE LUGARES */
-    section {
-      flex: 1;
-      padding: 20px;
-      max-width: 1000px;
-      margin: 20px auto;
-      background: white;
-      border-radius: 10px;
+    .descripcion{
+      display:none;
+      margin-top:8px;
+      line-height:1.65;
+      color:#000;
+      font-family:'Georgia', serif;
+      font-size:clamp(14px, 2.4vw, 19px);
     }
 
-    .titulo-lugar {
-      cursor: pointer;
-      color: #820014;
-      margin: 15px 0 5px;
-      user-select: none;
-      font-weight: bold;
-      font-size: 1.6em;
-      font-family: 'Lucida Bright', serif;
+    /* ===== CARRUSEL ===== */
+    .carrusel-container{
+      width:100%;
+      margin:auto;
+      overflow:hidden;
+      position:relative;
+      border-radius:var(--radio);
+      box-shadow:var(--sombra);
+      background:#fff;
     }
-
-    .descripcion {
-      display: none;
-      margin-top: 10px;
-      line-height: 1.5;
-      color: black;
-      font-family: 'Georgia', serif;
-      font-size: 19px;
+    .carrusel{
+      display:flex;
+      transition:transform .3s ease-in-out;
+      width:max-content;
     }
-
-    /* CARRUSEL */
-    .carrusel-container {
-      width: 90%;
-      margin: auto;
-      overflow: hidden;
-      position: relative;
+    .carrusel img{
+      /* tamaño adaptable manteniendo proporción 3:2 */
+      width:clamp(140px, 32vw, 320px);
+      aspect-ratio:3/2;
+      margin:clamp(6px, 1.6vw, 12px);
+      border-radius:12px;
+      object-fit:cover;
+      cursor:pointer;
+      flex-shrink:0;
+      transition:transform .25s ease, box-shadow .25s ease;
     }
-
-    .carrusel {
-      display: flex;
-      transition: transform 0.3s ease-in-out;
-      width: max-content;
-    }
-
-    .carrusel img {
-      width: 300px;
-      height: 200px;
-      margin: 10px;
-      border-radius: 10px;
-      object-fit: cover;
-      cursor: pointer;
-      flex-shrink: 0;
-      transition: 0.3s;
-    }
-
-    .carrusel img:hover {
-      transform: scale(1.05) translateY(-5px);
-    }
-
-    .boton {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(0,0,0,0.4);
-      color: white;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
-      font-size: 24px;
-      z-index: 1;
-      user-select: none;
-    }
-
-    .izquierda {
-      left: 0;
-    }
-
-    .derecha {
-      right: 0;
-    }
-
-    /* LIGHTBOX */
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.8);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .lightbox img {
-      max-width: 90%;
-      max-height: 80%;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgb(255, 0, 0);
-    }
-
-    .lightbox .cerrar {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      color: white;
-      font-size: 36px;
-      font-weight: bold;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 15px;
-      font-size: 18px;
-      font-style: italic;
-      font-family: 'Lucida Bright', sans-serif;
-      background-color: rgba(0, 92, 153, 0.9);
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    footer img {
-      max-width: 80px;
-      height: auto;
-    }
-
-    footer a {
-      color: white;
-      text-decoration: none;
-      margin-left: 10px;
-    }
-
-    footer a:hover {
-      color: #E4405F;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      nav a {
-        font-size: 18px;
-        margin: 5px;
-      }
-      .carrusel img {
-        width: 220px;
-        height: 150px;
-        margin: 8px;
-      }
-      .boton {
-        font-size: 20px;
-        padding: 8px;
-      }
-      section {
-        padding: 15px;
-        margin-top: 15px;
-      }
-      .titulo-lugar {
-        font-size: 1.3em;
-      }
-      .descripcion {
-        font-size: 15px;
-      }
-      footer {
-        font-size: 16px;
-        padding: 10px;
-      }
-      footer img {
-        max-width: 70px;
+    @media (hover:hover){
+      .carrusel img:hover{
+        transform:scale(1.035) translateY(-4px);
+        box-shadow:0 10px 22px rgba(0,0,0,.2);
       }
     }
 
-    @media (max-width: 480px) {
-      nav a {
-        font-size: 16px;
-        margin: 3px;
-      }
-      .carrusel img {
-        width: 160px;
-        height: 110px;
-        margin: 6px;
-      }
-      .boton {
-        font-size: 18px;
-        padding: 6px;
-      }
-      section {
-        width: 95%;
-        padding: 10px;
-        margin-top: 10px;
-      }
-      .titulo-lugar {
-        font-size: 1.1em;
-      }
-      .descripcion {
-        font-size: 14px;
-      }
-      footer img {
-        max-width: 60px;
-      }
+    .boton{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      background:rgba(0,0,0,.35);
+      color:#fff;
+      border:none;
+      padding:clamp(6px, 1.6vw, 10px);
+      cursor:pointer;
+      font-size:clamp(20px, 4.5vw, 28px);
+      z-index:2;
+      user-select:none;
+      border-radius:10px;
+      transition:background .2s ease;
+    }
+    .izquierda{ left:4px; }
+    .derecha{ right:4px; }
+    @media (hover:hover){
+      .boton:hover{ background:rgba(0,0,0,.5); }
+    }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox{
+      display:none;
+      position:fixed;
+      inset:0;
+      z-index:1000;
+      background:rgba(0,0,0,.85);
+      justify-content:center;
+      align-items:center;
+      padding:2vw;
+    }
+    .lightbox img{
+      max-width:92vw;
+      max-height:85vh;
+      border-radius:12px;
+      box-shadow:0 0 20px rgb(255,0,0);
+    }
+    .lightbox .cerrar{
+      position:absolute;
+      top:16px;
+      right:20px;
+      color:#fff;
+      font-size:clamp(26px, 5.2vw, 36px);
+      font-weight:bold;
+      cursor:pointer;
+      user-select:none;
+    }
+
+    /* ===== FOOTER ===== */
+    footer{
+      text-align:center;
+      padding:clamp(10px, 2.4vh, 16px);
+      font-size:clamp(14px, 2.6vw, 18px);
+      font-style:italic;
+      font-family:'Lucida Bright', serif;
+      background:var(--azul-oscuro);
+      color:#fff;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:clamp(10px, 2.4vw, 18px);
+      flex-wrap:wrap;
+    }
+    footer img{
+      max-width:clamp(60px, 16vw, 90px);
+      height:auto;
+    }
+    footer a{
+      color:#fff;
+      text-decoration:none;
+      margin-left:10px;
+    }
+    @media (hover:hover){
+      footer a:hover{ color:#E4405F; }
+    }
+
+    /* Accesibilidad: respeta “reducir movimiento” del SO */
+    @media (prefers-reduced-motion: reduce){
+      .carrusel{ transition:none; }
+      .carrusel img{ transition:none; }
     }
   </style>
 </head>
@@ -278,7 +236,6 @@
 
   <!-- CONTENIDO -->
   <section>
-    <!-- Aquí van todos los lugares tal como tu archivo original -->
     <!-- Museo -->
     <div>
       <div class="titulo-lugar" onclick="toggleDescripcion('desc1')">Museo</div>
@@ -332,7 +289,7 @@
         <button class="boton derecha" onclick="moverCarrusel('carrusel3', 1)">❯</button>
       </div>
       <div id="desc3" class="descripcion">
-        <p>Este sitio corresponde a una de las Reducciones Jesuítico‑Guaraníes fundadas en la Región en el Siglo XVII.</p>
+        <p>Este sitio corresponde a una de las Reducciones Jesuítico-Guaraníes fundadas en la Región en el Siglo XVII.</p>
         <p>Se encuentran en el municipio de Corpus Christi, Misiones, a pocos kilómetros del río Paraná.</p>
       </div>
     </div>
@@ -450,16 +407,23 @@
 
     function moverCarrusel(id, direccion) {
       const carrusel = document.getElementById(id);
-      const anchoImagen = carrusel.querySelector('img').clientWidth + 20;
+      const img = carrusel.querySelector('img');
+      const styles = getComputedStyle(img);
+      const step = img.getBoundingClientRect().width
+                  + parseFloat(styles.marginLeft)
+                  + parseFloat(styles.marginRight);
+
       if (!desplazamientos[id]) desplazamientos[id] = 0;
-      desplazamientos[id] += direccion * anchoImagen;
-      const maxDesplazamiento = -(carrusel.scrollWidth - carrusel.parentElement.offsetWidth);
+      desplazamientos[id] += direccion * step;
+
+      const max = -(carrusel.scrollWidth - carrusel.parentElement.clientWidth);
       if (desplazamientos[id] > 0) desplazamientos[id] = 0;
-      if (desplazamientos[id] < maxDesplazamiento) desplazamientos[id] = maxDesplazamiento;
+      if (desplazamientos[id] < max) desplazamientos[id] = max;
+
       carrusel.style.transform = `translateX(${desplazamientos[id]}px)`;
     }
 
-    function toggleDescripcion(id) {
+    function toggleDescripcion(id){
       const desc = document.getElementById(id);
       desc.style.display = (desc.style.display === "block") ? "none" : "block";
     }
@@ -475,8 +439,8 @@
       });
     });
 
-    function cerrarLightbox(e) {
-      if (e.target === lightbox || e.target.classList.contains('cerrar')) {
+    function cerrarLightbox(e){
+      if (e.target === lightbox || e.target.classList.contains('cerrar')){
         lightbox.style.display = 'none';
       }
     }
