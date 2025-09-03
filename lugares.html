@@ -185,38 +185,33 @@
     }
 
     /* ===== FOOTER ===== */
-    footer{
-      text-align:center;
-      padding:clamp(10px, 2.4vh, 16px);
-      font-size:clamp(14px, 2.6vw, 18px);
-      font-style:italic;
-      font-family:'Lucida Bright', serif;
-      background:var(--azul-oscuro);
-      color:#fff;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      gap:clamp(10px, 2.4vw, 18px);
-      flex-wrap:wrap;
+   footer{
+  background:rgba(0,92,153,0.95);
+  color:#fff;
+  padding:1rem;
+  width:100%;
+}
+.footer-content{
+  width:min(92vw, 1000px);
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;  /* 👈 centrado */
+  gap:14px;                /* 👈 logos y texto juntos */
+  flex-wrap:wrap;
+}
+.footer-content img{ max-width:100px; height:auto; }
+.footer-content p{
+  margin:0;
+  font-size:clamp(14px, 2.2vw, 16px);
+  text-align:center;
+}
+@media (max-width:480px){
+  .footer-content img{ max-width:80px; }
+  .footer-content p{ font-size:14px; }
+}
     }
-    footer img{
-      max-width:clamp(60px, 16vw, 90px);
-      height:auto;
-    }
-    footer a{
-      color:#fff;
-      text-decoration:none;
-      margin-left:10px;
-    }
-    @media (hover:hover){
-      footer a:hover{ color:#E4405F; }
-    }
-
-    /* Accesibilidad: respeta “reducir movimiento” del SO */
-    @media (prefers-reduced-motion: reduce){
-      .carrusel{ transition:none; }
-      .carrusel img{ transition:none; }
-    }
+    
   </style>
 </head>
 <body>
@@ -391,10 +386,12 @@
 
   <!-- FOOTER -->
   <footer>
+  <div class="footer-content">
     <img src="BLANCO1.png" alt="Logo 1">
-    &copy; 2025 Red Espacio Maker - Corpus Christi
+    <p>&copy; 2025 Red Espacio Maker - Corpus Christi</p>
     <img src="00.png" alt="Logo 2">
-  </footer>
+  </div>
+</footer>
 
   <!-- LIGHTBOX -->
   <div id="lightbox" class="lightbox" onclick="cerrarLightbox(event)">
@@ -447,3 +444,5 @@
   </script>
 </body>
 </html>
+
+
