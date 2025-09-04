@@ -16,9 +16,12 @@
   <style>
     :root{
       --azul: rgba(0,114,187,0.9);
-      --azul-osc: rgba(0,92,153,0.95);   /* igual que en Hospedajes */
+      --azul-osc: rgba(0,92,153,0.95);   /* igual que Hospedajes */
       --azul-footer: rgba(0,92,153,0.95);
       --rojo: #FF0D00;
+      --nav-h: 44px;           /* altura del menú (cambiá a 56 si tu nav es más alto) */
+      --hero-shift: 14px;      /* cuanto subimos la imagen del hero (ajustable) */
+      --hero-shift-m: 24px;    /* desplazamiento en móvil (ajustable) */
     }
 
     *{ box-sizing: border-box; margin:0; padding:0; }
@@ -31,34 +34,44 @@
     }
     img{ max-width:100%; height:auto; display:block; }
 
-    /* ====== ENCABEZADO/HERO ====== */
+    /* ====== ENCABEZADO/HERO ======
+       - NO usamos width:100% en la imagen.
+       - Llenamos el alto con height:100% y centramos por X.
+       - La movemos "para arriba" con translateY usando variables.
+    */
     .encabezado{
       position:relative;
       width:100%;
-      height:100vh;              /* ocupa toda la pantalla */
+      height:100vh;                /* ocupa toda la pantalla */
       overflow:hidden;
+      margin-top: 0;
+      background:#000;             /* disimula cualquier borde oscuro del JPG */
     }
     .encabezado img{
       position:absolute;
-      inset:0;                   /* top/right/bottom/left: 0 */
-      width:100%;
+      top:0;
+      left:50%;
       height:100%;
-      object-fit:cover;          /* cubrir (sin bandas) */
-      object-position:center top;/* prioriza parte superior */
+      width:auto;
+      transform: translate(-50%, calc(-1 * var(--hero-shift)));
       filter:brightness(60%);
     }
 
-    /* En celulares: un poco más bajo, pero SIEMPRE cover */
+    /* En celulares: misma lógica, solo subimos un poco más */
     @media (max-width:768px){
-      .encabezado{ height:70vh; }
-      .encabezado img{ object-fit:cover; }
+      .encabezado{ height:80vh; }
+      .encabezado img{
+        height:100%;
+        width:auto;
+        transform: translate(-50%, calc(-1 * var(--hero-shift-m)));
+      }
     }
 
     /* ====== MENÚ — IGUAL QUE HOSPEDAJES ====== */
     nav.topnav{
       position: sticky; top: 0; z-index: 999;
       display:flex; justify-content:center; align-items:center;
-      height:44px; padding:0 6px; gap:0;
+      height:var(--nav-h); padding:0 6px; gap:0;
       background: linear-gradient(180deg, var(--azul), var(--azul-osc));
       font-family:'Warbler Text', serif; font-style:italic;
       white-space:nowrap; flex-wrap:nowrap;
@@ -112,30 +125,49 @@
       justify-content:center;
       gap:14px;
       flex-wrap:wrap;
+      position:relative;           /* para ubicar iconos a la derecha */
+      padding-right: 76px;         /* espacio para los iconos a la derecha */
     }
     .footer-content img{ max-width:100px; height:auto; }
     .footer-content p{
       margin:0;
       font-size:clamp(14px, 2.2vw, 16px);
       text-align:center;
+      font-family:'Lucida Bright', serif;
+      font-style:italic;
     }
+
+    /* Iconos a la derecha del pie (siempre visibles) */
+    .footer-social{
+      position:absolute;
+      right:10px;
+      top:50%;
+      transform:translateY(-50%);
+      display:flex;
+      gap:14px;
+    }
+    .footer-social a{
+      color:#fff;
+      font-size:22px;
+      text-decoration:none;
+    }
+
     @media (max-width:480px){
       .footer-content img{ max-width:80px; }
       .footer-content p{ font-size:14px; }
+      .footer-social a{ font-size:20px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ENCABEZADO -->
+  <!-- ENCABEZADO (solo “para arriba”, sin ensanchar) -->
   <div class="encabezado">
-    <!-- Cambiá ps.jpg si tu encabezado usa otro archivo -->
     <img src="ps.jpg" alt="Corpus Christi">
   </div>
 
   <!-- MENÚ (idéntico a Hospedajes) -->
   <nav class="topnav">
-    <a href="index.html">Inicio</a>
     <a href="lugares.html">Lugares Turísticos</a>
     <a href="Hospedajes.html">Hospedajes</a>
     <a href="Eventos.html">Eventos</a>
@@ -148,17 +180,24 @@
     <p>Bienvenido a una Tierra de Historia, Cultura y Naturaleza. En esta Página descubrirás los Rincones más Emblemáticos de Corpus Christi, sus Tradiciones, su gente y todo lo que tiene para ofrecer. Desde su Herencia Jesuítica hasta sus Eventos Actuales, te invitamos a conocer más y ser parte de esta experiencia única.</p>
   </div>
 
-  <!-- PIE DE PÁGINA -->
+  <!-- PIE DE PÁGINA con iconos a la derecha -->
   <footer>
     <div class="footer-content">
       <img src="BLANCO1.png" alt="Logo 1">
       <p>&copy; 2025 Red Espacio Maker - Corpus Christi</p>
       <img src="00.png" alt="Logo 2">
+
+      <div class="footer-social" aria-label="Redes sociales">
+        <a href="https://www.instagram.com/municipalidaddecorpus/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/p/Municipalidad-de-Corpus-Christi-100069083864591/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      </div>
     </div>
   </footer>
 
 </body>
 </html>
+
+
 
 
 
