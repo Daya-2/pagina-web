@@ -13,6 +13,7 @@
       --azul: rgba(0,114,187,0.9); 
       --azul-osc: rgba(0,92,153,0.95); 
       --maxw:1100px; 
+      --rojo:#820014;
     }
 
     *{ box-sizing:border-box; }
@@ -22,7 +23,7 @@
       background:#eef5f2; color:#333;
     }
 
-    /* ===== PORTADA ===== */
+    /* ===== PORTADA (igual tamaño que otras) ===== */
     .portada{
       background:var(--azul-osc); color:#fff; text-align:center;
       padding:clamp(10px,3vh,20px) 8px;
@@ -30,54 +31,65 @@
       font-family:'Times New Roman', serif;
     }
 
-    /* ===== MENÚ (IDÉNTICO A HOSPEDAJES) ===== */
+    /* ===== MENÚ (igual al de Hospedajes) ===== */
     nav.topnav{
-      position: sticky; top: 0; z-index: 999;
-      display:flex; justify-content:center; align-items:center;
-      height:44px; padding:0 6px; gap:0;
-      background: linear-gradient(180deg, var(--azul), var(--azul-osc));
-      font-family:'Warbler Text', serif; font-style:italic;
-      white-space:nowrap; flex-wrap:nowrap;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:20px;
+      background:var(--azul);
+      padding:12px 20px;
+      font-family:'Warbler Text', serif;
+      font-style:italic;
+      position: static !important;
+      top: auto !important;
+      z-index:5;
     }
     nav.topnav a{
-      color:#fff; text-decoration:none; line-height:1; padding:0;
-      font-size: clamp(14px, 1.8vw, 19px);
-      margin: 0 clamp(8px, 1.6vw, 16px);
-      letter-spacing:-0.2px;
-      transition:opacity .2s, transform .2s;
+      color:#fff;
+      text-decoration:none;
+      font-size:25px;
+      padding:5px 10px;
+      transition:all 0.3s ease;
       white-space:nowrap;
     }
-    nav.topnav a:hover{ opacity:.9; transform: translateY(-1px); }
+    nav.topnav a:hover{ text-decoration:underline; }
 
     /* ===== CONTENIDO ===== */
-    main{ flex:1; width:min(92vw,var(--maxw)); margin:20px auto; }
+    main{ flex:1; width:min(92vw,var(--maxw)); margin:24px auto; }
 
-    /* En desktop/tablet mantener 16:9 */
-    .map-container{
-      position:relative; width:100%;
-      aspect-ratio: 16 / 9;
-      margin-bottom:16px;
-      overflow:hidden;
-      border-radius:8px;
-      box-shadow:0 6px 18px rgba(0,0,0,.15);
-      background:#ddd;
+    .indicacion{
+      background:#fff; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,.12);
+      padding:20px; margin-bottom:20px;
     }
-    .map-container iframe{
-      position:absolute; inset:0; width:100%; height:100%; border:0;
+    .indicacion h2{
+      margin:0 0 8px 0; color:var(--rojo);
+      font-family:'Warbler Text', serif; font-style:italic; font-size:24px;
     }
+    .indicacion p{ margin:0; font-size:18px; line-height:1.6; }
 
-    .botones-mapa{ text-align:center; margin-top:12px; }
+    .botones-mapa{ text-align:center; margin-top:18px; }
     .botones-mapa a{ text-decoration:none; }
-    .botones-mapa button{
+
+    .btn{
+      display:inline-block;
       background:#820014; color:#fff; border:none;
       padding:12px 20px; margin:10px; font-size:16px;
       border-radius:8px; cursor:pointer;
       font-family:'Warbler Text', serif; font-style:italic;
-      box-shadow:0 4px 10px rgba(0,0,0,.15);
+      transition:transform .15s ease, opacity .15s ease, background .2s ease;
     }
-    .botones-mapa button:hover{ background:var(--azul); }
+    .btn:hover{ background:var(--azul); transform:translateY(-1px); }
 
-    /* ===== FOOTER ===== */
+    .btn-outline{
+      background:#fff; color:#820014; border:2px solid #820014;
+    }
+    .btn-outline:hover{
+      color:#fff; background:#820014; border-color:#820014;
+    }
+
+    /* ===== FOOTER (igual al de Hospedajes) ===== */
     footer{ background:var(--azul-osc); color:#fff; padding:1rem; margin-top:auto; }
     .footer-content{
       width:min(92vw,1000px); margin:0 auto;
@@ -90,12 +102,17 @@
       font-family:'Lucida Bright', serif; font-style:italic; text-align:center;
     }
 
-    /* ===== MÓVIL (mapa se estira SOLO hacia abajo) ===== */
+    /* ===== RESPONSIVE ===== */
     @media (max-width:768px){
-      .map-container{
-        aspect-ratio:auto;
-        height:80vh;   /* ajustá 75–85vh a gusto */
-      }
+      nav.topnav a{ font-size:20px; }
+      .footer-content img{ max-width:80px; }
+      .footer-content p{ font-size:14px; }
+    }
+    @media (max-width:480px){
+      nav.topnav{ flex-direction:column; gap:12px; padding:10px 14px; }
+      nav.topnav a{ font-size:16px; }
+      .footer-content{ flex-direction:column; gap:10px; }
+      .footer-content img{ max-width:70px; }
     }
   </style>
 </head>
@@ -104,32 +121,35 @@
 <!-- PORTADA -->
 <div class="portada">Mapa de Corpus Christi</div>
 
-<!-- MENÚ (idéntico a Hospedajes) -->
+<!-- MENÚ (igual al de Hospedajes) -->
 <nav class="topnav">
-  <a href="index.html">Inicio</a>
-  <a href="lugares.html">Lugares Turísticos</a>
-  <a href="Hospedajes.html">Hospedajes</a>
-  <a href="Eventos.html">Eventos</a>
+  <a href="./index.html">Inicio</a>
+  <a href="./lugares.html">Lugares Turísticos</a>
+  <a href="./Hospedajes.html">Hospedajes</a>
+  <a href="./Eventos.html">Eventos</a>
 </nav>
 
-<!-- CONTENIDO -->
+<!-- CONTENIDO (sin mapa embebido) -->
 <main>
-  <!-- Mapa (tu My Maps embebido para ver capas) -->
-  <div class="map-container">
-    <iframe
-      src="https://www.google.com/maps/d/embed?mid=17PFl0PHJGp4ZgJkHS9YELs5TlbUlBKI&ehbc=2E312F"
-      allowfullscreen
-      loading="lazy">
-    </iframe>
-  </div>
+  <div class="indicacion">
+    <h2>Cómo llegar a la Plaza San Martín</h2>
+    <p>Al tocar el botón se abrirá Google Maps con el recorrido en <strong>caminata</strong> desde tu ubicación actual hasta la Plaza. Dentro de Google Maps vas a poder cambiar a auto, bici o transporte si querés.</p>
 
-  <!-- Botón de ruta limpia: SOLO el caminito desde tu ubicación -->
-  <div class="botones-mapa">
-    <a
-      href="https://www.google.com/maps/dir/?api=1&origin=Current+Location&destination=Plaza+San+Mart%C3%ADn%2C+Corpus+Christi%2C+Misiones&travelmode=driving&dir_action=navigate"
-      target="_blank" rel="noopener">
-      <button>📍 Cómo llegar a la plaza (solo ruta)</button>
-    </a>
+    <div class="botones-mapa">
+      <!-- Direcciones: usa tu ubicación y abre en modo caminata (otras opciones quedan disponibles dentro de Google Maps) -->
+      <a class="btn"
+         href="https://www.google.com/maps/dir/?api=1&destination=Plaza+San+Mart%C3%ADn%2C+Corpus+Christi%2C+Misiones&travelmode=walking"
+         target="_blank" rel="noopener">
+         📍 Ir caminando a la plaza
+      </a>
+
+      <!-- (Opcional) Abrir tu mapa personalizado en otra pestaña, sin mostrarlo dentro de la página -->
+      <a class="btn btn-outline"
+         href="https://www.google.com/maps/d/viewer?mid=17PFl0PHJGp4ZgJkHS9YELs5TlbUlBKI&ll=-27.138%2C-55.500&z=13"
+         target="_blank" rel="noopener">
+         🗺️ Ver mapa de la ciudad
+      </a>
+    </div>
   </div>
 </main>
 
@@ -144,6 +164,7 @@
 
 </body>
 </html>
+
 
 
 
