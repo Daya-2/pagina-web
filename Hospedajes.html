@@ -23,61 +23,47 @@
     }
     img{ max-width:100%; height:auto; display:block; }
 
-    /* ===== PORTADA ===== */
+    /* ===== PORTADA (baja) ===== */
     .portada{
       background-color: var(--azul-osc);
       color:#fff;
       text-align:center;
-      padding:clamp(10px, 3vh, 20px) 8px;  /* portada más baja */
+      padding:clamp(10px, 3vh, 20px) 8px;
       font-family:'Times New Roman', serif;
       font-size:clamp(22px, 4vw, 34px);
     }
 
-    /* ===== MENÚ UNIFICADO ===== */
+    /* ===== MENÚ UNIFICADO (igual a Index/Lugares) ===== */
     nav.topnav{
       display:flex;
-      justify-content:center;     /* centrado en pantallas grandes */
+      justify-content:center;
       align-items:center;
-      flex-wrap:wrap;             /* si no entra, salta a nueva línea */
+      flex-wrap:wrap;
       gap:20px;
       background:var(--azul);
       padding:12px 20px;
       font-family:'Warbler Text', serif;
       font-style:italic;
-
-      /* EDIT: desactivar comportamiento sticky */
-      position: static !important;  /* EDIT */
-      top: auto !important;         /* EDIT */
-
+      position:sticky;   /* igual que en las otras páginas */
+      top:0;
       z-index:5;
     }
     nav.topnav a{
       color:#fff;
       text-decoration:none;
-      font-size:25px;             /* mismo tamaño que LUGARES en desktop */
+      font-size:25px;    /* PC */
       padding:5px 10px;
       transition:all 0.3s ease;
-      white-space:nowrap;          /* evita cortes raros en desktop */
+      white-space:nowrap;
     }
     nav.topnav a:hover{ text-decoration:underline; }
-
-    /* Social: mismos tamaños y alineación limpia */
-    .topnav .social{
-      display:flex; gap:14px; align-items:center;
-    }
-    .topnav .social a{
-      padding:0;                  /* quito padding de link de texto */
-    }
-    .topnav .social i{
-      font-size:24px; line-height:1;
-    }
 
     /* ===== CONTENEDOR PRINCIPAL ===== */
     .container{
       display:flex; flex:1;
       width:min(92vw, var(--maxw));
       margin:20px auto; gap:20px;
-      align-items:stretch;        /* el sidebar baja hasta el footer */
+      align-items:stretch;
     }
 
     /* ===== MENU LATERAL ===== */
@@ -112,23 +98,23 @@
     }
     .card img:hover{ transform:scale(1.03); box-shadow:0 0 15px rgba(70,170,70,1); }
 
-    /* === LIGHTBOX (EDIT: agregado) === */
-    .zoomable { cursor: zoom-in; } /* EDIT */
-    #lightbox-overlay{             /* EDIT */
+    /* === LIGHTBOX === */
+    .zoomable { cursor: zoom-in; }
+    #lightbox-overlay{
       position:fixed; inset:0; background:rgba(0,0,0,.85);
       display:none; align-items:center; justify-content:center; z-index:9999;
     }
-    #lightbox-overlay img{         /* EDIT */
+    #lightbox-overlay img{
       max-width:min(92vw, 1100px); max-height:90vh;
       border-radius:8px; box-shadow:0 10px 40px rgba(0,0,0,.6);
     }
-    #lightbox-close{               /* EDIT */
+    #lightbox-close{
       position:fixed; top:16px; right:22px; font-size:34px; line-height:1;
       color:#fff; cursor:pointer; background:rgba(0,0,0,.4);
       border-radius:10px; padding:6px 12px; user-select:none;
     }
 
-    /* ===== FOOTER ===== */
+    /* ===== FOOTER (igual a Index) ===== */
     footer{
       background:var(--azul-osc); color:#fff; padding:1rem; margin-top:auto;
     }
@@ -149,20 +135,13 @@
       aside{ width:100%; }
     }
     @media(max-width:768px){
-      nav.topnav a{ font-size:20px; }
-      .topnav .social i{ font-size:22px; }
+      nav.topnav a{ font-size:20px; }     /* Tablet */
       .footer-content img{ max-width:80px; }
       .footer-content p{ font-size:14px; }
     }
     @media(max-width:480px){
-      nav.topnav{
-        flex-direction:column;    /* columna en celular */
-        gap:12px;
-        padding:10px 14px;
-      }
-      nav.topnav a{ font-size:16px; }
-      .topnav .social{ gap:12px; }
-      .topnav .social i{ font-size:20px; }
+      nav.topnav{ flex-direction:column; gap:12px; padding:10px 14px; }
+      nav.topnav a{ font-size:16px; }     /* Celular */
       aside li{ font-size:16px; }
       .footer-content{ flex-direction:column; gap:10px; }
       .footer-content img{ max-width:70px; }
@@ -174,17 +153,13 @@
 <!-- PORTADA -->
 <div class="portada">Hospedajes de Corpus</div>
 
-<!-- MENÚ UNIFICADO -->
+<!-- MENÚ UNIFICADO (igual a Index/Lugares) -->
 <nav class="topnav">
-  <a href="index.html">Inicio</a>
-  <a href="lugares.html">Lugares Turísticos</a>
-  <a href="Hospedajes.html">Hospedajes</a>
-  <a href="Eventos.html">Eventos</a>
-  <a href="mapa.html">Mapa</a>
-  <span class="social">
-    <a href="https://www.instagram.com/municipalidaddecorpus/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.facebook.com/p/Municipalidad-de-Corpus-Christi-100069083864591/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-  </span>
+  <a href="./index.html">Inicio</a>
+  <a href="./lugares.html">Lugares Turísticos</a>
+  <a href="./Hospedajes.html">Hospedajes</a>
+  <a href="./Eventos.html">Eventos</a>
+  <a href="./mapa.html">Mapa</a>
 </nav>
 
 <!-- CONTENIDO -->
@@ -202,7 +177,6 @@
   <main>
     <section id="posada" class="card" style="display:block;">
       <h2>🏡 Posada Los Azahares</h2>
-      <!-- EDIT: agrego class="zoomable" a las imágenes -->
       <img src="ll.jpeg" alt="Posada Los Azahares" class="zoomable">
       <img src="mm.jpeg" alt="Posada Los Azahares" class="zoomable">
       <img src="nn.jpeg" alt="Posada Los Azahares" class="zoomable">
@@ -251,7 +225,7 @@
   </div>
 </footer>
 
-<!-- EDIT: Lightbox overlay (una sola vez por página) -->
+<!-- Lightbox overlay -->
 <div id="lightbox-overlay" aria-hidden="true">
   <span id="lightbox-close" aria-label="Cerrar">✕</span>
   <img id="lightbox-img" src="" alt="">
@@ -275,7 +249,7 @@
     });
   });
 
-  /* === EDIT: Lightbox simple para .zoomable === */
+  /* Lightbox para .zoomable */
   (function(){
     const overlay = document.getElementById('lightbox-overlay');
     const imgEl   = document.getElementById('lightbox-img');
@@ -307,6 +281,7 @@
 
 </body>
 </html>
+
 
 
 
