@@ -2,18 +2,21 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Eventos - Corpus Christi</title>
+  <title>Mapa - Corpus Christi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Fuente -->
   <link href="https://fonts.googleapis.com/css2?family=Warbler+Text:ital,wght@1,700&display=swap" rel="stylesheet">
 
   <style>
-    :root{ --azul: rgba(0,114,187,0.9); --azul-osc: rgba(0,92,153,0.95); --rojo:#820014; --maxw:1100px; }
+    :root{ --azul: rgba(0,114,187,0.9); --azul-osc: rgba(0,92,153,0.95); --maxw:1100px; }
 
     *{ box-sizing:border-box; }
-    body{ margin:0; font-family:'Times New Roman', serif; display:flex; flex-direction:column; min-height:100vh; background:#fff; color:#333; }
-    img{ max-width:100%; height:auto; display:block; }
+    body{
+      margin:0; font-family:'Times New Roman', serif;
+      display:flex; flex-direction:column; min-height:100vh;
+      background:#eef5f2; color:#333;
+    }
 
     /* PORTADA (achicada) */
     .portada{
@@ -22,78 +25,48 @@
       font-size:clamp(22px,4vw,34px);
     }
 
-    /* ===== MENÚ UNIFICADO ===== */
+    /* ===== MENÚ UNIFICADO (igual al de LUGARES) ===== */
     nav.topnav{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      flex-wrap:wrap;
-      gap:20px;
-      background:var(--azul);
-      padding:12px 20px;
-      font-family:'Warbler Text', serif;
-      font-style:italic;
-
-      /* EDIT: desactivar sticky para que NO se desplace */
-      position: static !important;  /* EDIT */
-      top: auto !important;         /* EDIT */
-
-      z-index:5;
+      display:flex; justify-content:center; align-items:center;
+      flex-wrap:wrap; gap:20px;
+      background:var(--azul); padding:12px 20px;
+      font-family:'Warbler Text', serif; font-style:italic;
+      position:sticky; top:0; z-index:5;
     }
     nav.topnav a{
-      color:#fff;
-      text-decoration:none;
-      font-size:25px;
-      padding:5px 10px;
-      transition:all .3s ease;
-      white-space:nowrap;
+      color:#fff; text-decoration:none;
+      font-size:25px; padding:5px 10px;
+      transition:all .3s ease; white-space:nowrap;
     }
     nav.topnav a:hover{ text-decoration:underline; }
 
-    /* TARJETAS / CONTENIDO */
-    .evento{
-      width:min(92vw,var(--maxw)); margin:20px auto; background:#fff;
-      border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,.12);
-      overflow:hidden;
-    }
-    .evento img{ width:100%; height:auto; }
-    .evento-contenido{ padding:20px; }
-    .evento h2{ color:var(--rojo); margin-top:0; font-family:'Warbler Text', serif; font-style:italic; }
-    .evento p{ font-size:18px; line-height:1.6; }
+    /* CONTENIDO */
+    main{ flex:1; width:min(92vw,var(--maxw)); margin:20px auto; }
 
-    .ver-mas{
-      display:inline-block; margin-top:15px; padding:10px 20px;
-      background:var(--rojo); color:#fff; border:none; border-radius:8px;
-      cursor:pointer; font-size:16px; font-family:'Warbler Text', serif; font-style:italic;
+    .map-container{
+      position:relative; width:100%; height:0; padding-bottom:56.25%;
+      margin-bottom:20px;
     }
-    .ver-mas:hover{ background:var(--azul); }
-    .texto-oculto{
-      display:none; margin-top:15px; background:#f1f8e9;
-      padding:15px; border-left:4px solid var(--rojo); border-radius:5px;
-      font-family:'Playfair Display', serif; font-size:16px;
+    .map-container iframe{
+      position:absolute; inset:0; width:100%; height:100%; border:none;
     }
 
-    /* === LIGHTBOX (EDIT: agregado) === */
-    .zoomable { cursor: zoom-in; } /* EDIT */
-    #lightbox-overlay{             /* EDIT */
-      position:fixed; inset:0; background:rgba(0,0,0,.85);
-      display:none; align-items:center; justify-content:center; z-index:9999;
+    .botones-mapa{ text-align:center; margin-top:10px; }
+    .botones-mapa a{ text-decoration:none; }
+    .botones-mapa button{
+      background:#820014; color:#fff; border:none;
+      padding:12px 20px; margin:10px; font-size:16px;
+      border-radius:5px; cursor:pointer;
+      font-family:'Warbler Text', serif; font-style:italic;
     }
-    #lightbox-overlay img{         /* EDIT */
-      max-width:min(92vw, 1100px); max-height:90vh;
-      border-radius:8px; box-shadow:0 10px 40px rgba(0,0,0,.6);
-    }
-    #lightbox-close{               /* EDIT */
-      position:fixed; top:16px; right:22px; font-size:34px; line-height:1;
-      color:#fff; cursor:pointer; background:rgba(0,0,0,.4);
-      border-radius:10px; padding:6px 12px; user-select:none;
-    }
+    .botones-mapa button:hover{ background:var(--azul); }
 
-    /* FOOTER */
+    /* FOOTER (igual al index) */
     footer{ background:var(--azul-osc); color:#fff; padding:1rem; margin-top:auto; }
     .footer-content{
-      width:min(92vw,1000px); margin:0 auto; display:flex;
-      align-items:center; justify-content:center; gap:14px; flex-wrap:wrap;
+      width:min(92vw,1000px); margin:0 auto;
+      display:flex; align-items:center; justify-content:center;
+      gap:14px; flex-wrap:wrap;
     }
     .footer-content img{ max-width:100px; height:auto; }
     .footer-content p{
@@ -101,18 +74,14 @@
       font-family:'Lucida Bright', serif; font-style:italic; text-align:center;
     }
 
-    /* Responsive */
-    @media(max-width:768px){
+    /* Responsive menú + footer */
+    @media (max-width:768px){
       nav.topnav a{ font-size:20px; }
       .footer-content img{ max-width:80px; }
       .footer-content p{ font-size:14px; }
     }
-    @media(max-width:480px){
-      nav.topnav{
-        flex-direction:column;
-        gap:12px;
-        padding:10px 14px;
-      }
+    @media (max-width:480px){
+      nav.topnav{ flex-direction:column; gap:12px; padding:10px 14px; }
       nav.topnav a{ font-size:16px; }
       .footer-content{ flex-direction:column; gap:10px; }
       .footer-content img{ max-width:70px; }
@@ -121,83 +90,31 @@
 </head>
 <body>
 
-<div class="portada">Eventos en Corpus Christi</div>
+<div class="portada">Mapa de Corpus Christi</div>
 
 <!-- MENÚ UNIFICADO -->
 <nav class="topnav">
-  <a href="index.html">Inicio</a>
-  <a href="lugares.html">Lugares Turísticos</a>
-  <a href="Hospedajes.html">Hospedajes</a>
-  <a href="Eventos.html">Eventos</a>
-  <a href="mapa.html">Mapa</a>
+  <a href="./index.html">Inicio</a>
+  <a href="./lugares.html">Lugares Turísticos</a>
+  <a href="./hospedajes.html">Hospedajes</a>
+  <a href="./eventos.html">Eventos</a>
+  <a href="./mapa.html">Mapa</a>
 </nav>
 
-<!-- Evento 1 -->
-<div class="evento">
-  <img src="car.jpg" alt="Carnavales en Corpus Christi" class="zoomable" /> <!-- EDIT -->
-  <div class="evento-contenido">
-    <h2>Carnavales</h2>
-    <p>Una Celebración llena de Alegría y Tradición.</p>
-    <button class="ver-mas" onclick="mostrarTexto(this)">Ver más</button>
-    <div class="texto-oculto">
-      Los Carnavales de Corpus Christi son una tradición centenaria realizada en febrero.
-      Destacan las <strong>Mascaritas</strong> con trajes de papel y máscaras. También hay comparsas, música y alegría en familia.
-    </div>
+<main>
+  <div class="map-container">
+    <iframe
+      src="https://www.google.com/maps/d/embed?mid=17PFl0PHJGp4ZgJkHS9YELs5TlbUlBKI&ehbc=2E312F"
+      allowfullscreen>
+    </iframe>
   </div>
-</div>
 
-<!-- Evento 2 -->
-<div class="evento">
-  <img src="md33.webp" alt="Fiesta Patronal" class="zoomable" /> <!-- EDIT -->
-  <div class="evento-contenido">
-    <h2>Fiesta Patronal</h2>
-    <p>Una mezcla de raíces guaraníes y cristianas.</p>
-    <button class="ver-mas" onclick="mostrarTexto(this)">Ver más</button>
-    <div class="texto-oculto">
-      Se celebra en junio. Incluye procesiones, altares con hojas de <em>pindó</em>, antorchas y mucha devoción popular.
-    </div>
+  <div class="botones-mapa">
+    <a href="https://www.google.com/maps/dir/?api=1&destination=Plaza+San+Martín,+Corpus+Christi,+Misiones" target="_blank" rel="noopener">
+      <button>📍 Cómo llegar a la plaza</button>
+    </a>
   </div>
-</div>
-
-<!-- Evento 3 -->
-<div class="evento">
-  <img src="md1.webp" alt="Aniversario del Pueblo" class="zoomable" /> <!-- EDIT -->
-  <div class="evento-contenido">
-    <h2>Aniversario del Pueblo</h2>
-    <p>Celebración de la refundación del pueblo.</p>
-    <button class="ver-mas" onclick="mostrarTexto(this)">Ver más</button>
-    <div class="texto-oculto">
-      La fundación moderna fue el <strong>27 de septiembre de 1877</strong>.
-      Se realizan actos cívicos, muestras culturales y actividades para toda la comunidad.
-    </div>
-  </div>
-</div>
-
-<!-- Evento 4 -->
-<div class="evento">
-  <img src="ñ.jpg" alt="Congreso Internacional" class="zoomable" /> <!-- EDIT -->
-  <div class="evento-contenido">
-    <h2>Congreso Internacional de Turismo, Educación Intercultural y Desarrollo Local</h2>
-    <p>Espacio para el intercambio cultural y académico.</p>
-    <button class="ver-mas" onclick="mostrarTexto(this)">Ver más</button>
-    <div class="texto-oculto">
-      Participan expertos en turismo, cultura y educación. Destaca el papel de las Misiones Jesuíticas y promueve el desarrollo sostenible.
-    </div>
-  </div>
-</div>
-
-<!-- Evento 5 -->
-<div class="evento">
-  <img src="Corpus5.jpeg" alt="Remada Internacional" class="zoomable" /> <!-- EDIT -->
-  <div class="evento-contenido">
-    <h2>Remada Internacional</h2>
-    <p>Deporte, naturaleza y comunidad.</p>
-    <button class="ver-mas" onclick="mostrarTexto(this)">Ver más</button>
-    <div class="texto-oculto">
-      Conecta con la naturaleza y la energía del agua. Se realiza entre <strong>Puerto Maní</strong> y el <strong>Club de Caza y Pesca Corpus-Roca</strong>.
-    </div>
-  </div>
-</div>
+</main>
 
 <footer>
   <div class="footer-content">
@@ -207,51 +124,13 @@
   </div>
 </footer>
 
-<!-- EDIT: Lightbox overlay -->
-<div id="lightbox-overlay" aria-hidden="true"> <!-- EDIT -->
-  <span id="lightbox-close" aria-label="Cerrar">✕</span>
-  <img id="lightbox-img" src="" alt="">
-</div>
-
-<script>
-  function mostrarTexto(btn){
-    const cont = btn.nextElementSibling;
-    const abierto = cont.style.display === "block";
-    cont.style.display = abierto ? "none" : "block";
-    btn.textContent = abierto ? "Ver más" : "Ver menos";
-  }
-
-  /* === EDIT: Lightbox simple para .zoomable === */
-  (function(){
-    const overlay = document.getElementById('lightbox-overlay');
-    const imgEl   = document.getElementById('lightbox-img');
-    const closeEl = document.getElementById('lightbox-close');
-
-    function openLightbox(src, alt='') {
-      imgEl.src = src; imgEl.alt = alt || '';
-      overlay.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
-    function closeLightbox(){
-      overlay.style.display = 'none';
-      imgEl.src = '';
-      document.body.style.overflow = '';
-    }
-
-    document.addEventListener('click', (e)=>{
-      const t = e.target;
-      if (t.classList && t.classList.contains('zoomable')) {
-        openLightbox(t.src, t.alt);
-      }
-    });
-
-    closeEl.addEventListener('click', closeLightbox);
-    overlay.addEventListener('click', (e)=>{ if (e.target === overlay) closeLightbox(); });
-    document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeLightbox(); });
-  })();
-</script>
 </body>
 </html>
+
+
+
+
+
 
 
 
