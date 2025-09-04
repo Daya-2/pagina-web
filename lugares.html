@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <title>Lugares Turísticos - Corpus Christi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Warbler+Text:ital,wght@1,700&display=swap" rel="stylesheet>
+  <link href="https://fonts.googleapis.com/css2?family=Warbler+Text:ital,wght@1,700&display=swap" rel="stylesheet">
   <style>
     :root{
       --azul: rgba(0,114,187,0.9);
-      --azul-osc: rgba(0,92,153,0.95);   /* igual que en las otras páginas */
-      --azul-oscuro: rgba(0,92,153,0.9); /* dejo tu var original por compatibilidad */
-      --maxw: 1100px;          /* ancho máximo en desktop */
+      --azul-osc: rgba(0,92,153,0.95);  /* agregado para unificar con el resto */
+      --azul-oscuro: rgba(0,92,153,0.9);
+      --maxw: 1100px;
       --radio: 10px;
       --sombra: 0 8px 20px rgba(0,0,0,.18);
     }
@@ -25,20 +25,20 @@
       min-height:100vh;
       font-family:'Times New Roman', serif;
     }
-    img{ max-width:100%; height:auto; display:block; } /* imágenes fluidas */
+    img{ max-width:100%; height:auto; display:block; }
 
     /* ===== PORTADA (unificada) ===== */
     header{
       background: var(--azul-osc);
       color:#fff;
       text-align:center;
-      padding: clamp(10px, 3vh, 20px) 8px; /* igual al resto */
+      padding: clamp(10px, 3vh, 20px) 8px; /* igual que las otras */
       box-shadow:none;
     }
     header h1{
       margin:0;
       font-family:'Times New Roman', serif;
-      font-size: clamp(22px, 4vw, 34px);   /* igual al resto */
+      font-size: clamp(22px, 4vw, 34px);  /* igual que las otras */
       line-height:1.2;
     }
 
@@ -54,19 +54,25 @@
       white-space:nowrap;
       flex-wrap:nowrap;
 
-      height:44px;            /* mismo alto final */
+      height:44px;             /* misma altura */
       padding:0 6px;
       gap:0;
     }
     nav a{
-      color:#fff; text-decoration:none;
-      line-height:1; padding:0;
-      font-size: clamp(14px, 1.8vw, 19px);           /* mismo tamaño que el resto */
-      margin: 0 clamp(8px, 1.6vw, 16px);             /* misma separación lateral */
-      letter-spacing: -0.2px;
-      transition:opacity .2s, transform .2s;
+      color:#fff;
+      text-decoration:none;
+      line-height:1;
+      padding:0;
+      font-size: clamp(14px, 1.8vw, 19px);         /* mismos tamaños */
+      margin: 0 clamp(8px, 1.6vw, 16px);           /* misma separación */
+      letter-spacing:-0.2px;
+      border-radius:8px;
+      transition:opacity .2s, transform .2s, background .2s;
+      white-space:nowrap;
     }
-    nav a:hover{ opacity:.9; transform: translateY(-1px); }
+    @media (hover:hover){
+      nav a:hover{ opacity:.9; transform: translateY(-1px); }
+    }
 
     /* ===== CONTENIDO ===== */
     section{
@@ -113,7 +119,6 @@
       width:max-content;
     }
     .carrusel img{
-      /* tamaño adaptable manteniendo proporción 3:2 */
       width:clamp(140px, 32vw, 320px);
       aspect-ratio:3/2;
       margin:clamp(6px, 1.6vw, 12px);
@@ -440,8 +445,6 @@
   </script>
 </body>
 </html>
-
-
 
 
 
