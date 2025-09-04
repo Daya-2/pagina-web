@@ -22,9 +22,9 @@
       font-size:clamp(22px,4vw,34px);
     }
 
-    /* ===== MENÚ (estilo unificado) ===== */
+    /* ===== MENÚ (unificado) ===== */
     nav.topnav{
-      position: sticky;   /* fijo arriba al hacer scroll */
+      position: sticky;
       top: 0;
       z-index: 999;
       display:flex; justify-content:center; align-items:center;
@@ -33,32 +33,26 @@
       background: linear-gradient(180deg, var(--azul), var(--azul-osc));
       font-family:'Warbler Text', serif;
       font-style:italic;
-    }
-    nav.topnav a{
-      color:#fff; text-decoration:none;   /* sin subrayado */
-      font-size:22px;
-      margin:0 25px;                      /* margen horizontal 25px */
-      padding:.25rem 0;
-      transition:opacity .2s, transform .2s;
       white-space:nowrap;
     }
-    nav.topnav a:hover{
-      opacity:.9;
-      transform: translateY(-1px);
+    nav.topnav a{
+      color:#fff; text-decoration:none;
+      font-size:22px;
+      margin:0 25px;
+      padding:.25rem 0;
+      transition:opacity .2s, transform .2s;
     }
+    nav.topnav a:hover{ opacity:.9; transform: translateY(-1px); }
 
     /* TARJETAS DE EVENTO */
     .evento{
       width:min(92vw,var(--maxw)); margin:20px auto; background:#fff;
-      border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,.12);
-      overflow:hidden;
+      border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,.12); overflow:hidden;
     }
     .evento img{ width:100%; height:auto; }
-
     .evento-contenido{ padding:20px; }
     .evento h2{ color:var(--rojo); margin-top:0; font-family:'Warbler Text', serif; font-style:italic; }
     .evento p{ font-size:18px; line-height:1.6; }
-
     .ver-mas{
       display:inline-block; margin-top:15px; padding:10px 20px;
       background:var(--rojo); color:#fff; border:none; border-radius:8px;
@@ -99,65 +93,29 @@
       border-radius:10px; padding:6px 12px; user-select:none;
     }
 
-    /* Responsive menú + footer */
+    /* ===== Responsive base ===== */
     @media(max-width:768px){
-      nav.topnav{
-        flex-wrap: wrap;
-        height:auto;
-        padding:8px 12px;
-      }
-      nav.topnav a{ margin:6px 14px; font-size:20px; }
       .footer-content img{ max-width:80px; }
       .footer-content p{ font-size:14px; }
     }
     @media(max-width:480px){
-      nav.topnav{ flex-direction:column; gap:12px; padding:10px 14px; }
-      nav.topnav a{ font-size:16px; }
       .footer-content{ flex-direction:column; gap:10px; }
       .footer-content img{ max-width:70px; }
     }
 
-    /* ====== OVERRIDE MENÚ COMO LA IMAGEN 2 (forzado) ====== */
-    nav.topnav{
-      position: sticky !important;
-      top: 0 !important;
-      z-index: 999 !important;
+    /* ====== OVERRIDE IMAGEN 2 (base) ====== */
+    nav.topnav{ flex-wrap:nowrap !important; }
+    nav.topnav a{ line-height:1 !important; padding:0 !important; }
 
-      display: flex !important;
-      flex-direction: row !important;
-      justify-content: center !important;
-      align-items: center !important;
-
-      flex-wrap: nowrap !important;      /* una sola línea */
-      white-space: nowrap !important;     /* evita salto de línea */
-
-      height: 46px !important;            /* barra fina */
-      padding: 0 8px !important;          /* sin alto extra */
-      gap: 0 !important;
-
-      background: linear-gradient(180deg, rgba(0,114,187,0.9), rgba(0,92,153,0.95)) !important;
-    }
+    /* === AJUSTE FINO: letras y separación más chicas === */
+    nav.topnav{ height:44px !important; padding:0 6px !important; }
     nav.topnav a{
-      display: inline-block !important;
-      font-family: 'Warbler Text', serif !important;
-      font-style: italic !important;
-      color: #fff !important;
-      text-decoration: none !important;
-
-      font-size: 22px !important;
-      margin: 0 25px !important;          /* separación como en la imagen */
-      line-height: 1 !important;
-      padding: 0 !important;
-
-      transition: opacity .2s !important;
+      font-size: clamp(14px, 1.8vw, 19px) !important;
+      margin: 0 clamp(8px, 1.6vw, 16px) !important;
+      letter-spacing: -0.2px !important;
     }
-    nav.topnav a:hover{ opacity: .9 !important; }
-
-    @media (max-width: 600px){
-      nav.topnav a{ font-size: 19px !important; margin: 0 16px !important; }
-    }
-    @media (max-width: 420px){
-      nav.topnav a{ font-size: 17px !important; margin: 0 12px !important; }
+    @media (max-width:360px){
+      nav.topnav a{ font-size:14px !important; margin:0 8px !important; letter-spacing:-0.3px !important; }
     }
   </style>
 </head>
@@ -293,6 +251,7 @@
 </script>
 </body>
 </html>
+
 
 
 
