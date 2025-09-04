@@ -33,7 +33,7 @@
       font-size:clamp(22px, 4vw, 34px);
     }
 
-    /* ===== MENÚ UNIFICADO (igual a LUGARES, centrado y responsive) ===== */
+    /* ===== MENÚ UNIFICADO ===== */
     nav.topnav{
       display:flex;
       justify-content:center;     /* centrado en pantallas grandes */
@@ -44,8 +44,11 @@
       padding:12px 20px;
       font-family:'Warbler Text', serif;
       font-style:italic;
-      position:sticky;
-      top:0;
+
+      /* EDIT: desactivar comportamiento sticky */
+      position: static !important;  /* EDIT */
+      top: auto !important;         /* EDIT */
+
       z-index:5;
     }
     nav.topnav a{
@@ -109,7 +112,23 @@
     }
     .card img:hover{ transform:scale(1.03); box-shadow:0 0 15px rgba(70,170,70,1); }
 
-    /* ===== FOOTER (igual al index) ===== */
+    /* === LIGHTBOX (EDIT: agregado) === */
+    .zoomable { cursor: zoom-in; } /* EDIT */
+    #lightbox-overlay{             /* EDIT */
+      position:fixed; inset:0; background:rgba(0,0,0,.85);
+      display:none; align-items:center; justify-content:center; z-index:9999;
+    }
+    #lightbox-overlay img{         /* EDIT */
+      max-width:min(92vw, 1100px); max-height:90vh;
+      border-radius:8px; box-shadow:0 10px 40px rgba(0,0,0,.6);
+    }
+    #lightbox-close{               /* EDIT */
+      position:fixed; top:16px; right:22px; font-size:34px; line-height:1;
+      color:#fff; cursor:pointer; background:rgba(0,0,0,.4);
+      border-radius:10px; padding:6px 12px; user-select:none;
+    }
+
+    /* ===== FOOTER ===== */
     footer{
       background:var(--azul-osc); color:#fff; padding:1rem; margin-top:auto;
     }
@@ -155,7 +174,7 @@
 <!-- PORTADA -->
 <div class="portada">Hospedajes de Corpus</div>
 
-<!-- MENÚ UNIFICADO (igual a LUGARES) -->
+<!-- MENÚ UNIFICADO -->
 <nav class="topnav">
   <a href="index.html">Inicio</a>
   <a href="lugares.html">Lugares Turísticos</a>
@@ -183,10 +202,11 @@
   <main>
     <section id="posada" class="card" style="display:block;">
       <h2>🏡 Posada Los Azahares</h2>
-      <img src="ll.jpeg" alt="Posada Los Azahares">
-      <img src="mm.jpeg" alt="Posada Los Azahares">
-      <img src="nn.jpeg" alt="Posada Los Azahares">
-      <img src="ññ.jpeg" alt="Posada Los Azahares">
+      <!-- EDIT: agrego class="zoomable" a las imágenes -->
+      <img src="ll.jpeg" alt="Posada Los Azahares" class="zoomable">
+      <img src="mm.jpeg" alt="Posada Los Azahares" class="zoomable">
+      <img src="nn.jpeg" alt="Posada Los Azahares" class="zoomable">
+      <img src="ññ.jpeg" alt="Posada Los Azahares" class="zoomable">
       <p>Alojamiento Familiar en el Centro de Corpus Christi, rodeado de naturaleza.</p>
       <h4>Servicios</h4>
       <p>Piscina, Aire acondicionado, Direct TV, Estacionamiento, Uso de Parrilla y Quincho Compartidos, Desayuno incluido, Opcional Cena.</p>
@@ -196,10 +216,10 @@
 
     <section id="cabaña" class="card" style="display:none;">
       <h2>🏡 Cabaña La Gloriosa</h2>
-      <img src="lll.avif" alt="Cabaña La Gloriosa">
-      <img src="mmm.avif" alt="Cabaña La Gloriosa">
-      <img src="rrr.webp" alt="Cabaña La Gloriosa">
-      <img src="tt.jpeg" alt="Cabaña La Gloriosa">
+      <img src="lll.avif" alt="Cabaña La Gloriosa" class="zoomable">
+      <img src="mmm.avif" alt="Cabaña La Gloriosa" class="zoomable">
+      <img src="rrr.webp" alt="Cabaña La Gloriosa" class="zoomable">
+      <img src="tt.jpeg" alt="Cabaña La Gloriosa" class="zoomable">
       <p>La Gloriosa Cabaña Natural es un Alojamiento Rural de estilo Familiar ubicado en una Estancia y parte del Circuito de los Jesuitas y la Ruta de la Yerba Mate. Ideal para desconectar y disfrutar del entorno natural.</p>
       <h4>📍 Características del Alojamiento</h4>
       <p>Hasta 6 Huéspedes · 2 Dormitorios · 2 Baños.</p>
@@ -211,10 +231,10 @@
 
     <section id="ypora" class="card" style="display:none;">
       <h2>🏡 Alojamiento Ypora</h2>
-      <img src="qq.jpg" alt="Alojamiento Ypora">
-      <img src="VVV.jpg" alt="Alojamiento Ypora">
-      <img src="FF.jpg" alt="Alojamiento Ypora">
-      <img src="XXX.jpg" alt="Alojamiento Ypora">
+      <img src="qq.jpg" alt="Alojamiento Ypora" class="zoomable">
+      <img src="VVV.jpg" alt="Alojamiento Ypora" class="zoomable">
+      <img src="FF.jpg" alt="Alojamiento Ypora" class="zoomable">
+      <img src="XXX.jpg" alt="Alojamiento Ypora" class="zoomable">
       <p>Alojamiento Diario en Corpus Christi, Misiones. Camas matrimoniales, triples y cuádruples.</p>
       <h4>Reservas</h4>
       <p>+54 9 3743 44-3041 · +54 9 376 4810459</p>
@@ -230,6 +250,12 @@
     <img src="00.png" alt="Logo Red Maker">
   </div>
 </footer>
+
+<!-- EDIT: Lightbox overlay (una sola vez por página) -->
+<div id="lightbox-overlay" aria-hidden="true">
+  <span id="lightbox-close" aria-label="Cerrar">✕</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
 
 <script>
   const menuItems = document.querySelectorAll('#menu-list li');
@@ -248,10 +274,40 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
+
+  /* === EDIT: Lightbox simple para .zoomable === */
+  (function(){
+    const overlay = document.getElementById('lightbox-overlay');
+    const imgEl   = document.getElementById('lightbox-img');
+    const closeEl = document.getElementById('lightbox-close');
+
+    function openLightbox(src, alt='') {
+      imgEl.src = src; imgEl.alt = alt || '';
+      overlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(){
+      overlay.style.display = 'none';
+      imgEl.src = '';
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('click', (e)=>{
+      const t = e.target;
+      if (t.classList && t.classList.contains('zoomable')) {
+        openLightbox(t.src, t.alt);
+      }
+    });
+
+    closeEl.addEventListener('click', closeLightbox);
+    overlay.addEventListener('click', (e)=>{ if (e.target === overlay) closeLightbox(); });
+    document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeLightbox(); });
+  })();
 </script>
 
 </body>
 </html>
+
 
 
 
