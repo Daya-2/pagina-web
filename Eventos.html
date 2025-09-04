@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Warbler+Text:ital,wght@1,700&display=swap" rel="stylesheet">
 
   <style>
-    :root{ --azul: rgba(0,114,187,0.9); --azul-osc: rgba(0,92,153,0.95); --rojo:#820014; --maxw:1100px; }
+    :root{ --azul: #1e88e5; --azul-osc: rgba(0,92,153,0.95); --rojo:#820014; --maxw:1100px; }
 
     *{ box-sizing:border-box; }
     body{ margin:0; font-family:'Times New Roman', serif; display:flex; flex-direction:column; min-height:100vh; background:#fff; color:#333; }
@@ -22,29 +22,30 @@
       font-size:clamp(22px,4vw,34px);
     }
 
-    /* ===== MENÚ UNIFICADO ===== */
+    /* ===== MENÚ (estilo unificado) ===== */
     nav.topnav{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      flex-wrap:wrap;
-      gap:20px;
-      background:var(--azul);
-      padding:12px 20px;
+      position: sticky;   /* fijo arriba al hacer scroll */
+      top: 0;
+      z-index: 999;
+      display:flex; justify-content:center; align-items:center;
+      height:56px;
+      padding:0 16px;
+      background: linear-gradient(180deg, var(--azul), var(--azul-osc));
       font-family:'Warbler Text', serif;
       font-style:italic;
-      position:relative;
-      z-index:5;
     }
     nav.topnav a{
-      color:#fff;
-      text-decoration:none;
-      font-size:25px;
-      padding:5px 10px;
-      transition:all .3s ease;
+      color:#fff; text-decoration:none;   /* sin subrayado */
+      font-size:22px;
+      margin:0 25px;                      /* margen horizontal 25px */
+      padding:.25rem 0;
+      transition:opacity .2s, transform .2s;
       white-space:nowrap;
     }
-    nav.topnav a:hover{ text-decoration:underline; }
+    nav.topnav a:hover{
+      opacity:.9;
+      transform: translateY(-1px);
+    }
 
     /* TARJETAS DE EVENTO */
     .evento{
@@ -100,7 +101,12 @@
 
     /* Responsive menú + footer */
     @media(max-width:768px){
-      nav.topnav a{ font-size:20px; }
+      nav.topnav{
+        flex-wrap: wrap;
+        height:auto;
+        padding:8px 12px;
+      }
+      nav.topnav a{ margin:6px 14px; font-size:20px; }
       .footer-content img{ max-width:80px; }
       .footer-content p{ font-size:14px; }
     }
@@ -110,13 +116,56 @@
       .footer-content{ flex-direction:column; gap:10px; }
       .footer-content img{ max-width:70px; }
     }
+
+    /* ====== OVERRIDE MENÚ COMO LA IMAGEN 2 (forzado) ====== */
+    nav.topnav{
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 999 !important;
+
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: center !important;
+      align-items: center !important;
+
+      flex-wrap: nowrap !important;      /* una sola línea */
+      white-space: nowrap !important;     /* evita salto de línea */
+
+      height: 46px !important;            /* barra fina */
+      padding: 0 8px !important;          /* sin alto extra */
+      gap: 0 !important;
+
+      background: linear-gradient(180deg, rgba(0,114,187,0.9), rgba(0,92,153,0.95)) !important;
+    }
+    nav.topnav a{
+      display: inline-block !important;
+      font-family: 'Warbler Text', serif !important;
+      font-style: italic !important;
+      color: #fff !important;
+      text-decoration: none !important;
+
+      font-size: 22px !important;
+      margin: 0 25px !important;          /* separación como en la imagen */
+      line-height: 1 !important;
+      padding: 0 !important;
+
+      transition: opacity .2s !important;
+    }
+    nav.topnav a:hover{ opacity: .9 !important; }
+
+    @media (max-width: 600px){
+      nav.topnav a{ font-size: 19px !important; margin: 0 16px !important; }
+    }
+    @media (max-width: 420px){
+      nav.topnav a{ font-size: 17px !important; margin: 0 12px !important; }
+    }
   </style>
 </head>
 <body>
 
 <div class="portada">Eventos en Corpus Christi</div>
 
-<!-- MENÚ UNIFICADO -->
+<!-- MENÚ -->
 <nav class="topnav">
   <a href="./index.html">Inicio</a>
   <a href="./lugares.html">Lugares Turísticos</a>
@@ -244,6 +293,8 @@
 </script>
 </body>
 </html>
+
+
 
 
 
