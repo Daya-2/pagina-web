@@ -30,20 +30,17 @@
     .encabezado{
       position:relative;
       width:100%;
-      height:100vh;          /* fallback desktop */
-      height:100dvh;         /* llena alto útil en móvil */
+      height:100vh;          /* desktop */
+      height:100dvh;         /* vista útil (evita barras del navegador) */
       overflow:hidden;
+      background:#000;       /* fondo neutro si sobran bandas */
     }
     .encabezado img{
       width:100%;
       height:100%;
-      object-fit:cover;             /* cubre sin deformar (no estira a los costados) */
-      object-position:center;       /* desktop centrado */
+      object-fit:cover;      /* desktop: cubre contenedor */
+      object-position:center;
       filter:brightness(60%);
-    }
-    /* En móvil: enfoca más arriba para que “se vea bien” la parte superior */
-    @media (max-width:768px){
-      .encabezado img{ object-position: 50% 12%; }  /* mover hacia arriba */
     }
 
     /* Íconos SOLO en la portada (esquina inferior derecha) */
@@ -68,22 +65,17 @@
     .hero-social a:hover{ opacity:1; transform:translateY(-1px); }
     .hero-social i{ font-size:16px; line-height:1; }
 
-    /* ====== MENÚ (horizontal como Hospedajes, sin hamburguesa) ====== */
+    /* ====== MENÚ (compacto y horizontal) ====== */
     nav.topnav{
       display:flex;
-      justify-content:center;
       align-items:center;
-      gap:14px;                 /* espacio entre items */
+      justify-content:center;
       background:var(--azul);
-      padding:10px 16px;
+      padding:10px 14px;
       font-family:'Warbler Text', serif;
       font-style:italic;
-      position: static !important;
-      top: auto !important;
-      z-index:5;
       width:100%;
-
-      /* mantener una sola línea en móvil; si no entra, scroll lateral */
+      gap:8px;
       flex-wrap:nowrap;
       overflow-x:auto;
       -webkit-overflow-scrolling:touch;
@@ -94,22 +86,13 @@
     nav.topnav a{
       color:#fff;
       text-decoration:none;
-      font-size:21px;           /* un poco más chico para que entren */
-      padding:4px 8px;
+      font-size:22px;
+      padding:4px 6px;
       white-space:nowrap;
+      letter-spacing:0;
       transition:opacity .2s, transform .2s, background .2s;
     }
     nav.topnav a:hover{ text-decoration:underline; }
-
-    /* Ajustes extra en pantallas pequeñas */
-    @media (max-width:768px){
-      nav.topnav{ padding:8px 12px; gap:12px; }
-      nav.topnav a{ font-size:18px; padding:3px 6px; }
-    }
-    @media (max-width:480px){
-      nav.topnav{ padding:8px 10px; gap:10px; }
-      nav.topnav a{ font-size:16px; padding:3px 6px; }
-    }
 
     /* ====== CONTENIDO ====== */
     .contenido{
@@ -157,6 +140,34 @@
       margin:0;
       font-size:clamp(14px, 2.2vw, 16px);
     }
+
+    /* ====== SOLO CELULAR ====== */
+    @media (max-width:768px){
+      /* En móvil la imagen NO se recorta: se ve completa */
+      .encabezado{
+        height:100svh; /* alto exacto de la pantalla visible */
+        background:#000;
+      }
+      .encabezado img{
+        width:auto;           /* ancho se ajusta a la proporción */
+        height:100%;          /* ocupa todo el alto */
+        max-width:100%;       /* nunca desborda el ancho */
+        object-fit:contain;   /* NO recortar */
+        object-position:center top; /* muestra más la parte superior */
+        margin:0 auto;        /* centra horizontalmente si sobra ancho */
+        filter:brightness(60%);
+      }
+
+      nav.topnav{ padding:8px 10px; gap:6px; }
+      nav.topnav a{ font-size:18px; padding:3px 6px; }
+      .footer-content img{ max-width:80px; }
+      .footer-content p{ font-size:14px; }
+    }
+
+    @media (max-width:480px){
+      nav.topnav{ padding:8px 10px; gap:6px; }
+      nav.topnav a{ font-size:16px; padding:2px 5px; }
+    }
   </style>
 </head>
 <body>
@@ -174,7 +185,7 @@
     </div>
   </div>
 
-  <!-- MENÚ (horizontal, sin hamburguesa) -->
+  <!-- MENÚ -->
   <nav class="topnav">
     <a href="lugares.html">Lugares Turísticos</a>
     <a href="Hospedajes.html">Hospedajes</a>
@@ -199,6 +210,8 @@
 
 </body>
 </html>
+
+
 
 
 
