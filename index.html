@@ -4,24 +4,18 @@
   <meta charset="UTF-8" />
   <title>Inicio</title>
 
-  <!-- Viewport para móviles -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Fuentes -->
   <link href="https://fonts.googleapis.com/css2?family=Warbler+Text:ital,wght@1,700&display=swap" rel="stylesheet">
-
   <!-- Iconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root{
       --azul: rgba(0,114,187,0.9);
-      --azul-osc: rgba(0,92,153,0.95);   /* igual que Hospedajes */
       --azul-footer: rgba(0,92,153,0.95);
       --rojo: #FF0D00;
-      --nav-h: 44px;           /* altura del menú (cambiá a 56 si tu nav es más alto) */
-      --hero-shift: 14px;      /* cuanto subimos la imagen del hero (ajustable) */
-      --hero-shift-m: 24px;    /* desplazamiento en móvil (ajustable) */
     }
 
     *{ box-sizing: border-box; margin:0; padding:0; }
@@ -34,57 +28,76 @@
     }
     img{ max-width:100%; height:auto; display:block; }
 
-    /* ====== ENCABEZADO/HERO ======
-       - NO usamos width:100% en la imagen.
-       - Llenamos el alto con height:100% y centramos por X.
-       - La movemos "para arriba" con translateY usando variables.
-    */
+    /* ====== ENCABEZADO/HERO ====== */
     .encabezado{
       position:relative;
       width:100%;
-      height:100vh;                /* ocupa toda la pantalla */
+      height:100vh; /* ocupa toda la pantalla */
       overflow:hidden;
-      margin-top: 0;
-      background:#000;             /* disimula cualquier borde oscuro del JPG */
     }
     .encabezado img{
-      position:absolute;
-      top:0;
-      left:50%;
+      width:100%;
       height:100%;
-      width:auto;
-      transform: translate(-50%, calc(-1 * var(--hero-shift)));
-      filter:brightness(60%);
+      object-fit:cover;        /* cubre toda el área */
+      object-position:center;
+      filter:brightness(60%);  /* oscurece un poco para que resalten textos/iconos */
     }
 
-    /* En celulares: misma lógica, solo subimos un poco más */
+    /* Iconos en esquina inferior derecha de la portada */
+    .hero-social{
+      position:absolute;
+      right:clamp(12px, 3vw, 24px);
+      bottom:clamp(12px, 2.5vh, 28px);
+      display:flex;
+      gap:14px;
+      align-items:center;
+      padding:10px 14px;
+      background:rgba(0,0,0,.45);
+      border-radius:999px;
+      backdrop-filter:blur(4px);
+      box-shadow:0 4px 16px rgba(0,0,0,.25);
+      z-index:5;
+    }
+    .hero-social a{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:40px; height:40px;   /* buen tamaño táctil */
+      color:#fff;
+      text-decoration:none;
+      border-radius:50%;
+      transition:transform .15s ease, opacity .15s ease, background .15s ease;
+    }
+    .hero-social a:hover{ transform:translateY(-1px); opacity:.9; }
+    .hero-social i{ font-size:22px; line-height:1; }
+
+    /* En celulares podés subir un poco el tamaño táctil */
     @media (max-width:768px){
-      .encabezado{ height:80vh; }
-      .encabezado img{
-        height:100%;
-        width:auto;
-        transform: translate(-50%, calc(-1 * var(--hero-shift-m)));
-      }
+      .hero-social{ gap:12px; padding:10px 12px; }
+      .hero-social a{ width:44px; height:44px; }
+      .hero-social i{ font-size:22px; }
     }
 
-    /* ====== MENÚ — IGUAL QUE HOSPEDAJES ====== */
-    nav.topnav{
-      position: sticky; top: 0; z-index: 999;
-      display:flex; justify-content:center; align-items:center;
-      height:var(--nav-h); padding:0 6px; gap:0;
-      background: linear-gradient(180deg, var(--azul), var(--azul-osc));
-      font-family:'Warbler Text', serif; font-style:italic;
-      white-space:nowrap; flex-wrap:nowrap;
+    /* ====== MENÚ ====== */
+    nav{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      background:var(--azul);
+      padding:12px 20px;
+      gap:20px;
     }
-    nav.topnav a{
-      color:#fff; text-decoration:none; line-height:1; padding:0;
-      font-size: clamp(14px, 1.8vw, 19px);
-      margin: 0 clamp(8px, 1.6vw, 16px);
-      letter-spacing:-0.2px;
-      transition:opacity .2s, transform .2s;
+    nav a{
+      color:white;
+      text-decoration:none;
+      font-family:'Warbler Text', serif;
+      font-size:22px;
+      font-style:italic;
+      margin:0 10px;
+      transition:all 0.3s ease;
       white-space:nowrap;
     }
-    nav.topnav a:hover{ opacity:.9; transform: translateY(-1px); }
+    nav a:hover{ text-decoration:underline; }
 
     /* ====== CONTENIDO ====== */
     .contenido{
@@ -125,53 +138,37 @@
       justify-content:center;
       gap:14px;
       flex-wrap:wrap;
-      position:relative;           /* para ubicar iconos a la derecha */
-      padding-right: 76px;         /* espacio para los iconos a la derecha */
     }
     .footer-content img{ max-width:100px; height:auto; }
     .footer-content p{
       margin:0;
       font-size:clamp(14px, 2.2vw, 16px);
       text-align:center;
-      font-family:'Lucida Bright', serif;
-      font-style:italic;
     }
-
-    /* Iconos a la derecha del pie (siempre visibles) */
-    .footer-social{
-      position:absolute;
-      right:10px;
-      top:50%;
-      transform:translateY(-50%);
-      display:flex;
-      gap:14px;
-    }
-    .footer-social a{
-      color:#fff;
-      font-size:22px;
-      text-decoration:none;
-    }
-
     @media (max-width:480px){
       .footer-content img{ max-width:80px; }
       .footer-content p{ font-size:14px; }
-      .footer-social a{ font-size:20px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ENCABEZADO (solo “para arriba”, sin ensanchar) -->
+  <!-- ENCABEZADO -->
   <div class="encabezado">
     <img src="ps.jpg" alt="Corpus Christi">
+    <!-- Iconos en esquina inferior derecha -->
+    <div class="hero-social">
+      <a href="https://www.instagram.com/municipalidaddecorpus/" target="_blank" rel="noopener" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.facebook.com/p/Municipalidad-de-Corpus-Christi-100069083864591/" target="_blank" rel="noopener" aria-label="Facebook">
+        <i class="fab fa-facebook"></i>
+      </a>
+    </div>
   </div>
-  <div class="footer-social" aria-label="Redes sociales">
-        <a href="https://www.instagram.com/municipalidaddecorpus/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.facebook.com/p/Municipalidad-de-Corpus-Christi-100069083864591/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
- </div>
 
-  <!-- MENÚ (idéntico a Hospedajes) -->
-  <nav class="topnav">
+  <!-- MENÚ (sin iconos para no duplicar) -->
+  <nav>
     <a href="lugares.html">Lugares Turísticos</a>
     <a href="Hospedajes.html">Hospedajes</a>
     <a href="Eventos.html">Eventos</a>
@@ -184,7 +181,7 @@
     <p>Bienvenido a una Tierra de Historia, Cultura y Naturaleza. En esta Página descubrirás los Rincones más Emblemáticos de Corpus Christi, sus Tradiciones, su gente y todo lo que tiene para ofrecer. Desde su Herencia Jesuítica hasta sus Eventos Actuales, te invitamos a conocer más y ser parte de esta experiencia única.</p>
   </div>
 
-  <!-- PIE DE PÁGINA con iconos a la derecha -->
+  <!-- PIE DE PÁGINA -->
   <footer>
     <div class="footer-content">
       <img src="BLANCO1.png" alt="Logo 1">
@@ -195,6 +192,8 @@
 
 </body>
 </html>
+
+
 
 
 
