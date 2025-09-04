@@ -22,35 +22,35 @@
       font-size:clamp(22px,4vw,34px);
     }
 
-    /* ===== MENÚ UNIFICADO (igual al de LUGARES) ===== */
+    /* ===== MENÚ UNIFICADO ===== */
     nav.topnav{
       display:flex;
-      justify-content:center;      /* centrado en pantallas grandes */
+      justify-content:center;
       align-items:center;
-      flex-wrap:wrap;               /* si no entra, baja de línea */
+      flex-wrap:wrap;
       gap:20px;
       background:var(--azul);
       padding:12px 20px;
       font-family:'Warbler Text', serif;
       font-style:italic;
 
-      /* EDIT: desactivar sticky para que no se desplace */
-      position: static !important;   /* EDIT */
-      top: auto !important;          /* EDIT */
+      /* EDIT: desactivar sticky para que NO se desplace */
+      position: static !important;  /* EDIT */
+      top: auto !important;         /* EDIT */
 
       z-index:5;
     }
     nav.topnav a{
       color:#fff;
       text-decoration:none;
-      font-size:25px;               /* como en LUGARES en desktop */
+      font-size:25px;
       padding:5px 10px;
       transition:all .3s ease;
       white-space:nowrap;
     }
     nav.topnav a:hover{ text-decoration:underline; }
 
-    /* TARJETAS DE EVENTO (imágenes grandes, una debajo de otra) */
+    /* TARJETAS / CONTENIDO */
     .evento{
       width:min(92vw,var(--maxw)); margin:20px auto; background:#fff;
       border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,.12);
@@ -89,7 +89,7 @@
       border-radius:10px; padding:6px 12px; user-select:none;
     }
 
-    /* FOOTER (igual al index) */
+    /* FOOTER */
     footer{ background:var(--azul-osc); color:#fff; padding:1rem; margin-top:auto; }
     .footer-content{
       width:min(92vw,1000px); margin:0 auto; display:flex;
@@ -101,7 +101,7 @@
       font-family:'Lucida Bright', serif; font-style:italic; text-align:center;
     }
 
-    /* Responsive del menú y footer */
+    /* Responsive */
     @media(max-width:768px){
       nav.topnav a{ font-size:20px; }
       .footer-content img{ max-width:80px; }
@@ -109,7 +109,7 @@
     }
     @media(max-width:480px){
       nav.topnav{
-        flex-direction:column;      /* columna en celular */
+        flex-direction:column;
         gap:12px;
         padding:10px 14px;
       }
@@ -207,7 +207,7 @@
   </div>
 </footer>
 
-<!-- EDIT: Lightbox overlay (una sola vez por página) -->
+<!-- EDIT: Lightbox overlay -->
 <div id="lightbox-overlay" aria-hidden="true"> <!-- EDIT -->
   <span id="lightbox-close" aria-label="Cerrar">✕</span>
   <img id="lightbox-img" src="" alt="">
@@ -252,6 +252,7 @@
 </script>
 </body>
 </html>
+
 
 
 
