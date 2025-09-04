@@ -30,14 +30,14 @@
     .encabezado{
       position:relative;
       width:100%;
-      height:100vh;           /* desktop */
+      height:100vh;           /* desktop: ocupa toda la altura */
       overflow:hidden;
     }
     .encabezado img{
       width:100%;
       height:100%;
-      object-fit:cover;       /* cubre el contenedor sin deformarse */
-      object-position:center; /* centro en desktop */
+      object-fit:cover;       /* desktop: cubre sin deformarse */
+      object-position:center;
       filter:brightness(60%);
     }
 
@@ -63,7 +63,7 @@
     .hero-social a:hover{ opacity:1; transform:translateY(-1px); }
     .hero-social i{ font-size:16px; line-height:1; }
 
-    /* ====== MENÚ (idéntico al de Hospedajes) ====== */
+    /* ====== MENÚ (igual Hospedajes) ====== */
     nav.topnav{
       display:flex;
       justify-content:center;
@@ -138,19 +138,24 @@
 
     /* ====== SOLO CELULAR ====== */
     @media (max-width:768px){
-      /* Dejar que la portada ocupe el alto de la pantalla */
-      .encabezado{ height:100svh; }
-
-      /* 👇 Mostrar más la parte inferior de la imagen (bajar la imagen) */
+      /* ✅ Ver la foto COMPLETA (sin recorte) */
+      .encabezado{
+        height:auto;           /* que tome la altura natural de la imagen */
+        margin-bottom: -8px;   /* la acerco un poquito al menú (baja la imagen) */
+      }
       .encabezado img{
-        object-fit:cover;
-        object-position: 50% 72%; /* 72% = más abajo. Ajustá 65–85% a gusto */
+        width:100%;
+        height:auto;           /* mantiene proporción original */
+        object-fit:contain;    /* garantiza que no se recorte nada */
+        object-position:center top; /* y la anclo arriba */
+        filter:brightness(60%);
       }
 
       nav.topnav a{ font-size:20px; }
       .footer-content img{ max-width:80px; }
       .footer-content p{ font-size:14px; }
     }
+
     @media (max-width:480px){
       nav.topnav{
         flex-direction:column;
@@ -201,6 +206,7 @@
 
 </body>
 </html>
+
 
 
 
