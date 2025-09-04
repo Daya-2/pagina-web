@@ -30,15 +30,20 @@
     .encabezado{
       position:relative;
       width:100%;
-      height:100vh;           /* desktop */
+      height:100vh;          /* fallback desktop */
+      height:100dvh;         /* llena alto útil en móvil */
       overflow:hidden;
     }
     .encabezado img{
       width:100%;
       height:100%;
-      object-fit:cover;       /* NO estira a los costados, cubre el contenedor */
-      object-position:center; /* centro en desktop */
+      object-fit:cover;             /* cubre sin deformar (no estira a los costados) */
+      object-position:center;       /* desktop centrado */
       filter:brightness(60%);
+    }
+    /* En móvil: enfoca más arriba para que “se vea bien” la parte superior */
+    @media (max-width:768px){
+      .encabezado img{ object-position: 50% 12%; }  /* mover hacia arriba */
     }
 
     /* Íconos SOLO en la portada (esquina inferior derecha) */
@@ -63,31 +68,48 @@
     .hero-social a:hover{ opacity:1; transform:translateY(-1px); }
     .hero-social i{ font-size:16px; line-height:1; }
 
-    /* ====== MENÚ (idéntico al de Hospedajes) ====== */
+    /* ====== MENÚ (horizontal como Hospedajes, sin hamburguesa) ====== */
     nav.topnav{
       display:flex;
       justify-content:center;
       align-items:center;
-      flex-wrap:wrap;
-      gap:20px;
+      gap:14px;                 /* espacio entre items */
       background:var(--azul);
-      padding:12px 20px;
+      padding:10px 16px;
       font-family:'Warbler Text', serif;
       font-style:italic;
       position: static !important;
       top: auto !important;
       z-index:5;
       width:100%;
+
+      /* mantener una sola línea en móvil; si no entra, scroll lateral */
+      flex-wrap:nowrap;
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
     }
+    nav.topnav::-webkit-scrollbar{ display:none; }
+
     nav.topnav a{
       color:#fff;
       text-decoration:none;
-      font-size:25px;
-      padding:5px 10px;
-      transition:all 0.3s ease;
+      font-size:21px;           /* un poco más chico para que entren */
+      padding:4px 8px;
       white-space:nowrap;
+      transition:opacity .2s, transform .2s, background .2s;
     }
     nav.topnav a:hover{ text-decoration:underline; }
+
+    /* Ajustes extra en pantallas pequeñas */
+    @media (max-width:768px){
+      nav.topnav{ padding:8px 12px; gap:12px; }
+      nav.topnav a{ font-size:18px; padding:3px 6px; }
+    }
+    @media (max-width:480px){
+      nav.topnav{ padding:8px 10px; gap:10px; }
+      nav.topnav a{ font-size:16px; padding:3px 6px; }
+    }
 
     /* ====== CONTENIDO ====== */
     .contenido{
@@ -135,30 +157,6 @@
       margin:0;
       font-size:clamp(14px, 2.2vw, 16px);
     }
-
-    /* ====== SOLO CELULAR ====== */
-    @media (max-width:768px){
-      /* Portada: se estira hacia ARRIBA y enfoca ARRIBA (sin tocar costados) */
-      .encabezado{
-        height:100svh;            /* llena alto de pantalla en móvil */
-      }
-      .encabezado img{
-        object-fit:cover;         /* rellena alto sin deformarse */
-        object-position: top center; /* muestra más la parte superior */
-      }
-
-      nav.topnav a{ font-size:20px; }
-      .footer-content img{ max-width:80px; }
-      .footer-content p{ font-size:14px; }
-    }
-    @media (max-width:480px){
-      nav.topnav{
-        flex-direction:column;
-        gap:12px;
-        padding:10px 14px;
-      }
-      nav.topnav a{ font-size:16px; }
-    }
   </style>
 </head>
 <body>
@@ -176,7 +174,7 @@
     </div>
   </div>
 
-  <!-- MENÚ (igual al de Hospedajes; sin íconos) -->
+  <!-- MENÚ (horizontal, sin hamburguesa) -->
   <nav class="topnav">
     <a href="lugares.html">Lugares Turísticos</a>
     <a href="Hospedajes.html">Hospedajes</a>
@@ -201,6 +199,8 @@
 
 </body>
 </html>
+
+
 
 
 
