@@ -16,6 +16,7 @@
   <style>
     :root{
       --azul: rgba(0,114,187,0.9);
+      --azul-osc: rgba(0,92,153,0.95);   /* igual que en Hospedajes */
       --azul-footer: rgba(0,92,153,0.95);
       --rojo: #FF0D00;
     }
@@ -34,47 +35,43 @@
     .encabezado{
       position:relative;
       width:100%;
-      height:100vh; /* ocupa toda la pantalla */
+      height:100vh;              /* ocupa toda la pantalla */
       overflow:hidden;
     }
     .encabezado img{
+      position:absolute;
+      inset:0;                   /* top/right/bottom/left: 0 */
       width:100%;
       height:100%;
-      object-fit:cover;
-      object-position:center;
+      object-fit:cover;          /* cubrir (sin bandas) */
+      object-position:center top;/* prioriza parte superior */
       filter:brightness(60%);
     }
 
-    /* En celulares mostramos la imagen completa */
+    /* En celulares: un poco más bajo, pero SIEMPRE cover */
     @media (max-width:768px){
-      .encabezado{
-        height:70vh; /* un poco más chico en cel */
-      }
-      .encabezado img{
-        object-fit:contain; 
-        background:#000; /* fondo detrás si sobran márgenes */
-      }
+      .encabezado{ height:70vh; }
+      .encabezado img{ object-fit:cover; }
     }
 
-    /* ====== MENÚ ====== */
-    nav{
-      display:flex;
-      justify-content:center;
-      flex-wrap:wrap;
-      background:var(--azul);
-      padding:12px 20px;
-      gap:20px;
+    /* ====== MENÚ — IGUAL QUE HOSPEDAJES ====== */
+    nav.topnav{
+      position: sticky; top: 0; z-index: 999;
+      display:flex; justify-content:center; align-items:center;
+      height:44px; padding:0 6px; gap:0;
+      background: linear-gradient(180deg, var(--azul), var(--azul-osc));
+      font-family:'Warbler Text', serif; font-style:italic;
+      white-space:nowrap; flex-wrap:nowrap;
     }
-    nav a{
-      color:white;
-      text-decoration:none;
-      font-family:'Warbler Text', serif;
-      font-size:22px;
-      font-style:italic;
-      margin:0 10px;
-      transition:all 0.3s ease;
+    nav.topnav a{
+      color:#fff; text-decoration:none; line-height:1; padding:0;
+      font-size: clamp(14px, 1.8vw, 19px);
+      margin: 0 clamp(8px, 1.6vw, 16px);
+      letter-spacing:-0.2px;
+      transition:opacity .2s, transform .2s;
+      white-space:nowrap;
     }
-    nav a:hover{ text-decoration:underline; }
+    nav.topnav a:hover{ opacity:.9; transform: translateY(-1px); }
 
     /* ====== CONTENIDO ====== */
     .contenido{
@@ -132,17 +129,17 @@
 
   <!-- ENCABEZADO -->
   <div class="encabezado">
+    <!-- Cambiá ps.jpg si tu encabezado usa otro archivo -->
     <img src="ps.jpg" alt="Corpus Christi">
   </div>
 
-  <!-- MENÚ -->
-  <nav>
+  <!-- MENÚ (idéntico a Hospedajes) -->
+  <nav class="topnav">
+    <a href="index.html">Inicio</a>
     <a href="lugares.html">Lugares Turísticos</a>
     <a href="Hospedajes.html">Hospedajes</a>
     <a href="Eventos.html">Eventos</a>
     <a href="mapa.html">Mapa</a>
-    <a href="https://www.instagram.com/municipalidaddecorpus/" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.facebook.com/p/Municipalidad-de-Corpus-Christi-100069083864591/" target="_blank"><i class="fab fa-facebook"></i></a>
   </nav>
 
   <!-- CONTENIDO -->
@@ -162,8 +159,6 @@
 
 </body>
 </html>
-
-
 
 
 
