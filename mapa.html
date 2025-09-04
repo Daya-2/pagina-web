@@ -25,18 +25,28 @@
       font-size:clamp(22px,4vw,34px);
     }
 
-    /* ===== MENÚ UNIFICADO (igual al de LUGARES) ===== */
+    /* ===== MENÚ UNIFICADO (igual a Index/Lugares) ===== */
     nav.topnav{
-      display:flex; justify-content:center; align-items:center;
-      flex-wrap:wrap; gap:20px;
-      background:var(--azul); padding:12px 20px;
-      font-family:'Warbler Text', serif; font-style:italic;
-      position:sticky; top:0; z-index:5;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:20px;
+      background:var(--azul);
+      padding:12px 20px;
+      font-family:'Warbler Text', serif;
+      font-style:italic;
+      position:sticky;
+      top:0;
+      z-index:5;
     }
     nav.topnav a{
-      color:#fff; text-decoration:none;
-      font-size:25px; padding:5px 10px;
-      transition:all .3s ease; white-space:nowrap;
+      color:#fff;
+      text-decoration:none;
+      font-size:25px;         /* Desktop */
+      padding:5px 10px;
+      transition:all .3s ease;
+      white-space:nowrap;
     }
     nav.topnav a:hover{ text-decoration:underline; }
 
@@ -76,13 +86,13 @@
 
     /* Responsive menú + footer */
     @media (max-width:768px){
-      nav.topnav a{ font-size:20px; }
+      nav.topnav a{ font-size:20px; }   /* Tablet */
       .footer-content img{ max-width:80px; }
       .footer-content p{ font-size:14px; }
     }
     @media (max-width:480px){
       nav.topnav{ flex-direction:column; gap:12px; padding:10px 14px; }
-      nav.topnav a{ font-size:16px; }
+      nav.topnav a{ font-size:16px; }   /* Celular */
       .footer-content{ flex-direction:column; gap:10px; }
       .footer-content img{ max-width:70px; }
     }
@@ -126,6 +136,7 @@
 
 </body>
 </html>
+
 
 
 
