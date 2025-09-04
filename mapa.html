@@ -5,9 +5,8 @@
   <title>Mapa - Corpus Christi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Fuentes e íconos -->
+  <!-- Fuente del menú -->
   <link href="https://fonts.googleapis.com/css2?family=Warbler+Text:ital,wght@1,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root{ 
@@ -32,7 +31,7 @@
       font-family:'Times New Roman', serif;
     }
 
-    /* ===== MENÚ (IGUAL AL DE HOSPEDAJES) ===== */
+    /* ===== MENÚ (EXACTO AL DE HOSPEDAJES) ===== */
     nav.topnav{
       display:flex;
       justify-content:center;
@@ -57,18 +56,12 @@
     }
     nav.topnav a:hover{ text-decoration:underline; }
 
-    .topnav .social{
-      display:flex; gap:14px; align-items:center;
-    }
-    .topnav .social a{ padding:0; }
-    .topnav .social i{ font-size:24px; line-height:1; }
-
     /* ===== CONTENIDO ===== */
     main{ flex:1; width:min(92vw,var(--maxw)); margin:24px auto; }
 
     .map-container{
       position:relative; width:100%;
-      height:0; padding-bottom:56.25%; /* 16:9 en escritorio */
+      height:0; padding-bottom:56.25%; /* 16:9 escritorio */
       border-radius:12px; overflow:hidden;
       box-shadow:0 4px 12px rgba(0,0,0,.12);
       background:#ccc;
@@ -90,7 +83,7 @@
     }
     .btn:hover{ background:var(--azul); transform:translateY(-1px); }
 
-    /* ===== FOOTER (igual Hospedajes) ===== */
+    /* ===== FOOTER ===== */
     footer{ background:var(--azul-osc); color:#fff; padding:1rem; margin-top:auto; }
     .footer-content{
       width:min(92vw,1000px); margin:0 auto;
@@ -106,7 +99,6 @@
     /* ===== RESPONSIVE ===== */
     @media (max-width:768px){
       nav.topnav a{ font-size:20px; }
-      .topnav .social i{ font-size:22px; }
 
       /* En celular el mapa se estira SOLO hacia abajo */
       .map-container{
@@ -124,8 +116,6 @@
         padding:10px 14px;
       }
       nav.topnav a{ font-size:16px; }
-      .topnav .social{ gap:12px; }
-      .topnav .social i{ font-size:20px; }
 
       .footer-content{ flex-direction:column; gap:10px; }
       .footer-content img{ max-width:70px; }
@@ -137,7 +127,7 @@
 <!-- PORTADA -->
 <div class="portada">Mapa de Corpus Christi</div>
 
-<!-- MENÚ (idéntico a Hospedajes) -->
+<!-- MENÚ (exacto a Hospedajes, sin íconos) -->
 <nav class="topnav">
   <a href="./index.html">Inicio</a>
   <a href="./lugares.html">Lugares Turísticos</a>
@@ -147,7 +137,7 @@
 
 <!-- CONTENIDO -->
 <main>
-  <!-- Mapa embebido arriba -->
+  <!-- Mapa embebido arriba (tu My Maps) -->
   <div class="map-container">
     <iframe
       src="https://www.google.com/maps/d/embed?mid=17PFl0PHJGp4ZgJkHS9YELs5TlbUlBKI&ehbc=2E312F"
@@ -156,12 +146,12 @@
     </iframe>
   </div>
 
-  <!-- Botón: abre Google Maps con ruta en caminata desde tu ubicación -->
+  <!-- Botón: abre Google Maps con ruta en CAMINATA desde tu ubicación -->
   <div class="botones-mapa">
     <a class="btn"
        href="https://www.google.com/maps/dir/?api=1&destination=Plaza+San+Mart%C3%ADn%2C+Corpus+Christi%2C+Misiones&travelmode=walking"
        target="_blank" rel="noopener">
-       📍 Ir caminando a la plaza
+       📍 Como llegar a la Plaza
     </a>
   </div>
 </main>
@@ -177,7 +167,6 @@
 
 </body>
 </html>
-
 
 
 
