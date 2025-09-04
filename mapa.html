@@ -9,7 +9,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Warbler+Text:ital,wght@1,700&display=swap" rel="stylesheet">
 
   <style>
-    :root{ --azul: rgba(0,114,187,0.9); --azul-osc: rgba(0,92,153,0.95); --maxw:1100px; }
+    :root{ 
+      --azul: rgba(0,114,187,0.9); 
+      --azul-osc: rgba(0,92,153,0.95); 
+      --maxw:1100px; 
+    }
 
     *{ box-sizing:border-box; }
     body{
@@ -18,39 +22,32 @@
       background:#eef5f2; color:#333;
     }
 
-    /* PORTADA (achicada) */
+    /* ===== PORTADA ===== */
     .portada{
       background:var(--azul-osc); color:#fff; text-align:center;
       padding:clamp(10px,3vh,20px) 8px;
       font-size:clamp(22px,4vw,34px);
+      font-family:'Times New Roman', serif;
     }
 
-    /* ===== MENÚ UNIFICADO (igual a Index/Lugares) ===== */
+    /* ===== MENÚ (igual que los demás) ===== */
     nav.topnav{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      flex-wrap:wrap;
-      gap:20px;
+      display:flex; justify-content:center; align-items:center;
+      flex-wrap:wrap; gap:20px;
       background:var(--azul);
       padding:12px 20px;
       font-family:'Warbler Text', serif;
       font-style:italic;
-      position:sticky;
-      top:0;
-      z-index:5;
+      position:relative; /* igual que en hospedajes */
     }
     nav.topnav a{
-      color:#fff;
-      text-decoration:none;
-      font-size:25px;         /* Desktop */
-      padding:5px 10px;
-      transition:all .3s ease;
-      white-space:nowrap;
+      color:#fff; text-decoration:none;
+      font-size:25px; padding:5px 10px;
+      transition:all .3s ease; white-space:nowrap;
     }
     nav.topnav a:hover{ text-decoration:underline; }
 
-    /* CONTENIDO */
+    /* ===== CONTENIDO ===== */
     main{ flex:1; width:min(92vw,var(--maxw)); margin:20px auto; }
 
     .map-container{
@@ -71,7 +68,7 @@
     }
     .botones-mapa button:hover{ background:var(--azul); }
 
-    /* FOOTER (igual al index) */
+    /* ===== FOOTER ===== */
     footer{ background:var(--azul-osc); color:#fff; padding:1rem; margin-top:auto; }
     .footer-content{
       width:min(92vw,1000px); margin:0 auto;
@@ -84,15 +81,15 @@
       font-family:'Lucida Bright', serif; font-style:italic; text-align:center;
     }
 
-    /* Responsive menú + footer */
+    /* ===== RESPONSIVE ===== */
     @media (max-width:768px){
-      nav.topnav a{ font-size:20px; }   /* Tablet */
+      nav.topnav a{ font-size:20px; }
       .footer-content img{ max-width:80px; }
       .footer-content p{ font-size:14px; }
     }
     @media (max-width:480px){
       nav.topnav{ flex-direction:column; gap:12px; padding:10px 14px; }
-      nav.topnav a{ font-size:16px; }   /* Celular */
+      nav.topnav a{ font-size:16px; }
       .footer-content{ flex-direction:column; gap:10px; }
       .footer-content img{ max-width:70px; }
     }
@@ -100,16 +97,18 @@
 </head>
 <body>
 
+<!-- PORTADA -->
 <div class="portada">Mapa de Corpus Christi</div>
 
-<!-- MENÚ UNIFICADO -->
+<!-- MENÚ -->
 <nav class="topnav">
   <a href="./index.html">Inicio</a>
   <a href="./lugares.html">Lugares Turísticos</a>
-  <a href="./Hospedajes.html">Hospedajes</a>
-  <a href="./Eventos.html">Eventos</a>
+  <a href="./hospedajes.html">Hospedajes</a>
+  <a href="./eventos.html">Eventos</a>
 </nav>
 
+<!-- CONTENIDO -->
 <main>
   <div class="map-container">
     <iframe
@@ -125,16 +124,18 @@
   </div>
 </main>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-content">
-    <img src="BLANCO1.png" alt="Logo 1">
+    <img src="BLANCO1.png" alt="Logo Corpus Christi">
     <p>&copy; 2025 Red Espacio Maker - Corpus Christi</p>
-    <img src="00.png" alt="Logo 2">
+    <img src="00.png" alt="Logo Red Maker">
   </div>
 </footer>
 
 </body>
 </html>
+
 
 
 
