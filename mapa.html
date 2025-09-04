@@ -30,49 +30,48 @@
       font-family:'Times New Roman', serif;
     }
 
-    /* ===== MENÚ (unificado) ===== */
+    /* ===== MENÚ (igual al de las otras páginas) ===== */
     nav.topnav{
-      position: sticky;   /* fijo arriba al hacer scroll */
-      top: 0;
-      z-index: 999;
+      position: sticky; top: 0; z-index: 999;
       display:flex; justify-content:center; align-items:center;
-      height:56px;
-      padding:0 16px;
+      height:56px; padding:0 16px;
       background: linear-gradient(180deg, var(--azul), var(--azul-osc));
-      font-family:'Warbler Text', serif;
-      font-style:italic;
-      white-space:nowrap;
+      font-family:'Warbler Text', serif; font-style:italic;
+      white-space:nowrap; flex-wrap:nowrap;
     }
     nav.topnav a{
-      color:#fff; text-decoration:none;   /* sin subrayado */
-      font-size:22px;
-      margin:0 25px;                      /* margen horizontal 25px */
-      padding:.25rem 0;
+      color:#fff; text-decoration:none; font-size:22px;
+      margin:0 25px; padding:.25rem 0; line-height:1;
       transition:opacity .2s, transform .2s;
+      white-space:nowrap;
     }
-    nav.topnav a:hover{
-      opacity:.9;
-      transform: translateY(-1px);
-    }
+    nav.topnav a:hover{ opacity:.9; transform:translateY(-1px); }
 
     /* ===== CONTENIDO ===== */
     main{ flex:1; width:min(92vw,var(--maxw)); margin:20px auto; }
 
+    /* Desktop/tablet: mantener proporción 16:9 */
     .map-container{
-      position:relative; width:100%; height:0; padding-bottom:56.25%;
-      margin-bottom:20px;
+      position:relative; width:100%;
+      aspect-ratio: 16 / 9;
+      margin-bottom:16px;
+      overflow:hidden;
+      border-radius:8px;
+      box-shadow:0 6px 18px rgba(0,0,0,.15);
+      background:#ddd;
     }
     .map-container iframe{
-      position:absolute; inset:0; width:100%; height:100%; border:none;
+      position:absolute; inset:0; width:100%; height:100%; border:0;
     }
 
-    .botones-mapa{ text-align:center; margin-top:10px; }
+    .botones-mapa{ text-align:center; margin-top:12px; }
     .botones-mapa a{ text-decoration:none; }
     .botones-mapa button{
       background:#820014; color:#fff; border:none;
       padding:12px 20px; margin:10px; font-size:16px;
-      border-radius:5px; cursor:pointer;
+      border-radius:8px; cursor:pointer;
       font-family:'Warbler Text', serif; font-style:italic;
+      box-shadow:0 4px 10px rgba(0,0,0,.15);
     }
     .botones-mapa button:hover{ background:var(--azul); }
 
@@ -89,38 +88,29 @@
       font-family:'Lucida Bright', serif; font-style:italic; text-align:center;
     }
 
-    /* ===== Responsive base ===== */
+    /* ===== MÓVIL ===== */
     @media (max-width:768px){
+      nav.topnav{
+        flex-wrap:wrap; height:auto; padding:8px 12px;
+      }
+      nav.topnav a{ margin:6px 14px; font-size:20px; }
+
+      /* En celular, el mapa se ESTIRA SOLO PARA ABAJO (más alto) */
+      .map-container{
+        aspect-ratio:auto;
+        height:80vh;          /* << ajustá a 75vh / 85vh si querés más/menos alto */
+        margin-bottom:16px;
+      }
+      .botones-mapa{ margin-top:8px; padding-bottom:8px; }
+
       .footer-content img{ max-width:80px; }
       .footer-content p{ font-size:14px; }
     }
     @media (max-width:480px){
+      nav.topnav{ flex-direction:column; gap:12px; padding:10px 14px; }
+      nav.topnav a{ font-size:16px; }
       .footer-content{ flex-direction:column; gap:10px; }
       .footer-content img{ max-width:70px; }
-    }
-
-    /* ====== OVERRIDE MENÚ COMO IMAGEN 2 (forzado) ====== */
-    nav.topnav{
-      flex-wrap: nowrap !important;
-      height: 46px !important;
-      padding: 0 8px !important;
-      gap: 0 !important;
-    }
-    nav.topnav a{
-      display:inline-block !important;
-      line-height:1 !important;
-      padding:0 !important;
-    }
-
-    /* === AJUSTE FINO: letras y separación más chicas === */
-    nav.topnav{ height:44px !important; padding:0 6px !important; }
-    nav.topnav a{
-      font-size: clamp(14px, 1.8vw, 19px) !important;
-      margin: 0 clamp(8px, 1.6vw, 16px) !important;
-      letter-spacing: -0.2px !important;
-    }
-    @media (max-width:360px){
-      nav.topnav a{ font-size:14px !important; margin:0 8px !important; letter-spacing:-0.3px !important; }
     }
   </style>
 </head>
@@ -139,16 +129,21 @@
 
 <!-- CONTENIDO -->
 <main>
+  <!-- Mapa (tu My Maps embebido para ver capas) -->
   <div class="map-container">
     <iframe
       src="https://www.google.com/maps/d/embed?mid=17PFl0PHJGp4ZgJkHS9YELs5TlbUlBKI&ehbc=2E312F"
-      allowfullscreen>
+      allowfullscreen
+      loading="lazy">
     </iframe>
   </div>
 
+  <!-- Botón de ruta limpia: SOLO el caminito desde tu ubicación -->
   <div class="botones-mapa">
-    <a href="https://www.google.com/maps/dir/?api=1&destination=Plaza+San+Martín,+Corpus+Christi,+Misiones" target="_blank" rel="noopener">
-      <button>📍 Cómo llegar a la plaza</button>
+    <a
+      href="https://www.google.com/maps/dir/?api=1&origin=Current+Location&destination=Plaza+San+Mart%C3%ADn%2C+Corpus+Christi%2C+Misiones&travelmode=driving&dir_action=navigate"
+      target="_blank" rel="noopener">
+      <button>📍 Cómo llegar a la plaza (solo ruta)</button>
     </a>
   </div>
 </main>
