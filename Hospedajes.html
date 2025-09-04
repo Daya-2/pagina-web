@@ -23,7 +23,7 @@
     }
     img{ max-width:100%; height:auto; display:block; }
 
-    /* ===== PORTADA (baja) ===== */
+    /* ===== PORTADA ===== */
     .portada{
       background-color: var(--azul-osc);
       color:#fff;
@@ -33,7 +33,7 @@
       font-size:clamp(22px, 4vw, 34px);
     }
 
-    /* ===== MENÚ UNIFICADO (igual a Index/Lugares) ===== */
+    /* ===== MENÚ (igual que Lugares Turísticos) ===== */
     nav.topnav{
       display:flex;
       justify-content:center;
@@ -44,21 +44,20 @@
       padding:12px 20px;
       font-family:'Warbler Text', serif;
       font-style:italic;
-      position:sticky;   /* igual que en las otras páginas */
-      top:0;
-      z-index:5;
+      /* Eliminamos sticky */
+      position:relative;
     }
     nav.topnav a{
       color:#fff;
       text-decoration:none;
-      font-size:25px;    /* PC */
+      font-size:25px;
       padding:5px 10px;
       transition:all 0.3s ease;
       white-space:nowrap;
     }
     nav.topnav a:hover{ text-decoration:underline; }
 
-    /* ===== CONTENEDOR PRINCIPAL ===== */
+    /* ===== CONTENEDOR ===== */
     .container{
       display:flex; flex:1;
       width:min(92vw, var(--maxw));
@@ -95,11 +94,11 @@
       width:100%; border-radius:10px; margin-bottom:15px;
       box-shadow:0 0 10px rgba(110,190,110,.8);
       transition:transform .25s ease;
+      cursor:zoom-in;
     }
     .card img:hover{ transform:scale(1.03); box-shadow:0 0 15px rgba(70,170,70,1); }
 
     /* === LIGHTBOX === */
-    .zoomable { cursor: zoom-in; }
     #lightbox-overlay{
       position:fixed; inset:0; background:rgba(0,0,0,.85);
       display:none; align-items:center; justify-content:center; z-index:9999;
@@ -114,7 +113,7 @@
       border-radius:10px; padding:6px 12px; user-select:none;
     }
 
-    /* ===== FOOTER (igual a Index) ===== */
+    /* ===== FOOTER ===== */
     footer{
       background:var(--azul-osc); color:#fff; padding:1rem; margin-top:auto;
     }
@@ -135,13 +134,13 @@
       aside{ width:100%; }
     }
     @media(max-width:768px){
-      nav.topnav a{ font-size:20px; }     /* Tablet */
+      nav.topnav a{ font-size:20px; }
       .footer-content img{ max-width:80px; }
       .footer-content p{ font-size:14px; }
     }
     @media(max-width:480px){
       nav.topnav{ flex-direction:column; gap:12px; padding:10px 14px; }
-      nav.topnav a{ font-size:16px; }     /* Celular */
+      nav.topnav a{ font-size:16px; }
       aside li{ font-size:16px; }
       .footer-content{ flex-direction:column; gap:10px; }
       .footer-content img{ max-width:70px; }
@@ -153,7 +152,7 @@
 <!-- PORTADA -->
 <div class="portada">Hospedajes de Corpus</div>
 
-<!-- MENÚ UNIFICADO (igual a Index/Lugares) -->
+<!-- MENÚ -->
 <nav class="topnav">
   <a href="./index.html">Inicio</a>
   <a href="./lugares.html">Lugares Turísticos</a>
@@ -164,7 +163,6 @@
 
 <!-- CONTENIDO -->
 <div class="container">
-  <!-- MENU LATERAL -->
   <aside>
     <ul id="menu-list">
       <li class="active" data-target="posada">🏡 Posada Los Azahares</li>
@@ -173,45 +171,14 @@
     </ul>
   </aside>
 
-  <!-- SECCIONES -->
   <main>
     <section id="posada" class="card" style="display:block;">
       <h2>🏡 Posada Los Azahares</h2>
-      <img src="ll.jpeg" alt="Posada Los Azahares" class="zoomable">
-      <img src="mm.jpeg" alt="Posada Los Azahares" class="zoomable">
-      <img src="nn.jpeg" alt="Posada Los Azahares" class="zoomable">
-      <img src="ññ.jpeg" alt="Posada Los Azahares" class="zoomable">
+      <img src="ll.jpeg" alt="Posada Los Azahares">
+      <img src="mm.jpeg" alt="Posada Los Azahares">
+      <img src="nn.jpeg" alt="Posada Los Azahares">
+      <img src="ññ.jpeg" alt="Posada Los Azahares">
       <p>Alojamiento Familiar en el Centro de Corpus Christi, rodeado de naturaleza.</p>
-      <h4>Servicios</h4>
-      <p>Piscina, Aire acondicionado, Direct TV, Estacionamiento, Uso de Parrilla y Quincho Compartidos, Desayuno incluido, Opcional Cena.</p>
-      <h4>Condiciones</h4>
-      <p>Check-in a las 12:00, Check-out a las 10:00, Estadía Mínima 2 Noches. Limpieza Incluida. Admite Mascotas.</p>
-    </section>
-
-    <section id="cabaña" class="card" style="display:none;">
-      <h2>🏡 Cabaña La Gloriosa</h2>
-      <img src="lll.avif" alt="Cabaña La Gloriosa" class="zoomable">
-      <img src="mmm.avif" alt="Cabaña La Gloriosa" class="zoomable">
-      <img src="rrr.webp" alt="Cabaña La Gloriosa" class="zoomable">
-      <img src="tt.jpeg" alt="Cabaña La Gloriosa" class="zoomable">
-      <p>La Gloriosa Cabaña Natural es un Alojamiento Rural de estilo Familiar ubicado en una Estancia y parte del Circuito de los Jesuitas y la Ruta de la Yerba Mate. Ideal para desconectar y disfrutar del entorno natural.</p>
-      <h4>📍 Características del Alojamiento</h4>
-      <p>Hasta 6 Huéspedes · 2 Dormitorios · 2 Baños.</p>
-      <h4>Servicios</h4>
-      <p>Cocina, Estacionamiento, Calefacción, Toallas y Ropa blanca. Atención personalizada por sus Dueños Locales.</p>
-      <h4>🍽️ Gastronomía</h4>
-      <p>Restaurante Oliva (reserva previa). Cocina mediterránea con inspiración de yerba mate.</p>
-    </section>
-
-    <section id="ypora" class="card" style="display:none;">
-      <h2>🏡 Alojamiento Ypora</h2>
-      <img src="qq.jpg" alt="Alojamiento Ypora" class="zoomable">
-      <img src="VVV.jpg" alt="Alojamiento Ypora" class="zoomable">
-      <img src="FF.jpg" alt="Alojamiento Ypora" class="zoomable">
-      <img src="XXX.jpg" alt="Alojamiento Ypora" class="zoomable">
-      <p>Alojamiento Diario en Corpus Christi, Misiones. Camas matrimoniales, triples y cuádruples.</p>
-      <h4>Reservas</h4>
-      <p>+54 9 3743 44-3041 · +54 9 376 4810459</p>
     </section>
   </main>
 </div>
@@ -225,13 +192,14 @@
   </div>
 </footer>
 
-<!-- Lightbox overlay -->
+<!-- Lightbox -->
 <div id="lightbox-overlay" aria-hidden="true">
   <span id="lightbox-close" aria-label="Cerrar">✕</span>
   <img id="lightbox-img" src="" alt="">
 </div>
 
 <script>
+  // Lateral menu
   const menuItems = document.querySelectorAll('#menu-list li');
   const sections = document.querySelectorAll('main section');
 
@@ -249,38 +217,36 @@
     });
   });
 
-  /* Lightbox para .zoomable */
-  (function(){
-    const overlay = document.getElementById('lightbox-overlay');
-    const imgEl   = document.getElementById('lightbox-img');
-    const closeEl = document.getElementById('lightbox-close');
+  // Lightbox
+  const overlay = document.getElementById('lightbox-overlay');
+  const imgEl   = document.getElementById('lightbox-img');
+  const closeEl = document.getElementById('lightbox-close');
 
-    function openLightbox(src, alt='') {
-      imgEl.src = src; imgEl.alt = alt || '';
-      overlay.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
+  function openLightbox(src, alt='') {
+    imgEl.src = src; imgEl.alt = alt || '';
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(){
+    overlay.style.display = 'none';
+    imgEl.src = '';
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('click', (e)=>{
+    if (e.target.tagName === 'IMG' && e.target.closest('.card')) {
+      openLightbox(e.target.src, e.target.alt);
     }
-    function closeLightbox(){
-      overlay.style.display = 'none';
-      imgEl.src = '';
-      document.body.style.overflow = '';
-    }
+  });
 
-    document.addEventListener('click', (e)=>{
-      const t = e.target;
-      if (t.classList && t.classList.contains('zoomable')) {
-        openLightbox(t.src, t.alt);
-      }
-    });
-
-    closeEl.addEventListener('click', closeLightbox);
-    overlay.addEventListener('click', (e)=>{ if (e.target === overlay) closeLightbox(); });
-    document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeLightbox(); });
-  })();
+  closeEl.addEventListener('click', closeLightbox);
+  overlay.addEventListener('click', (e)=>{ if (e.target === overlay) closeLightbox(); });
+  document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeLightbox(); });
 </script>
 
 </body>
 </html>
+
 
 
 
