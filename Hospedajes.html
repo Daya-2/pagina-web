@@ -7,6 +7,7 @@
 
   <!-- Fuentes -->
   <link href="https://fonts.googleapis.com/css2?family=Warbler+Text:ital,wght@1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root{
@@ -22,30 +23,58 @@
     }
     img{ max-width:100%; height:auto; display:block; }
 
-    /* ===== PORTADA (achicada) ===== */
+    /* ===== PORTADA ===== */
     .portada{
       background-color: var(--azul-osc);
       color:#fff;
       text-align:center;
-      padding:clamp(10px, 3vh, 20px) 8px;   /* más baja */
+      padding:clamp(10px, 3vh, 20px) 8px;  /* portada más baja */
       font-family:'Times New Roman', serif;
-      font-size:clamp(22px, 4vw, 34px);     /* texto más chico */
+      font-size:clamp(22px, 4vw, 34px);
     }
 
-    /* ===== MENÚ UNIFICADO ===== */
+    /* ===== MENÚ UNIFICADO (igual a LUGARES, centrado y responsive) ===== */
     nav.topnav{
-      display:flex; justify-content:center; align-items:center; flex-wrap:wrap;
-      gap:20px; background:var(--azul); padding:12px 20px;
-      font-family:'Warbler Text', serif; font-style:italic;
-      position:sticky; top:0; z-index:5;
+      display:flex;
+      justify-content:center;     /* centrado en pantallas grandes */
+      align-items:center;
+      flex-wrap:wrap;             /* si no entra, salta a nueva línea */
+      gap:20px;
+      background:var(--azul);
+      padding:12px 20px;
+      font-family:'Warbler Text', serif;
+      font-style:italic;
+      position:sticky;
+      top:0;
+      z-index:5;
     }
-    nav.topnav a{ color:#fff; text-decoration:none; font-size:22px; }
+    nav.topnav a{
+      color:#fff;
+      text-decoration:none;
+      font-size:25px;             /* mismo tamaño que LUGARES en desktop */
+      padding:5px 10px;
+      transition:all 0.3s ease;
+      white-space:nowrap;          /* evita cortes raros en desktop */
+    }
     nav.topnav a:hover{ text-decoration:underline; }
+
+    /* Social: mismos tamaños y alineación limpia */
+    .topnav .social{
+      display:flex; gap:14px; align-items:center;
+    }
+    .topnav .social a{
+      padding:0;                  /* quito padding de link de texto */
+    }
+    .topnav .social i{
+      font-size:24px; line-height:1;
+    }
 
     /* ===== CONTENEDOR PRINCIPAL ===== */
     .container{
-      display:flex; flex:1; width:min(92vw, var(--maxw)); margin:20px auto; gap:20px;
-      align-items:stretch; /* fuerza al sidebar a estirar */
+      display:flex; flex:1;
+      width:min(92vw, var(--maxw));
+      margin:20px auto; gap:20px;
+      align-items:stretch;        /* el sidebar baja hasta el footer */
     }
 
     /* ===== MENU LATERAL ===== */
@@ -73,7 +102,6 @@
     }
     .card p{ font-family:'Warbler Text', serif; font-size:18px; line-height:1.6; }
 
-    /* Imágenes grandes y apiladas */
     .card img{
       width:100%; border-radius:10px; margin-bottom:15px;
       box-shadow:0 0 10px rgba(110,190,110,.8);
@@ -81,7 +109,7 @@
     }
     .card img:hover{ transform:scale(1.03); box-shadow:0 0 15px rgba(70,170,70,1); }
 
-    /* ===== FOOTER (idéntico al index) ===== */
+    /* ===== FOOTER (igual al index) ===== */
     footer{
       background:var(--azul-osc); color:#fff; padding:1rem; margin-top:auto;
     }
@@ -103,12 +131,19 @@
     }
     @media(max-width:768px){
       nav.topnav a{ font-size:20px; }
+      .topnav .social i{ font-size:22px; }
       .footer-content img{ max-width:80px; }
       .footer-content p{ font-size:14px; }
     }
     @media(max-width:480px){
-      nav.topnav{ flex-direction:column; gap:12px; }
+      nav.topnav{
+        flex-direction:column;    /* columna en celular */
+        gap:12px;
+        padding:10px 14px;
+      }
       nav.topnav a{ font-size:16px; }
+      .topnav .social{ gap:12px; }
+      .topnav .social i{ font-size:20px; }
       aside li{ font-size:16px; }
       .footer-content{ flex-direction:column; gap:10px; }
       .footer-content img{ max-width:70px; }
@@ -117,16 +152,20 @@
 </head>
 <body>
 
-<!-- PORTADA (achicada) -->
+<!-- PORTADA -->
 <div class="portada">Hospedajes de Corpus</div>
 
-<!-- MENÚ UNIFICADO -->
+<!-- MENÚ UNIFICADO (igual a LUGARES) -->
 <nav class="topnav">
   <a href="index.html">Inicio</a>
   <a href="lugares.html">Lugares Turísticos</a>
   <a href="Hospedajes.html">Hospedajes</a>
   <a href="Eventos.html">Eventos</a>
   <a href="mapa.html">Mapa</a>
+  <span class="social">
+    <a href="https://www.instagram.com/municipalidaddecorpus/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.facebook.com/p/Municipalidad-de-Corpus-Christi-100069083864591/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+  </span>
 </nav>
 
 <!-- CONTENIDO -->
@@ -183,7 +222,7 @@
   </main>
 </div>
 
-<!-- FOOTER (idéntico al index) -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-content">
     <img src="BLANCO1.png" alt="Logo Corpus Christi">
@@ -213,6 +252,7 @@
 
 </body>
 </html>
+
 
 
 
