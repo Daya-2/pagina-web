@@ -30,22 +30,30 @@
       font-family:'Times New Roman', serif;
     }
 
-    /* ===== MENÚ (igual que los demás) ===== */
+    /* ===== MENÚ (igual al de las otras páginas) ===== */
     nav.topnav{
+      position: sticky;   /* fijo arriba al hacer scroll */
+      top: 0;
+      z-index: 999;
       display:flex; justify-content:center; align-items:center;
-      flex-wrap:wrap; gap:20px;
-      background:var(--azul);
-      padding:12px 20px;
+      height:56px;
+      padding:0 16px;
+      background: linear-gradient(180deg, var(--azul), var(--azul-osc));
       font-family:'Warbler Text', serif;
       font-style:italic;
-      position:relative; /* igual que en hospedajes */
     }
     nav.topnav a{
-      color:#fff; text-decoration:none;
-      font-size:25px; padding:5px 10px;
-      transition:all .3s ease; white-space:nowrap;
+      color:#fff; text-decoration:none;   /* sin subrayado */
+      font-size:22px;
+      margin:0 25px;                      /* margen horizontal 25px */
+      padding:.25rem 0;
+      transition:opacity .2s, transform .2s;
+      white-space:nowrap;
     }
-    nav.topnav a:hover{ text-decoration:underline; }
+    nav.topnav a:hover{
+      opacity:.9;
+      transform: translateY(-1px);
+    }
 
     /* ===== CONTENIDO ===== */
     main{ flex:1; width:min(92vw,var(--maxw)); margin:20px auto; }
@@ -83,7 +91,12 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width:768px){
-      nav.topnav a{ font-size:20px; }
+      nav.topnav{
+        flex-wrap: wrap;
+        height:auto;
+        padding:8px 12px;
+      }
+      nav.topnav a{ margin:6px 14px; font-size:20px; }
       .footer-content img{ max-width:80px; }
       .footer-content p{ font-size:14px; }
     }
@@ -135,6 +148,12 @@
 
 </body>
 </html>
+
+
+
+
+
+
 
 
 
