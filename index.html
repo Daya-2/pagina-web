@@ -4,10 +4,12 @@
   <meta charset="UTF-8" />
   <title>Inicio</title>
 
+  <!-- Viewport para móviles -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Fuentes -->
   <link href="https://fonts.googleapis.com/css2?family=Warbler+Text:ital,wght@1,700&display=swap" rel="stylesheet">
+
   <!-- Iconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -28,7 +30,7 @@
     }
     img{ max-width:100%; height:auto; display:block; }
 
-    /* ====== ENCABEZADO/HERO ====== */
+    /* ====== ENCABEZADO/HERO (SIN CAMBIOS DE TAMAÑO) ====== */
     .encabezado{
       position:relative;
       width:100%;
@@ -38,47 +40,45 @@
     .encabezado img{
       width:100%;
       height:100%;
-      object-fit:cover;        /* cubre toda el área */
+      object-fit:cover;
       object-position:center;
-      filter:brightness(60%);  /* oscurece un poco para que resalten textos/iconos */
+      filter:brightness(60%);
     }
 
-    /* Iconos en esquina inferior derecha de la portada */
+    /* Iconos chiquitos en la esquina inferior derecha de la portada */
     .hero-social{
       position:absolute;
-      right:clamp(12px, 3vw, 24px);
-      bottom:clamp(12px, 2.5vh, 28px);
+      right:12px;
+      bottom:12px;
       display:flex;
-      gap:14px;
-      align-items:center;
-      padding:10px 14px;
-      background:rgba(0,0,0,.45);
-      border-radius:999px;
-      backdrop-filter:blur(4px);
-      box-shadow:0 4px 16px rgba(0,0,0,.25);
+      gap:10px;
       z-index:5;
     }
     .hero-social a{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      width:40px; height:40px;   /* buen tamaño táctil */
       color:#fff;
       text-decoration:none;
-      border-radius:50%;
-      transition:transform .15s ease, opacity .15s ease, background .15s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:28px; height:28px;   /* tamaño chico */
+      opacity:.95;
+      transition:opacity .15s ease, transform .15s ease;
     }
-    .hero-social a:hover{ transform:translateY(-1px); opacity:.9; }
-    .hero-social i{ font-size:22px; line-height:1; }
+    .hero-social a:hover{ opacity:1; transform:translateY(-1px); }
+    .hero-social i{ font-size:16px; line-height:1; }
 
-    /* En celulares podés subir un poco el tamaño táctil */
+    /* Comportamiento original en celulares (SIN CAMBIOS) */
     @media (max-width:768px){
-      .hero-social{ gap:12px; padding:10px 12px; }
-      .hero-social a{ width:44px; height:44px; }
-      .hero-social i{ font-size:22px; }
+      .encabezado{
+        height:70vh; /* un poco más chico en cel */
+      }
+      .encabezado img{
+        object-fit:contain; 
+        background:#000; /* fondo detrás si sobran márgenes */
+      }
     }
 
-    /* ====== MENÚ ====== */
+    /* ====== MENÚ (SIN CAMBIOS, SIN ÍCONOS) ====== */
     nav{
       display:flex;
       justify-content:center;
@@ -99,7 +99,7 @@
     }
     nav a:hover{ text-decoration:underline; }
 
-    /* ====== CONTENIDO ====== */
+    /* ====== CONTENIDO (SIN CAMBIOS) ====== */
     .contenido{
       flex:1;
       max-width:1000px;
@@ -123,7 +123,7 @@
       color:#333;
     }
 
-    /* ====== FOOTER ====== */
+    /* ====== FOOTER (SIN CAMBIOS) ====== */
     footer{
       background:var(--azul-footer);
       color:#fff;
@@ -138,12 +138,12 @@
       justify-content:center;
       gap:14px;
       flex-wrap:wrap;
+      text-align:center;
     }
     .footer-content img{ max-width:100px; height:auto; }
     .footer-content p{
       margin:0;
       font-size:clamp(14px, 2.2vw, 16px);
-      text-align:center;
     }
     @media (max-width:480px){
       .footer-content img{ max-width:80px; }
@@ -156,7 +156,7 @@
   <!-- ENCABEZADO -->
   <div class="encabezado">
     <img src="ps.jpg" alt="Corpus Christi">
-    <!-- Iconos en esquina inferior derecha -->
+    <!-- Íconos SOLO en la portada -->
     <div class="hero-social">
       <a href="https://www.instagram.com/municipalidaddecorpus/" target="_blank" rel="noopener" aria-label="Instagram">
         <i class="fab fa-instagram"></i>
@@ -167,7 +167,7 @@
     </div>
   </div>
 
-  <!-- MENÚ (sin iconos para no duplicar) -->
+  <!-- MENÚ (sin iconos) -->
   <nav>
     <a href="lugares.html">Lugares Turísticos</a>
     <a href="Hospedajes.html">Hospedajes</a>
