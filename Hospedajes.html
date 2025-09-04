@@ -33,27 +33,32 @@
       font-size:clamp(22px, 4vw, 34px);
     }
 
-    /* ===== MENÚ (unificado con Lugares Turísticos) ===== */
+    /* ===== MENÚ ===== */
     nav.topnav{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      flex-wrap:wrap;
-      gap:20px;
-      background:var(--azul);
-      padding:12px 20px;
+      position: sticky;      /* fijo arriba al hacer scroll */
+      top: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 56px;
+      padding: 0 16px;
+      background: linear-gradient(180deg, var(--azul), var(--azul-osc));
       font-family:'Warbler Text', serif;
-      font-style:italic;
+      font-style: italic;
     }
     nav.topnav a{
       color:#fff;
-      text-decoration:none;
+      text-decoration:none;  /* sin subrayado */
       font-size:22px;
-      padding:5px 10px;
-      transition:all 0.3s ease;
-      white-space:nowrap;
+      margin: 0 25px;        /* margen horizontal */
+      padding: .25rem 0;
+      transition: opacity .2s, transform .2s;
     }
-    nav.topnav a:hover{ text-decoration:underline; }
+    nav.topnav a:hover{
+      opacity:.9;            /* efecto sutil */
+      transform: translateY(-1px);
+    }
 
     /* ===== CONTENEDOR ===== */
     .container{
@@ -132,7 +137,12 @@
       aside{ width:100%; }
     }
     @media(max-width:768px){
-      nav.topnav a{ font-size:20px; }
+      nav.topnav{
+        flex-wrap: wrap;
+        height: auto;
+        padding: 8px 12px;
+      }
+      nav.topnav a{ margin: 6px 14px; font-size:20px; }
       .footer-content img{ max-width:80px; }
       .footer-content p{ font-size:14px; }
     }
@@ -143,6 +153,49 @@
       .footer-content{ flex-direction:column; gap:10px; }
       .footer-content img{ max-width:70px; }
     }
+
+    /* ====== OVERRIDE MENÚ COMO LA IMAGEN 2 (forzado) ====== */
+    nav.topnav{
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 999 !important;
+
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: center !important;
+      align-items: center !important;
+
+      flex-wrap: nowrap !important;      /* una sola línea */
+      white-space: nowrap !important;     /* evita salto de línea */
+
+      height: 46px !important;            /* barra fina */
+      padding: 0 8px !important;          /* sin alto extra */
+      gap: 0 !important;
+
+      background: linear-gradient(180deg, rgba(0,114,187,0.9), rgba(0,92,153,0.95)) !important;
+    }
+    nav.topnav a{
+      display: inline-block !important;
+      font-family: 'Warbler Text', serif !important;
+      font-style: italic !important;
+      color: #fff !important;
+      text-decoration: none !important;
+
+      font-size: 22px !important;
+      margin: 0 25px !important;          /* separación como en la imagen */
+      line-height: 1 !important;
+      padding: 0 !important;
+
+      transition: opacity .2s !important;
+    }
+    nav.topnav a:hover{ opacity: .9 !important; }
+
+    @media (max-width: 600px){
+      nav.topnav a{ font-size: 19px !important; margin: 0 16px !important; }
+    }
+    @media (max-width: 420px){
+      nav.topnav a{ font-size: 17px !important; margin: 0 12px !important; }
+    }
   </style>
 </head>
 <body>
@@ -150,7 +203,7 @@
 <!-- PORTADA -->
 <div class="portada">Hospedajes de Corpus</div>
 
-<!-- MENÚ UNIFICADO -->
+<!-- MENÚ -->
 <nav class="topnav">
   <a href="./index.html">Inicio</a>
   <a href="./lugares.html">Lugares Turísticos</a>
@@ -243,6 +296,7 @@
 
 </body>
 </html>
+
 
 
 
