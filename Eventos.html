@@ -22,7 +22,7 @@
       font-size:clamp(22px,4vw,34px);
     }
 
-    /* ===== MENÚ UNIFICADO (igual al de Lugares/Hospedajes) ===== */
+    /* ===== MENÚ UNIFICADO ===== */
     nav.topnav{
       display:flex;
       justify-content:center;
@@ -33,13 +33,13 @@
       padding:12px 20px;
       font-family:'Warbler Text', serif;
       font-style:italic;
-      position:relative; /* 👈 ya no se mueve al hacer scroll */
+      position:relative;
       z-index:5;
     }
     nav.topnav a{
       color:#fff;
       text-decoration:none;
-      font-size:25px;   /* PC */
+      font-size:25px;
       padding:5px 10px;
       transition:all .3s ease;
       white-space:nowrap;
@@ -100,13 +100,13 @@
 
     /* Responsive menú + footer */
     @media(max-width:768px){
-      nav.topnav a{ font-size:20px; }     /* Tablet */
+      nav.topnav a{ font-size:20px; }
       .footer-content img{ max-width:80px; }
       .footer-content p{ font-size:14px; }
     }
     @media(max-width:480px){
       nav.topnav{ flex-direction:column; gap:12px; padding:10px 14px; }
-      nav.topnav a{ font-size:16px; }     /* Celular */
+      nav.topnav a{ font-size:16px; }
       .footer-content{ flex-direction:column; gap:10px; }
       .footer-content img{ max-width:70px; }
     }
@@ -121,6 +121,7 @@
   <a href="./index.html">Inicio</a>
   <a href="./lugares.html">Lugares Turísticos</a>
   <a href="./Hospedajes.html">Hospedajes</a>
+  <a href="./Eventos.html">Eventos</a>
   <a href="./mapa.html">Mapa</a>
 </nav>
 
