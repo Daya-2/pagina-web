@@ -21,15 +21,32 @@
       font-size:clamp(22px,4vw,34px);
     }
 
-    /* MENÚ (centrado, Warbler) */
-    nav{
-      display:flex; justify-content:center; align-items:center; flex-wrap:wrap;
-      gap:20px; background:var(--azul); padding:12px 20px;
-      font-family:'Warbler Text', serif; font-style:italic;
+    /* ===== MENÚ UNIFICADO (igual al de LUGARES) ===== */
+    nav.topnav{
+      display:flex;
+      justify-content:center;      /* centrado en pantallas grandes */
+      align-items:center;
+      flex-wrap:wrap;               /* si no entra, baja de línea */
+      gap:20px;
+      background:var(--azul);
+      padding:12px 20px;
+      font-family:'Warbler Text', serif;
+      font-style:italic;
+      position:sticky;
+      top:0;
+      z-index:5;
     }
-    nav a{ color:#fff; text-decoration:none; font-size:22px; }
-    nav a:hover{ text-decoration:underline; }
+    nav.topnav a{
+      color:#fff;
+      text-decoration:none;
+      font-size:25px;               /* como en LUGARES en desktop */
+      padding:5px 10px;
+      transition:all .3s ease;
+      white-space:nowrap;
+    }
+    nav.topnav a:hover{ text-decoration:underline; }
 
+    /* CONTENIDO */
     main{ flex:1; width:min(92vw,var(--maxw)); margin:20px auto; }
 
     .map-container{
@@ -59,15 +76,30 @@
       font-family:'Lucida Bright', serif; font-style:italic; text-align:center;
     }
 
-    @media(max-width:768px){ nav a{ font-size:20px; } .footer-content img{ max-width:80px; } .footer-content p{ font-size:14px; } }
-    @media(max-width:480px){ nav{ flex-direction:column; gap:12px; } nav a{ font-size:16px; } .footer-content{ flex-direction:column; gap:10px; } .footer-content img{ max-width:70px; } }
+    /* Responsive menú + footer (tablet/celu) */
+    @media(max-width:768px){
+      nav.topnav a{ font-size:20px; }
+      .footer-content img{ max-width:80px; }
+      .footer-content p{ font-size:14px; }
+    }
+    @media(max-width:480px){
+      nav.topnav{
+        flex-direction:column;      /* columna en celular */
+        gap:12px;
+        padding:10px 14px;
+      }
+      nav.topnav a{ font-size:16px; }
+      .footer-content{ flex-direction:column; gap:10px; }
+      .footer-content img{ max-width:70px; }
+    }
   </style>
 </head>
 <body>
 
 <div class="portada">Mapa de Corpus Christi</div>
 
-<nav>
+<!-- MENÚ UNIFICADO -->
+<nav class="topnav">
   <a href="index.html">Inicio</a>
   <a href="lugares.html">Lugares Turísticos</a>
   <a href="Hospedajes.html">Hospedajes</a>
@@ -77,7 +109,10 @@
 
 <main>
   <div class="map-container">
-    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=17PFl0PHJGp4ZgJkHS9YELs5TlbUlBKI" allowfullscreen></iframe>
+    <iframe
+      src="https://www.google.com/maps/d/embed?mid=1Nvj5wKHcn5D7y9IySi5Te4QzrmhKuwg&ehbc=2E312F"
+      allowfullscreen>
+    </iframe>
   </div>
 
   <div class="botones-mapa">
