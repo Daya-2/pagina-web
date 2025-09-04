@@ -22,28 +22,25 @@
       font-size:clamp(22px,4vw,34px);
     }
 
-    /* ===== MENÚ UNIFICADO (igual al de LUGARES) ===== */
+    /* ===== MENÚ UNIFICADO (igual al de INDEX/LUGARES) ===== */
     nav.topnav{
       display:flex;
-      justify-content:center;      /* centrado en pantallas grandes */
+      justify-content:center;
       align-items:center;
-      flex-wrap:wrap;               /* si no entra, baja de línea */
+      flex-wrap:wrap;
       gap:20px;
       background:var(--azul);
       padding:12px 20px;
       font-family:'Warbler Text', serif;
       font-style:italic;
-
-      /* EDIT: desactivar sticky para que NO se desplace */
-      position: static !important;  /* EDIT */
-      top: auto !important;         /* EDIT */
-
+      position:sticky;   /* <<< sticky como en index/lugares */
+      top:0;
       z-index:5;
     }
     nav.topnav a{
       color:#fff;
       text-decoration:none;
-      font-size:25px;               /* como en LUGARES en desktop */
+      font-size:25px;   /* PC */
       padding:5px 10px;
       transition:all .3s ease;
       white-space:nowrap;
@@ -86,35 +83,31 @@
       font-family:'Lucida Bright', serif; font-style:italic; text-align:center;
     }
 
-    /* === LIGHTBOX (EDIT: agregado) === */
-    .zoomable { cursor: zoom-in; } /* EDIT */
-    #lightbox-overlay{             /* EDIT */
+    /* === LIGHTBOX === */
+    .zoomable { cursor: zoom-in; }
+    #lightbox-overlay{
       position:fixed; inset:0; background:rgba(0,0,0,.85);
       display:none; align-items:center; justify-content:center; z-index:9999;
     }
-    #lightbox-overlay img{         /* EDIT */
+    #lightbox-overlay img{
       max-width:min(92vw, 1100px); max-height:90vh;
       border-radius:8px; box-shadow:0 10px 40px rgba(0,0,0,.6);
     }
-    #lightbox-close{               /* EDIT */
+    #lightbox-close{
       position:fixed; top:16px; right:22px; font-size:34px; line-height:1;
       color:#fff; cursor:pointer; background:rgba(0,0,0,.4);
       border-radius:10px; padding:6px 12px; user-select:none;
     }
 
-    /* Responsive del menú y footer */
+    /* Responsive menú + footer */
     @media(max-width:768px){
-      nav.topnav a{ font-size:20px; }
+      nav.topnav a{ font-size:20px; }     /* Tablet */
       .footer-content img{ max-width:80px; }
       .footer-content p{ font-size:14px; }
     }
     @media(max-width:480px){
-      nav.topnav{
-        flex-direction:column;      /* columna en celular */
-        gap:12px;
-        padding:10px 14px;
-      }
-      nav.topnav a{ font-size:16px; }
+      nav.topnav{ flex-direction:column; gap:12px; padding:10px 14px; }
+      nav.topnav a{ font-size:16px; }     /* Celular */
       .footer-content{ flex-direction:column; gap:10px; }
       .footer-content img{ max-width:70px; }
     }
@@ -126,16 +119,16 @@
 
 <!-- MENÚ UNIFICADO -->
 <nav class="topnav">
-  <a href="index.html">Inicio</a>
-  <a href="lugares.html">Lugares Turísticos</a>
-  <a href="Hospedajes.html">Hospedajes</a>
-  <a href="Eventos.html">Eventos</a>
-  <a href="mapa.html">Mapa</a>
+  <a href="./index.html">Inicio</a>
+  <a href="./lugares.html">Lugares Turísticos</a>
+  <a href="./Hospedajes.html">Hospedajes</a>
+  <a href="./Eventos.html">Eventos</a>
+  <a href="./mapa.html">Mapa</a>
 </nav>
 
 <!-- Evento 1 -->
 <div class="evento">
-  <img src="car.jpg" alt="Carnavales en Corpus Christi" class="zoomable" /> <!-- EDIT -->
+  <img src="car.jpg" alt="Carnavales en Corpus Christi" class="zoomable" />
   <div class="evento-contenido">
     <h2>Carnavales</h2>
     <p>Una Celebración llena de Alegría y Tradición.</p>
@@ -149,7 +142,7 @@
 
 <!-- Evento 2 -->
 <div class="evento">
-  <img src="md33.webp" alt="Fiesta Patronal" class="zoomable" /> <!-- EDIT -->
+  <img src="md33.webp" alt="Fiesta Patronal" class="zoomable" />
   <div class="evento-contenido">
     <h2>Fiesta Patronal</h2>
     <p>Una mezcla de raíces guaraníes y cristianas.</p>
@@ -162,7 +155,7 @@
 
 <!-- Evento 3 -->
 <div class="evento">
-  <img src="md1.webp" alt="Aniversario del Pueblo" class="zoomable" /> <!-- EDIT -->
+  <img src="md1.webp" alt="Aniversario del Pueblo" class="zoomable" />
   <div class="evento-contenido">
     <h2>Aniversario del Pueblo</h2>
     <p>Celebración de la refundación del pueblo.</p>
@@ -176,7 +169,7 @@
 
 <!-- Evento 4 -->
 <div class="evento">
-  <img src="ñ.jpg" alt="Congreso Internacional" class="zoomable" /> <!-- EDIT -->
+  <img src="ñ.jpg" alt="Congreso Internacional" class="zoomable" />
   <div class="evento-contenido">
     <h2>Congreso Internacional de Turismo, Educación Intercultural y Desarrollo Local</h2>
     <p>Espacio para el intercambio cultural y académico.</p>
@@ -189,7 +182,7 @@
 
 <!-- Evento 5 -->
 <div class="evento">
-  <img src="Corpus5.jpeg" alt="Remada Internacional" class="zoomable" /> <!-- EDIT -->
+  <img src="Corpus5.jpeg" alt="Remada Internacional" class="zoomable" />
   <div class="evento-contenido">
     <h2>Remada Internacional</h2>
     <p>Deporte, naturaleza y comunidad.</p>
@@ -208,8 +201,8 @@
   </div>
 </footer>
 
-<!-- EDIT: Lightbox overlay (una sola vez por página) -->
-<div id="lightbox-overlay" aria-hidden="true"> <!-- EDIT -->
+<!-- Lightbox overlay -->
+<div id="lightbox-overlay" aria-hidden="true">
   <span id="lightbox-close" aria-label="Cerrar">✕</span>
   <img id="lightbox-img" src="" alt="">
 </div>
@@ -222,7 +215,7 @@
     btn.textContent = abierto ? "Ver más" : "Ver menos";
   }
 
-  /* === EDIT: Lightbox simple para .zoomable === */
+  /* Lightbox para .zoomable */
   (function(){
     const overlay = document.getElementById('lightbox-overlay');
     const imgEl   = document.getElementById('lightbox-img');
@@ -253,6 +246,7 @@
 </script>
 </body>
 </html>
+
 
 
 
