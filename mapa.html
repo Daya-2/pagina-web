@@ -1,3 +1,12 @@
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -30,7 +39,7 @@
       font-family:'Times New Roman', serif;
     }
 
-    /* ===== MENÚ (unificado) ===== */
+    /* ===== MENÚ (igual al de las otras páginas) ===== */
     nav.topnav{
       position: sticky;   /* fijo arriba al hacer scroll */
       top: 0;
@@ -106,6 +115,49 @@
       .footer-content{ flex-direction:column; gap:10px; }
       .footer-content img{ max-width:70px; }
     }
+
+    /* ====== OVERRIDE MENÚ COMO LA IMAGEN 2 (forzado) ====== */
+    nav.topnav{
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 999 !important;
+
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: center !important;
+      align-items: center !important;
+
+      flex-wrap: nowrap !important;      /* una sola línea */
+      white-space: nowrap !important;     /* evita salto de línea */
+
+      height: 46px !important;            /* barra fina */
+      padding: 0 8px !important;          /* sin alto extra */
+      gap: 0 !important;
+
+      background: linear-gradient(180deg, rgba(0,114,187,0.9), rgba(0,92,153,0.95)) !important;
+    }
+    nav.topnav a{
+      display: inline-block !important;
+      font-family: 'Warbler Text', serif !important;
+      font-style: italic !important;
+      color: #fff !important;
+      text-decoration: none !important;
+
+      font-size: 22px !important;
+      margin: 0 25px !important;          /* separación como en la imagen */
+      line-height: 1 !important;
+      padding: 0 !important;
+
+      transition: opacity .2s !important;
+    }
+    nav.topnav a:hover{ opacity: .9 !important; }
+
+    @media (max-width: 600px){
+      nav.topnav a{ font-size: 19px !important; margin: 0 16px !important; }
+    }
+    @media (max-width: 420px){
+      nav.topnav a{ font-size: 17px !important; margin: 0 12px !important; }
+    }
   </style>
 </head>
 <body>
@@ -148,14 +200,6 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
 
 
 
