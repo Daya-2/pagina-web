@@ -2,38 +2,46 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Hospedajes - Corpus Christi</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Fuentes -->
+  <title>Lugares Turísticos - Corpus Christi</title>
   <link href="https://fonts.googleapis.com/css2?family=Warbler+Text:ital,wght@1,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
   <style>
     :root{
       --azul: rgba(0,114,187,0.9);
       --azul-osc: rgba(0,92,153,0.95);
       --maxw: 1100px;
+      --radio: 10px;
+      --sombra: 0 8px 20px rgba(0,0,0,.18);
     }
 
+    /* ===== Reset y base ===== */
     *{ box-sizing:border-box; }
+    html, body{ height:100%; }
     body{
-      margin:0; font-family:'Times New Roman', serif; display:flex;
-      flex-direction:column; min-height:100vh; background:#fff; color:#333;
+      margin:0;
+      background:#fff;
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+      font-family:'Times New Roman', serif;
+      color:#000;
     }
     img{ max-width:100%; height:auto; display:block; }
 
-    /* ===== PORTADA (UNIFICADA) ===== */
-    .portada{
+    /* ===== PORTADA (idéntica a Hospedajes) ===== */
+    header{
       background: var(--azul-osc) !important;
       color:#fff !important;
       text-align:center !important;
       padding: clamp(10px, 3vh, 20px) 8px !important;
+    }
+    header h1{
+      margin:0 !important;
       font-family:'Times New Roman', serif !important;
       font-size: clamp(22px, 4vw, 34px) !important;
+      line-height:1.2 !important;
     }
 
-    /* ===== MENÚ (UNIFICADO) ===== */
+    /* ===== MENÚ (idéntico a Hospedajes) ===== */
     nav.topnav{
       position: sticky !important;
       top: 0 !important;
@@ -44,9 +52,9 @@
       font-style:italic !important;
       white-space:nowrap !important; flex-wrap:nowrap !important;
 
-      height: 44px !important;
-      padding: 0 6px !important;
-      gap: 0 !important;
+      height:44px !important;          /* misma altura */
+      padding:0 6px !important;
+      gap:0 !important;
     }
     nav.topnav a{
       color:#fff !important;
@@ -54,93 +62,115 @@
       line-height:1 !important;
       padding:0 !important;
 
-      font-size: clamp(14px, 1.8vw, 19px) !important;
-      margin: 0 clamp(8px, 1.6vw, 16px) !important;
+      font-size: clamp(14px, 1.8vw, 19px) !important;   /* mismo tamaño */
+      margin: 0 clamp(8px, 1.6vw, 16px) !important;     /* misma separación */
       letter-spacing:-0.2px !important;
 
       transition:opacity .2s, transform .2s !important;
+      white-space:nowrap !important;
     }
     nav.topnav a:hover{ opacity:.9 !important; transform: translateY(-1px) !important; }
 
-    /* ===== CONTENEDOR ===== */
-    .container{
-      display:flex; flex:1;
-      width:min(92vw, var(--maxw));
-      margin:20px auto; gap:20px;
-      align-items:stretch;
-    }
-
-    /* ===== MENU LATERAL ===== */
-    aside{
-      width:260px; padding:20px 10px; background:#333; color:#fff;
-      border-radius:8px; display:flex; flex-direction:column;
-    }
-    aside ul{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px; }
-    aside li{
-      padding:10px 12px; cursor:pointer; border-radius:8px;
-      transition:background .25s ease; font-weight:bold; font-size:20px;
-      font-family:'Warbler Text', serif; font-style:italic;
-    }
-    aside li:hover, aside li.active{ background:#FF6D52; }
-
     /* ===== CONTENIDO ===== */
-    main{ flex:1; padding:20px; }
-    .card{
-      background:#f9f9f9; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,.12);
-      padding:20px; margin-bottom:25px;
-    }
-    .card h2{
-      margin-top:0; color:#000;
-      font-family:'Warbler Text', serif; font-style:italic; font-size:24px;
-    }
-    .card p{ font-family:'Warbler Text', serif; font-size:18px; line-height:1.6; }
-
-    .card img{
-      width:100%; border-radius:10px; margin-bottom:15px;
-      box-shadow:0 0 10px rgba(110,190,110,.8);
-      transition:transform .25s ease;
-      cursor:zoom-in;
-    }
-    .card img:hover{ transform:scale(1.03); box-shadow:0 0 15px rgba(70,170,70,1); }
-
-    /* === LIGHTBOX === */
-    #lightbox-overlay{
-      position:fixed; inset:0; background:rgba(0,0,0,.85);
-      display:none; align-items:center; justify-content:center; z-index:9999;
-    }
-    #lightbox-overlay img{
-      max-width:min(92vw, 1100px); max-height:90vh;
-      border-radius:8px; box-shadow:0 10px 40px rgba(0,0,0,.6);
-    }
-    #lightbox-close{
-      position:fixed; top:16px; right:22px; font-size:34px; line-height:1;
-      color:#fff; cursor:pointer; background:rgba(0,0,0,.4);
-      border-radius:10px; padding:6px 12px; user-select:none;
+    section{
+      flex:1;
+      width:min(92vw, var(--maxw));
+      margin:clamp(12px, 3vh, 24px) auto;
+      padding:clamp(12px, 3vw, 20px);
+      background:#fff;
+      border-radius:var(--radio);
     }
 
-    /* ===== FOOTER (UNIFICADO) ===== */
+    .titulo-lugar{
+      cursor:pointer;
+      color:#820014;
+      margin:clamp(10px, 2vh, 16px) 0 6px;
+      user-select:none;
+      font-weight:bold;
+      font-size:clamp(18px, 3.6vw, 26px);
+      font-family:'Lucida Bright', serif;
+    }
+
+    .descripcion{
+      display:none;
+      margin-top:8px;
+      line-height:1.65;
+      color:#000;
+      font-family:'Georgia', serif;
+      font-size:clamp(14px, 2.4vw, 19px);
+    }
+
+    /* ===== CARRUSEL ===== */
+    .carrusel-container{
+      width:100%;
+      margin:auto;
+      overflow:hidden;
+      position:relative;
+      border-radius:var(--radio);
+      box-shadow:var(--sombra);
+      background:#fff;
+    }
+    .carrusel{ display:flex; transition:transform .3s ease-in-out; width:max-content; }
+    .carrusel img{
+      width:clamp(140px, 32vw, 320px);
+      aspect-ratio:3/2;
+      margin:clamp(6px, 1.6vw, 12px);
+      border-radius:12px;
+      object-fit:cover;
+      cursor:pointer;
+      flex-shrink:0;
+      transition:transform .25s ease, box-shadow .25s ease;
+    }
+    @media (hover:hover){
+      .carrusel img:hover{ transform:scale(1.035) translateY(-4px); box-shadow:0 10px 22px rgba(0,0,0,.2); }
+    }
+    .boton{
+      position:absolute; top:50%; transform:translateY(-50%);
+      background:rgba(0,0,0,.35); color:#fff; border:none;
+      padding:clamp(6px, 1.6vw, 10px); cursor:pointer;
+      font-size:clamp(20px, 4.5vw, 28px); z-index:2; user-select:none; border-radius:10px;
+      transition:background .2s ease;
+    }
+    .izquierda{ left:4px; } .derecha{ right:4px; }
+    @media (hover:hover){ .boton:hover{ background:rgba(0,0,0,.5); } }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox{
+      display:none; position:fixed; inset:0; z-index:1000;
+      background:rgba(0,0,0,.85); justify-content:center; align-items:center; padding:2vw;
+    }
+    .lightbox img{ max-width:92vw; max-height:85vh; border-radius:12px; box-shadow:0 0 20px rgb(255,0,0); }
+    .lightbox .cerrar{
+      position:absolute; top:16px; right:20px; color:#fff;
+      font-size:clamp(26px, 5.2vw, 36px); font-weight:bold; cursor:pointer; user-select:none;
+    }
+
+    /* ===== FOOTER (idéntico a Hospedajes) ===== */
     footer{
-      background:var(--azul-osc) !important; color:#fff !important; padding:1rem !important; margin-top:auto !important;
+      background:var(--azul-osc) !important;
+      color:#fff !important;
+      padding:1rem !important;
+      width:100% !important;
+      margin-top:auto !important;
     }
     .footer-content{
-      width:min(92vw, 1000px) !important; margin:0 auto !important;
-      display:flex !important; align-items:center !important; justify-content:center !important;
-      gap:14px !important; flex-wrap:wrap !important;
+      width:min(92vw, 1000px) !important;
+      margin:0 auto !important;
+      display:flex !important;
+      align-items:center !important;
+      justify-content:center !important;
+      gap:14px !important;
+      flex-wrap:wrap !important;
     }
     .footer-content img{ max-width:100px !important; height:auto !important; }
     .footer-content p{
-      margin:0 !important; font-size:clamp(14px,2.2vw,16px) !important;
-      font-family:'Lucida Bright', serif !important; font-style:italic !important; text-align:center !important;
+      margin:0 !important;
+      font-size:clamp(14px, 2.2vw, 16px) !important;
+      font-family:'Lucida Bright', serif !important;
+      font-style:italic !important;
+      text-align:center !important;
     }
-
-    /* ===== RESPONSIVE ===== */
-    @media(max-width:900px){
-      .container{ flex-direction:column; }
-      aside{ width:100%; }
-    }
-    @media(max-width:480px){
-      nav.topnav a{ font-size:15px !important; margin:0 8px !important; }
-      aside li{ font-size:16px; }
+    @media (max-width:480px){
       .footer-content img{ max-width:80px !important; }
       .footer-content p{ font-size:14px !important; }
     }
@@ -148,102 +178,235 @@
 </head>
 <body>
 
-<!-- PORTADA -->
-<div class="portada">Hospedajes de Corpus</div>
+  <!-- PORTADA -->
+  <header>
+    <h1>Lugares Turísticos de Corpus Christi</h1>
+  </header>
 
-<!-- MENÚ -->
-<nav class="topnav">
-  <a href="./index.html">Inicio</a>
-  <a href="./lugares.html">Lugares Turísticos</a>
-  <a href="./Eventos.html">Eventos</a>
-  <a href="./mapa.html">Mapa</a>
-</nav>
+  <!-- MENÚ (agregada class="topnav" para igualar estructura) -->
+  <nav class="topnav">
+    <a href="index.html">Inicio</a>
+    <a href="Hospedajes.html">Hospedajes</a>
+    <a href="Eventos.html">Eventos</a>
+    <a href="mapa.html">Mapa</a>
+  </nav>
 
-<!-- CONTENIDO -->
-<div class="container">
-  <aside>
-    <ul id="menu-list">
-      <li class="active" data-target="posada">🏡 Posada Los Azahares</li>
-      <li data-target="cabaña">🏡 Cabaña La Gloriosa</li>
-      <li data-target="ypora">🏡 Alojamiento Ypora</li>
-    </ul>
-  </aside>
+  <!-- CONTENIDO -->
+  <section>
+    <!-- Museo -->
+    <div>
+      <div class="titulo-lugar" onclick="toggleDescripcion('desc1')">Museo</div>
+      <div class="carrusel-container">
+        <button class="boton izquierda" onclick="moverCarrusel('carrusel1', -1)">❮</button>
+        <div class="carrusel" id="carrusel1">
+          <img src="222.jpg" alt="Imagen 1" />
+          <img src="333.jpg" alt="Imagen 2" />
+          <img src="4444.jpg" alt="Imagen 3" />
+          <img src="555.jpg" alt="Imagen 4" />
+        </div>
+        <button class="boton derecha" onclick="moverCarrusel('carrusel1', 1)">❯</button>
+      </div>
+      <div id="desc1" class="descripcion">
+        <p>El Museo Histórico de Corpus Christi es un espacio dedicado a conservar, exhibir y difundir la historia y la cultura de la localidad.</p>
+        <p>Su colección incluye objetos antiguos, documentos, fotografías y herramientas que muestran la evolución de la ciudad, sus tradiciones y la vida cotidiana de sus habitantes a lo largo del tiempo.</p>
+        <p>El museo permite a los visitantes conocer la historia local desde la fundación hasta la actualidad, observar objetos históricos y participar en actividades educativas y culturales.</p>
+      </div>
+    </div>
 
-  <main>
-    <section id="posada" class="card" style="display:block;">
-      <h2>🏡 Posada Los Azahares</h2>
-      <img src="ll.jpeg" alt="Posada Los Azahares">
-      <img src="mm.jpeg" alt="Posada Los Azahares">
-      <img src="nn.jpeg" alt="Posada Los Azahares">
-      <img src="ññ.jpeg" alt="Posada Los Azahares">
-      <p>Alojamiento Familiar en el Centro de Corpus Christi, rodeado de naturaleza.</p>
-    </section>
-  </main>
-</div>
+    <!-- Centro de Interpretación -->
+    <div>
+      <div class="titulo-lugar" onclick="toggleDescripcion('desc2')">Centro de Interpretación de las Reducciones Jesuíticas</div>
+      <div class="carrusel-container">
+        <button class="boton izquierda" onclick="moverCarrusel('carrusel2', -1)">❮</button>
+        <div class="carrusel" id="carrusel2">
+          <img src="museo.jpg" alt="Imagen 1" />
+          <img src="AA.jpg" alt="Imagen 2" />
+          <img src="10.jpg" alt="Imagen 3" />
+          <img src="RR.jpg" alt="Imagen 4" />
+        </div>
+        <button class="boton derecha" onclick="moverCarrusel('carrusel2', 1)">❯</button>
+      </div>
+      <div id="desc2" class="descripcion">
+        <p>El Centro de Interpretación de las Reducciones Jesuíticas de Corpus Christi es un espacio cultural y educativo que acompaña a las Ruinas Jesuíticas de la localidad.</p>
+        <p>Su objetivo es explicar y contextualizar la historia de las Misiones Jesuíticas Guaraníes, mostrando cómo se desarrolló la vida en las reducciones y cuál fue el legado cultural, social y religioso que dejaron en la región.</p>
+      </div>
+    </div>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-content">
-    <img src="BLANCO1.png" alt="Logo Corpus Christi">
-    <p>&copy; 2025 Red Espacio Maker - Corpus Christi</p>
-    <img src="00.png" alt="Logo Red Maker">
+    <!-- Ruinas Jesuíticas -->
+    <div>
+      <div class="titulo-lugar" onclick="toggleDescripcion('desc3')">Ruinas Jesuíticas</div>
+      <div class="carrusel-container">
+        <button class="boton izquierda" onclick="moverCarrusel('carrusel3', -1)">❮</button>
+        <div class="carrusel" id="carrusel3">
+          <img src="ruinas.jpg" alt="Imagen 1" />
+          <img src="W.jpg" alt="Imagen 2" />
+          <img src="88.jpg" alt="Imagen 3" />
+          <img src="99.jpg" alt="Imagen 4" />
+        </div>
+        <button class="boton derecha" onclick="moverCarrusel('carrusel3', 1)">❯</button>
+      </div>
+      <div id="desc3" class="descripcion">
+        <p>Este sitio corresponde a una de las Reducciones Jesuítico-Guaraníes fundadas en la Región en el Siglo XVII.</p>
+        <p>Se encuentran en el municipio de Corpus Christi, Misiones, a pocos kilómetros del río Paraná.</p>
+      </div>
+    </div>
+
+    <!-- Balneario Curupayti -->
+    <div>
+      <div class="titulo-lugar" onclick="toggleDescripcion('desc4')">Balneario Curupayti</div>
+      <div class="carrusel-container">
+        <button class="boton izquierda" onclick="moverCarrusel('carrusel4', -1)">❮</button>
+        <div class="carrusel" id="carrusel4">
+          <img src="Balneario.jpg" alt="Imagen 1" />
+          <img src="E.jpg" alt="Imagen 2" />
+          <img src="I.jpg" alt="Imagen 3" />
+          <img src="U.jpg" alt="Imagen 4" />
+        </div>
+        <button class="boton derecha" onclick="moverCarrusel('carrusel4', 1)">❯</button>
+      </div>
+      <div id="desc4" class="descripcion">
+        <p>El Balneario Curupaytí es un complejo recreativo ubicado en Corpus Christi, Misiones, que ofrece un predio de 24 hectáreas con un curso de agua encauzado en forma de pileta natural con puentes y trampolines.</p>
+      </div>
+    </div>
+
+    <!-- Puerto Maní -->
+    <div>
+      <div class="titulo-lugar" onclick="toggleDescripcion('desc5')">Puerto Maní</div>
+      <div class="carrusel-container">
+        <button class="boton izquierda" onclick="moverCarrusel('carrusel5', -1)">❮</button>
+        <div class="carrusel" id="carrusel5">
+          <img src="IMG-20250811-WA0046.jpg" alt="Imagen 1" />
+          <img src="IMG-20250811-WA0047.jpg" alt="Imagen 2" />
+          <img src="PP.jpg" alt="Imagen 3" />
+          <img src="IMG-20250811-WA0050.jpg" alt="Imagen 4" />
+        </div>
+        <button class="boton derecha" onclick="moverCarrusel('carrusel5', 1)">❯</button>
+      </div>
+      <div id="desc5" class="descripcion">
+        <p>El Puerto Maní es un lugar histórico de Corpus Christi, que en sus inicios funcionó como punto comercial y de comunicación con el río Paraná. Hoy se conserva como un espacio natural y cultural, donde vecinos y turistas disfrutan de caminatas, pesca y vistas panorámicas al río.</p>
+        <p>Representa un patrimonio histórico y cultural, reflejando la importancia del Paraná como vía de vida y desarrollo para la región.</p>
+      </div>
+    </div>
+
+    <!-- Pase Internacional -->
+    <div>
+      <div class="titulo-lugar" onclick="toggleDescripcion('desc6')">Pase Internacional Argentina-Paraguay</div>
+      <div class="carrusel-container">
+        <button class="boton izquierda" onclick="moverCarrusel('carrusel6', -1)">❮</button>
+        <div class="carrusel" id="carrusel6">
+          <img src="vista.jpg" alt="Imagen 1" />
+          <img src="mani.jpg" alt="Imagen 2" />
+          <img src="manis.jpg" alt="Imagen 3" />
+          <img src="Q.jpg" alt="Imagen 4" />
+        </div>
+        <button class="boton derecha" onclick="moverCarrusel('carrusel6', 1)">❯</button>
+      </div>
+      <div id="desc6" class="descripcion">
+        <p>Es el principal cruce internacional de frontera y zona primaria aduanera de la localidad de Corpus Christi, Misiones, que conecta con Puerto Bella Vista (Paraguay). Opera como un puerto fluvial donde una balsa-remolcador transporta personas y vehículos entre ambos países, y se utiliza como ruta alternativa para evitar el tráfico del puente Posadas-Encarnación.</p>
+      </div>
+    </div>
+
+    <!-- Centro de Pescadores y Cazadores -->
+    <div>
+      <div class="titulo-lugar" onclick="toggleDescripcion('desc7')">Centro de Pescadores y Cazadores Roca & Corpus</div>
+      <div class="carrusel-container">
+        <button class="boton izquierda" onclick="moverCarrusel('carrusel7', -1)">❮</button>
+        <div class="carrusel" id="carrusel7">
+          <img src="PEZ.jpg" alt="Imagen 1" />
+          <img src="m.jpg" alt="Imagen 2" />
+          <img src="l.jpg" alt="Imagen 3" />
+          <img src="corpuss.jpg" alt="Imagen 4" />
+        </div>
+        <button class="boton derecha" onclick="moverCarrusel('carrusel7', 1)">❯</button>
+      </div>
+      <div id="desc7" class="descripcion">
+        <p>El Centro de Pescadores y Cazadores de Corpus Christi es una de las instituciones más antiguas y representativas de la localidad. Ubicado a orillas del río Paraná, combina instalaciones sociales con el acceso directo al río, ideal para la pesca deportiva, la caza en temporadas habilitadas y los encuentros comunitarios. </p>
+       <p>Sus instalaciones incluyen sede social, quinchos, muelles y espacios de recreación, lo que lo convierte en un punto de encuentro social y cultural de gran valor para los habitantes y turistas.</p>
+      </div>
+    </div>
+
+    <!-- Estadio Municipal -->
+    <div>
+      <div class="titulo-lugar" onclick="toggleDescripcion('desc8')">Estadio Municipal Don Eulogio Lopez</div>
+      <div class="carrusel-container">
+        <button class="boton izquierda" onclick="moverCarrusel('carrusel8', -1)">❮</button>
+        <div class="carrusel" id="carrusel8">
+          <img src="ac.jpg" alt="Imagen 1" />
+          <img src="22.jpg" alt="Imagen 2" />
+          <img src="23.jpg" alt="Imagen 3" />
+          <img src="Estadio.jpg" alt="Imagen 4" />
+        </div>
+        <button class="boton derecha" onclick="moverCarrusel('carrusel8', 1)">❯</button>
+      </div>
+      <div id="desc8" class="descripcion">
+        <p>El Estadio Municipal es el principal espacio deportivo de la localidad. Allí se desarrollan competencias de fútbol, encuentros escolares y actividades comunitarias que reúnen a los vecinos.</p>
+        <p>Además de ser sede de torneos locales y regionales, el estadio funciona como un punto de encuentro social, promoviendo el deporte y la integración entre jóvenes y familias.</p>
+        <p>Su importancia trasciende lo deportivo, ya que también es utilizado para eventos culturales, celebraciones populares y actos comunitarios, consolidándose como un lugar central en la vida social de Corpus Christi.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <img src="BLANCO1.png" alt="Logo 1">
+      <p>&copy; 2025 Red Espacio Maker - Corpus Christi</p>
+      <img src="00.png" alt="Logo 2">
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox" onclick="cerrarLightbox(event)">
+    <span class="cerrar" onclick="cerrarLightbox(event)">✖</span>
+    <img id="lightbox-img" src="" alt="Imagen ampliada" />
   </div>
-</footer>
 
-<!-- Lightbox -->
-<div id="lightbox-overlay" aria-hidden="true">
-  <span id="lightbox-close" aria-label="Cerrar">✕</span>
-  <img id="lightbox-img" src="" alt="">
-</div>
+  <script>
+    const desplazamientos = {};
 
-<script>
-  // Lateral menu
-  const menuItems = document.querySelectorAll('#menu-list li');
-  const sections = document.querySelectorAll('main section');
+    function moverCarrusel(id, direccion) {
+      const carrusel = document.getElementById(id);
+      const img = carrusel.querySelector('img');
+      const styles = getComputedStyle(img);
+      const step = img.getBoundingClientRect().width
+                  + parseFloat(styles.marginLeft)
+                  + parseFloat(styles.marginRight);
 
-  menuItems.forEach(item => {
-    item.addEventListener('click', () => {
-      menuItems.forEach(i => i.classList.remove('active'));
-      sections.forEach(sec => sec.style.display = 'none');
+      if (!desplazamientos[id]) desplazamientos[id] = 0;
+      desplazamientos[id] += direccion * step;
 
-      item.classList.add('active');
-      const targetId = item.getAttribute('data-target');
-      const targetSection = document.getElementById(targetId);
-      if (targetSection) targetSection.style.display = 'block';
+      const max = -(carrusel.scrollWidth - carrusel.parentElement.clientWidth);
+      if (desplazamientos[id] > 0) desplazamientos[id] = 0;
+      if (desplazamientos[id] < max) desplazamientos[id] = max;
 
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  });
-
-  // Lightbox
-  const overlay = document.getElementById('lightbox-overlay');
-  const imgEl   = document.getElementById('lightbox-img');
-  const closeEl = document.getElementById('lightbox-close');
-
-  function openLightbox(src, alt='') {
-    imgEl.src = src; imgEl.alt = alt || '';
-    overlay.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-  function closeLightbox(){
-    overlay.style.display = 'none';
-    imgEl.src = '';
-    document.body.style.overflow = '';
-  }
-
-  document.addEventListener('click', (e)=>{
-    if (e.target.tagName === 'IMG' && e.target.closest('.card')) {
-      openLightbox(e.target.src, e.target.alt);
+      carrusel.style.transform = `translateX(${desplazamientos[id]}px)`;
     }
-  });
 
-  closeEl.addEventListener('click', closeLightbox);
-  overlay.addEventListener('click', (e)=>{ if (e.target === overlay) closeLightbox(); });
-  document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeLightbox(); });
-</script>
+    function toggleDescripcion(id){
+      const desc = document.getElementById(id);
+      desc.style.display = (desc.style.display === "block") ? "none" : "block";
+    }
 
+    const imagenes = document.querySelectorAll('.carrusel img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    imagenes.forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src);
+        lightbox.style.display = 'flex';
+      });
+    });
+
+    function cerrarLightbox(e){
+      if (e.target === lightbox || e.target.classList.contains('cerrar')){
+        lightbox.style.display = 'none';
+      }
+    }
+  </script>
 </body>
 </html>
+
 
 
 
