@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <title>Lugares Turísticos - Corpus Christi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Warbler+Text:ital,wght@1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Warbler+Text:ital,wght@1,700&display=swap" rel="stylesheet>
   <style>
     :root{
       --azul: rgba(0,114,187,0.9);
-      --azul-oscuro: rgba(0,92,153,0.9);
+      --azul-osc: rgba(0,92,153,0.95);   /* igual que en las otras páginas */
+      --azul-oscuro: rgba(0,92,153,0.9); /* dejo tu var original por compatibilidad */
       --maxw: 1100px;          /* ancho máximo en desktop */
       --radio: 10px;
       --sombra: 0 8px 20px rgba(0,0,0,.18);
@@ -26,52 +27,46 @@
     }
     img{ max-width:100%; height:auto; display:block; } /* imágenes fluidas */
 
-    /* ===== HEADER ===== */
+    /* ===== PORTADA (unificada) ===== */
     header{
-      min-height:clamp(64px, 12vh, 120px);
-      padding:clamp(10px, 2.5vh, 18px) clamp(12px, 4vw, 24px);
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      background:var(--azul-oscuro);
+      background: var(--azul-osc);
       color:#fff;
-      box-shadow:var(--sombra);
+      text-align:center;
+      padding: clamp(10px, 3vh, 20px) 8px; /* igual al resto */
+      box-shadow:none;
     }
     header h1{
       margin:0;
       font-family:'Times New Roman', serif;
-      font-size:clamp(20px, 4.2vw, 34px);
+      font-size: clamp(22px, 4vw, 34px);   /* igual al resto */
       line-height:1.2;
     }
 
-    /* ===== MENU ===== */
+    /* ===== MENÚ (unificado) ===== */
     nav{
-      background:var(--azul);
-      color:#fff;
-      display:flex;
-      justify-content:center;
-      flex-wrap:wrap;
-      gap:clamp(6px, 1.6vw, 18px);
-      padding:clamp(6px, 1.4vh, 12px) clamp(8px, 4vw, 24px);
-      position:sticky;
-      top:0;
-      z-index:5;
-    }
-    nav a{
-      color:#fff;
-      text-decoration:none;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      display:flex; justify-content:center; align-items:center;
+      background: linear-gradient(180deg, var(--azul), var(--azul-osc));
       font-family:'Warbler Text', serif;
       font-style:italic;
-      font-size:clamp(16px, 2.6vw, 25px);
-      padding:.25rem .5rem;
-      border-radius:8px;
-      transition:background .2s ease;
       white-space:nowrap;
+      flex-wrap:nowrap;
+
+      height:44px;            /* mismo alto final */
+      padding:0 6px;
+      gap:0;
     }
-    @media (hover:hover){
-      nav a:hover{ background:rgba(255,255,255,.12); }
+    nav a{
+      color:#fff; text-decoration:none;
+      line-height:1; padding:0;
+      font-size: clamp(14px, 1.8vw, 19px);           /* mismo tamaño que el resto */
+      margin: 0 clamp(8px, 1.6vw, 16px);             /* misma separación lateral */
+      letter-spacing: -0.2px;
+      transition:opacity .2s, transform .2s;
     }
+    nav a:hover{ opacity:.9; transform: translateY(-1px); }
 
     /* ===== CONTENIDO ===== */
     section{
@@ -184,34 +179,35 @@
       user-select:none;
     }
 
-    /* ===== FOOTER ===== */
-   footer{
-  background:rgba(0,92,153,0.95);
-  color:#fff;
-  padding:1rem;
-  width:100%;
-}
-.footer-content{
-  width:min(92vw, 1000px);
-  margin:0 auto;
-  display:flex;
-  align-items:center;
-  justify-content:center;  /* 👈 centrado */
-  gap:14px;                /* 👈 logos y texto juntos */
-  flex-wrap:wrap;
-}
-.footer-content img{ max-width:100px; height:auto; }
-.footer-content p{
-  margin:0;
-  font-size:clamp(14px, 2.2vw, 16px);
-  text-align:center;
-}
-@media (max-width:480px){
-  .footer-content img{ max-width:80px; }
-  .footer-content p{ font-size:14px; }
-}
+    /* ===== FOOTER (unificado) ===== */
+    footer{
+      background:var(--azul-osc);
+      color:#fff;
+      padding:1rem;
+      width:100%;
+      margin-top:auto;
     }
-    
+    .footer-content{
+      width:min(92vw, 1000px);
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .footer-content img{ max-width:100px; height:auto; }
+    .footer-content p{
+      margin:0;
+      font-size:clamp(14px, 2.2vw, 16px);
+      font-family:'Lucida Bright', serif;
+      font-style:italic;
+      text-align:center;
+    }
+    @media (max-width:480px){
+      .footer-content img{ max-width:80px; }
+      .footer-content p{ font-size:14px; }
+    }
   </style>
 </head>
 <body>
@@ -221,7 +217,7 @@
     <h1>Lugares Turísticos de Corpus Christi</h1>
   </header>
 
-  <!-- MENU -->
+  <!-- MENÚ -->
   <nav>
     <a href="index.html">Inicio</a>
     <a href="Hospedajes.html">Hospedajes</a>
@@ -386,12 +382,12 @@
 
   <!-- FOOTER -->
   <footer>
-  <div class="footer-content">
-    <img src="BLANCO1.png" alt="Logo 1">
-    <p>&copy; 2025 Red Espacio Maker - Corpus Christi</p>
-    <img src="00.png" alt="Logo 2">
-  </div>
-</footer>
+    <div class="footer-content">
+      <img src="BLANCO1.png" alt="Logo 1">
+      <p>&copy; 2025 Red Espacio Maker - Corpus Christi</p>
+      <img src="00.png" alt="Logo 2">
+    </div>
+  </footer>
 
   <!-- LIGHTBOX -->
   <div id="lightbox" class="lightbox" onclick="cerrarLightbox(event)">
@@ -444,6 +440,7 @@
   </script>
 </body>
 </html>
+
 
 
 
