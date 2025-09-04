@@ -15,14 +15,14 @@
     body{ margin:0; font-family:'Times New Roman', serif; display:flex; flex-direction:column; min-height:100vh; background:#fff; color:#333; }
     img{ max-width:100%; height:auto; display:block; }
 
-    /* PORTADA (achicada) */
+    /* PORTADA */
     .portada{
       background:var(--azul-osc); color:#fff; text-align:center;
       padding:clamp(10px,3vh,20px) 8px;
       font-size:clamp(22px,4vw,34px);
     }
 
-    /* ===== MENÚ UNIFICADO (igual al de INDEX/LUGARES) ===== */
+    /* ===== MENÚ UNIFICADO (igual al de Lugares/Hospedajes) ===== */
     nav.topnav{
       display:flex;
       justify-content:center;
@@ -33,8 +33,7 @@
       padding:12px 20px;
       font-family:'Warbler Text', serif;
       font-style:italic;
-      position:sticky;   /* <<< sticky como en index/lugares */
-      top:0;
+      position:relative; /* 👈 ya no se mueve al hacer scroll */
       z-index:5;
     }
     nav.topnav a{
@@ -47,7 +46,7 @@
     }
     nav.topnav a:hover{ text-decoration:underline; }
 
-    /* TARJETAS DE EVENTO (imágenes grandes, una debajo de otra) */
+    /* TARJETAS DE EVENTO */
     .evento{
       width:min(92vw,var(--maxw)); margin:20px auto; background:#fff;
       border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,.12);
@@ -71,7 +70,7 @@
       font-family:'Playfair Display', serif; font-size:16px;
     }
 
-    /* FOOTER (igual al index) */
+    /* FOOTER */
     footer{ background:var(--azul-osc); color:#fff; padding:1rem; margin-top:auto; }
     .footer-content{
       width:min(92vw,1000px); margin:0 auto; display:flex;
@@ -215,7 +214,7 @@
     btn.textContent = abierto ? "Ver más" : "Ver menos";
   }
 
-  /* Lightbox para .zoomable */
+  /* Lightbox para imágenes */
   (function(){
     const overlay = document.getElementById('lightbox-overlay');
     const imgEl   = document.getElementById('lightbox-img');
@@ -246,6 +245,7 @@
 </script>
 </body>
 </html>
+
 
 
 
