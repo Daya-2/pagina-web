@@ -33,8 +33,11 @@
       padding:12px 20px;
       font-family:'Warbler Text', serif;
       font-style:italic;
-      position:sticky;
-      top:0;
+
+      /* EDIT: desactivar sticky para que NO se desplace */
+      position: static !important;  /* EDIT */
+      top: auto !important;         /* EDIT */
+
       z-index:5;
     }
     nav.topnav a{
@@ -54,6 +57,7 @@
       overflow:hidden;
     }
     .evento img{ width:100%; height:auto; }
+
     .evento-contenido{ padding:20px; }
     .evento h2{ color:var(--rojo); margin-top:0; font-family:'Warbler Text', serif; font-style:italic; }
     .evento p{ font-size:18px; line-height:1.6; }
@@ -80,6 +84,22 @@
     .footer-content p{
       margin:0; font-size:clamp(14px,2.2vw,16px);
       font-family:'Lucida Bright', serif; font-style:italic; text-align:center;
+    }
+
+    /* === LIGHTBOX (EDIT: agregado) === */
+    .zoomable { cursor: zoom-in; } /* EDIT */
+    #lightbox-overlay{             /* EDIT */
+      position:fixed; inset:0; background:rgba(0,0,0,.85);
+      display:none; align-items:center; justify-content:center; z-index:9999;
+    }
+    #lightbox-overlay img{         /* EDIT */
+      max-width:min(92vw, 1100px); max-height:90vh;
+      border-radius:8px; box-shadow:0 10px 40px rgba(0,0,0,.6);
+    }
+    #lightbox-close{               /* EDIT */
+      position:fixed; top:16px; right:22px; font-size:34px; line-height:1;
+      color:#fff; cursor:pointer; background:rgba(0,0,0,.4);
+      border-radius:10px; padding:6px 12px; user-select:none;
     }
 
     /* Responsive del menú y footer */
@@ -115,7 +135,7 @@
 
 <!-- Evento 1 -->
 <div class="evento">
-  <img src="car.jpg" alt="Carnavales en Corpus Christi" />
+  <img src="car.jpg" alt="Carnavales en Corpus Christi" class="zoomable" /> <!-- EDIT -->
   <div class="evento-contenido">
     <h2>Carnavales</h2>
     <p>Una Celebración llena de Alegría y Tradición.</p>
@@ -129,7 +149,7 @@
 
 <!-- Evento 2 -->
 <div class="evento">
-  <img src="md33.webp" alt="Fiesta Patronal" />
+  <img src="md33.webp" alt="Fiesta Patronal" class="zoomable" /> <!-- EDIT -->
   <div class="evento-contenido">
     <h2>Fiesta Patronal</h2>
     <p>Una mezcla de raíces guaraníes y cristianas.</p>
@@ -142,7 +162,7 @@
 
 <!-- Evento 3 -->
 <div class="evento">
-  <img src="md1.webp" alt="Aniversario del Pueblo" />
+  <img src="md1.webp" alt="Aniversario del Pueblo" class="zoomable" /> <!-- EDIT -->
   <div class="evento-contenido">
     <h2>Aniversario del Pueblo</h2>
     <p>Celebración de la refundación del pueblo.</p>
@@ -156,7 +176,7 @@
 
 <!-- Evento 4 -->
 <div class="evento">
-  <img src="ñ.jpg" alt="Congreso Internacional" />
+  <img src="ñ.jpg" alt="Congreso Internacional" class="zoomable" /> <!-- EDIT -->
   <div class="evento-contenido">
     <h2>Congreso Internacional de Turismo, Educación Intercultural y Desarrollo Local</h2>
     <p>Espacio para el intercambio cultural y académico.</p>
@@ -169,7 +189,7 @@
 
 <!-- Evento 5 -->
 <div class="evento">
-  <img src="Corpus5.jpeg" alt="Remada Internacional" />
+  <img src="Corpus5.jpeg" alt="Remada Internacional" class="zoomable" /> <!-- EDIT -->
   <div class="evento-contenido">
     <h2>Remada Internacional</h2>
     <p>Deporte, naturaleza y comunidad.</p>
@@ -188,6 +208,12 @@
   </div>
 </footer>
 
+<!-- EDIT: Lightbox overlay (una sola vez por página) -->
+<div id="lightbox-overlay" aria-hidden="true"> <!-- EDIT -->
+  <span id="lightbox-close" aria-label="Cerrar">✕</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
 <script>
   function mostrarTexto(btn){
     const cont = btn.nextElementSibling;
@@ -195,9 +221,40 @@
     cont.style.display = abierto ? "none" : "block";
     btn.textContent = abierto ? "Ver más" : "Ver menos";
   }
+
+  /* === EDIT: Lightbox simple para .zoomable === */
+  (function(){
+    const overlay = document.getElementById('lightbox-overlay');
+    const imgEl   = document.getElementById('lightbox-img');
+    const closeEl = document.getElementById('lightbox-close');
+
+    function openLightbox(src, alt='') {
+      imgEl.src = src; imgEl.alt = alt || '';
+      overlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(){
+      overlay.style.display = 'none';
+      imgEl.src = '';
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('click', (e)=>{
+      const t = e.target;
+      if (t.classList && t.classList.contains('zoomable')) {
+        openLightbox(t.src, t.alt);
+      }
+    });
+
+    closeEl.addEventListener('click', closeLightbox);
+    overlay.addEventListener('click', (e)=>{ if (e.target === overlay) closeLightbox(); });
+    document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeLightbox(); });
+  })();
 </script>
 </body>
 </html>
+
+
 
 
 
