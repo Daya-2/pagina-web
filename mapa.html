@@ -30,27 +30,29 @@
       font-family:'Times New Roman', serif;
     }
 
-    /* ===== MENÚ (igual al de las otras páginas) ===== */
+    /* ===== MENÚ (IDÉNTICO A HOSPEDAJES) ===== */
     nav.topnav{
       position: sticky; top: 0; z-index: 999;
       display:flex; justify-content:center; align-items:center;
-      height:56px; padding:0 16px;
+      height:44px; padding:0 6px; gap:0;
       background: linear-gradient(180deg, var(--azul), var(--azul-osc));
       font-family:'Warbler Text', serif; font-style:italic;
       white-space:nowrap; flex-wrap:nowrap;
     }
     nav.topnav a{
-      color:#fff; text-decoration:none; font-size:22px;
-      margin:0 25px; padding:.25rem 0; line-height:1;
+      color:#fff; text-decoration:none; line-height:1; padding:0;
+      font-size: clamp(14px, 1.8vw, 19px);
+      margin: 0 clamp(8px, 1.6vw, 16px);
+      letter-spacing:-0.2px;
       transition:opacity .2s, transform .2s;
       white-space:nowrap;
     }
-    nav.topnav a:hover{ opacity:.9; transform:translateY(-1px); }
+    nav.topnav a:hover{ opacity:.9; transform: translateY(-1px); }
 
     /* ===== CONTENIDO ===== */
     main{ flex:1; width:min(92vw,var(--maxw)); margin:20px auto; }
 
-    /* Desktop/tablet: mantener proporción 16:9 */
+    /* En desktop/tablet mantener 16:9 */
     .map-container{
       position:relative; width:100%;
       aspect-ratio: 16 / 9;
@@ -88,29 +90,12 @@
       font-family:'Lucida Bright', serif; font-style:italic; text-align:center;
     }
 
-    /* ===== MÓVIL ===== */
+    /* ===== MÓVIL (mapa se estira SOLO hacia abajo) ===== */
     @media (max-width:768px){
-      nav.topnav{
-        flex-wrap:wrap; height:auto; padding:8px 12px;
-      }
-      nav.topnav a{ margin:6px 14px; font-size:20px; }
-
-      /* En celular, el mapa se ESTIRA SOLO PARA ABAJO (más alto) */
       .map-container{
         aspect-ratio:auto;
-        height:80vh;          /* << ajustá a 75vh / 85vh si querés más/menos alto */
-        margin-bottom:16px;
+        height:80vh;   /* ajustá 75–85vh a gusto */
       }
-      .botones-mapa{ margin-top:8px; padding-bottom:8px; }
-
-      .footer-content img{ max-width:80px; }
-      .footer-content p{ font-size:14px; }
-    }
-    @media (max-width:480px){
-      nav.topnav{ flex-direction:column; gap:12px; padding:10px 14px; }
-      nav.topnav a{ font-size:16px; }
-      .footer-content{ flex-direction:column; gap:10px; }
-      .footer-content img{ max-width:70px; }
     }
   </style>
 </head>
@@ -119,12 +104,12 @@
 <!-- PORTADA -->
 <div class="portada">Mapa de Corpus Christi</div>
 
-<!-- MENÚ -->
+<!-- MENÚ (idéntico a Hospedajes) -->
 <nav class="topnav">
-  <a href="./index.html">Inicio</a>
-  <a href="./lugares.html">Lugares Turísticos</a>
-  <a href="./Hospedajes.html">Hospedajes</a>
-  <a href="./Eventos.html">Eventos</a>
+  <a href="index.html">Inicio</a>
+  <a href="lugares.html">Lugares Turísticos</a>
+  <a href="Hospedajes.html">Hospedajes</a>
+  <a href="Eventos.html">Eventos</a>
 </nav>
 
 <!-- CONTENIDO -->
@@ -159,6 +144,7 @@
 
 </body>
 </html>
+
 
 
 
