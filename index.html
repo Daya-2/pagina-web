@@ -30,14 +30,14 @@
     .encabezado{
       position:relative;
       width:100%;
-      min-height:100svh;      /* llena el alto útil del móvil */
+      height:100vh;           /* desktop */
       overflow:hidden;
     }
     .encabezado img{
       width:100%;
       height:100%;
-      object-fit:cover;                       /* NO deforma ni estira a los lados */
-      object-position: 50% var(--hero-y,60%); /* ← mueve SOLO en vertical */
+      object-fit:cover;       /* cubre el contenedor sin deformarse */
+      object-position:center; /* centro en desktop */
       filter:brightness(60%);
     }
 
@@ -63,24 +63,28 @@
     .hero-social a:hover{ opacity:1; transform:translateY(-1px); }
     .hero-social i{ font-size:16px; line-height:1; }
 
-    /* ====== MENÚ (igual estilo a Hospedajes, horizontal) ====== */
+    /* ====== MENÚ (idéntico al de Hospedajes) ====== */
     nav.topnav{
       display:flex;
       justify-content:center;
       align-items:center;
-      gap:16px;                      /* menos espacio entre enlaces */
+      flex-wrap:wrap;
+      gap:20px;
       background:var(--azul);
-      padding:10px 14px;
+      padding:12px 20px;
       font-family:'Warbler Text', serif;
       font-style:italic;
+      position: static !important;
+      top: auto !important;
+      z-index:5;
       width:100%;
     }
     nav.topnav a{
       color:#fff;
       text-decoration:none;
-      font-size:22px;               /* más chico para que quepa */
-      padding:4px 6px;
-      transition:opacity .2s, transform .2s;
+      font-size:25px;
+      padding:5px 10px;
+      transition:all 0.3s ease;
       white-space:nowrap;
     }
     nav.topnav a:hover{ text-decoration:underline; }
@@ -134,29 +138,34 @@
 
     /* ====== SOLO CELULAR ====== */
     @media (max-width:768px){
-      /* solo tipografía del menú en móvil */
-      nav.topnav{ gap:12px; padding:10px 12px; }
-      nav.topnav a{ font-size:18px; padding:4px 6px; }
+      /* ✅ Achicamos SOLO la portada (no tocamos la imagen) */
+      .encabezado{ height:68svh; } /* ajustá 60–75svh a gusto */
 
+      /* La imagen sigue centrada y sin cambios en costados */
+      .encabezado img{
+        object-fit:cover;
+        object-position:center;
+      }
+
+      nav.topnav a{ font-size:20px; }
       .footer-content img{ max-width:80px; }
       .footer-content p{ font-size:14px; }
     }
     @media (max-width:480px){
-      nav.topnav{ gap:10px; padding:10px 10px; }
-      nav.topnav a{ font-size:16px; padding:3px 5px; }
+      nav.topnav{
+        flex-direction:column;
+        gap:12px;
+        padding:10px 14px;
+      }
+      nav.topnav a{ font-size:16px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ENCABEZADO
-       Ajustá el valor de --hero-y para subir/bajar la foto sin deformarla.
-       Ejemplos: 55% (sube), 70% (centro-bajo), 80% (baja más hacia el menú)
-  -->
-  <div class="encabezado" style="--hero-y: 72%;">
+  <!-- ENCABEZADO -->
+  <div class="encabezado">
     <img src="ps.jpg" alt="Corpus Christi">
-
-    <!-- Íconos de redes en la portada -->
     <div class="hero-social">
       <a href="https://www.instagram.com/municipalidaddecorpus/" target="_blank" rel="noopener" aria-label="Instagram">
         <i class="fab fa-instagram"></i>
@@ -192,8 +201,6 @@
 
 </body>
 </html>
-
-
 
 
 
