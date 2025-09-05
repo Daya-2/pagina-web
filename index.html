@@ -15,9 +15,9 @@
       --azul-footer: rgba(0,92,153,0.95);
       --rojo: #FF0D00;
 
-      /* === Alturas del encabezado (ajustá solo estos dos valores) === */
-      --hero-h-desktop: 80vh;  /* altura en PC */
-      --hero-h-mobile: 78svh;  /* altura en CEL (subí/bajá para estirar SOLO hacia arriba) */
+      /* === CONTROLES DE LA PORTADA === */
+      --hero-h: 88svh;
+      --hero-y: 50%; /* la dejamos centrada */
     }
 
     *{ box-sizing: border-box; margin:0; padding:0; }
@@ -34,18 +34,19 @@
     .encabezado{
       position:relative;
       width:100%;
-      height:var(--hero-h-desktop);   /* control por variable */
+      height:var(--hero-h);
       overflow:hidden;
+      background:var(--azul);   /* ✅ color de relleno en vez de negro */
     }
     .encabezado img{
       width:100%;
       height:100%;
-      object-fit:cover;               /* NO deforma ni estira a lo ancho */
-      object-position:center bottom;  /* anclada abajo; crece hacia ARRIBA */
+      object-fit:contain;       /* ✅ imagen completa, sin recortar */
+      object-position:50% var(--hero-y);
       filter:brightness(60%);
     }
 
-    /* Íconos SOLO en la portada (esquina inferior derecha) */
+    /* Íconos en portada */
     .hero-social{
       position:absolute;
       right:12px;
@@ -67,28 +68,24 @@
     .hero-social a:hover{ opacity:1; transform:translateY(-1px); }
     .hero-social i{ font-size:16px; line-height:1; }
 
-    /* ====== MENÚ (igual estilo Hospedajes, horizontal) ====== */
+    /* ====== MENÚ ====== */
     nav.topnav{
       display:flex;
       justify-content:center;
       align-items:center;
-      flex-wrap:wrap;
-      gap:20px;
+      gap:16px;
       background:var(--azul);
-      padding:12px 20px;
+      padding:12px 16px;
       font-family:'Warbler Text', serif;
       font-style:italic;
-      position: static !important;
-      top: auto !important;
-      z-index:5;
       width:100%;
     }
     nav.topnav a{
       color:#fff;
       text-decoration:none;
-      font-size:25px;
-      padding:5px 10px;
-      transition:all 0.3s ease;
+      font-size:19px;
+      padding:4px 8px;
+      transition:opacity .2s, transform .2s;
       white-space:nowrap;
     }
     nav.topnav a:hover{ text-decoration:underline; }
@@ -142,20 +139,16 @@
 
     /* ====== SOLO CELULAR ====== */
     @media (max-width:768px){
-      /* Altura del hero controlada por variable móvil */
-      .encabezado{ height:var(--hero-h-mobile); }
-
-      nav.topnav a{ font-size:20px; }
-      .footer-content img{ max-width:80px; }
-      .footer-content p{ font-size:14px; }
+      nav.topnav a{ font-size:18px; padding:3px 6px; }
     }
     @media (max-width:480px){
-      nav.topnav{
-        flex-direction:column;
-        gap:12px;
-        padding:10px 14px;
-      }
-      nav.topnav a{ font-size:16px; }
+      nav.topnav{ gap:10px; padding:10px 12px; }
+      nav.topnav a{ font-size:16px; padding:2px 6px; }
+    }
+
+    /* ====== DESKTOP ====== */
+    @media (min-width: 769px){
+      :root{ --hero-h: 100vh; --hero-y: 50%; }
     }
   </style>
 </head>
