@@ -30,15 +30,20 @@
     .encabezado{
       position:relative;
       width:100%;
-      height:100vh;           /* desktop */
+      height:100svh;                 /* ocupa alto de pantalla (móvil/desktop) */
+      background:var(--azul);        /* barras/espacios del mismo azul del menú */
+      display:flex;
+      align-items:center;
+      justify-content:center;
       overflow:hidden;
     }
+    /* Imagen centrada, completa y sin recortes */
     .encabezado img{
       width:100%;
       height:100%;
-      object-fit:cover;       /* cubre el contenedor sin deformarse */
-      object-position:center; /* centro en desktop */
-      filter:brightness(60%);
+      object-fit:contain;            /* MUESTRA LA IMAGEN COMPLETA */
+      object-position:center;        /* perfectamente centrada */
+      filter:brightness(95%);        /* leve oscurecimiento opcional */
     }
 
     /* Íconos SOLO en la portada (esquina inferior derecha) */
@@ -63,29 +68,33 @@
     .hero-social a:hover{ opacity:1; transform:translateY(-1px); }
     .hero-social i{ font-size:16px; line-height:1; }
 
-    /* ====== MENÚ (idéntico al de Hospedajes) ====== */
+    /* ====== MENÚ (horizontal, sin hamburguesa) ====== */
     nav.topnav{
       display:flex;
-      justify-content:center;
       align-items:center;
-      flex-wrap:wrap;
-      gap:20px;
+      justify-content:center;
+      gap:clamp(8px, 2vw, 14px);
       background:var(--azul);
-      padding:12px 20px;
+      padding:10px 12px;
       font-family:'Warbler Text', serif;
       font-style:italic;
-      position: static !important;
-      top: auto !important;
-      z-index:5;
-      width:100%;
+
+      /* Claves para que NO sea hamburguesa y quede en una línea */
+      flex-wrap:nowrap;                 /* no apilar */
+      overflow-x:auto;                  /* scroll si no entra */
+      -webkit-overflow-scrolling:touch; /* scroll suave en iOS */
+      scrollbar-width:none;             /* oculta barra FF */
     }
+    nav.topnav::-webkit-scrollbar{ display:none; } /* oculta barra WebKit */
+
     nav.topnav a{
       color:#fff;
       text-decoration:none;
-      font-size:25px;
-      padding:5px 10px;
-      transition:all 0.3s ease;
+      font-size:clamp(14px, 2.6vw, 18px); /* más chico para que entren los nombres */
+      padding:4px 6px;                    /* menos espacio entre palabras */
       white-space:nowrap;
+      letter-spacing:-0.1px;
+      transition:opacity .2s, transform .2s, background .2s;
     }
     nav.topnav a:hover{ text-decoration:underline; }
 
@@ -136,28 +145,12 @@
       font-size:clamp(14px, 2.2vw, 16px);
     }
 
-    /* ====== SOLO CELULAR ====== */
+    /* ====== AJUSTES MÓVIL ====== */
     @media (max-width:768px){
-      /* ✅ Achicamos SOLO la portada (no tocamos la imagen) */
-      .encabezado{ height:68svh; } /* ajustá 60–75svh a gusto */
-
-      /* La imagen sigue centrada y sin cambios en costados */
-      .encabezado img{
-        object-fit:cover;
-        object-position:center;
-      }
-
-      nav.topnav a{ font-size:20px; }
+      /* La portada ya usa 100svh; nada más que tocar aquí */
+      nav.topnav a{ font-size:clamp(14px, 3.2vw, 17px); padding:4px 6px; }
       .footer-content img{ max-width:80px; }
       .footer-content p{ font-size:14px; }
-    }
-    @media (max-width:480px){
-      nav.topnav{
-        flex-direction:column;
-        gap:12px;
-        padding:10px 14px;
-      }
-      nav.topnav a{ font-size:16px; }
     }
   </style>
 </head>
@@ -176,7 +169,7 @@
     </div>
   </div>
 
-  <!-- MENÚ -->
+  <!-- MENÚ (horizontal, sin hamburguesa) -->
   <nav class="topnav">
     <a href="lugares.html">Lugares Turísticos</a>
     <a href="Hospedajes.html">Hospedajes</a>
@@ -201,6 +194,7 @@
 
 </body>
 </html>
+
 
 
 
