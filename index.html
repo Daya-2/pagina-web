@@ -30,14 +30,14 @@
     .encabezado{
       position:relative;
       width:100%;
-      height:100vh;           /* desktop: ocupa toda la altura */
+      height:100vh;           /* desktop */
       overflow:hidden;
     }
     .encabezado img{
       width:100%;
       height:100%;
-      object-fit:cover;       /* desktop: cubre sin deformarse */
-      object-position:center;
+      object-fit:cover;       /* cubre el contenedor sin deformarse */
+      object-position:center; /* centro en desktop */
       filter:brightness(60%);
     }
 
@@ -63,31 +63,53 @@
     .hero-social a:hover{ opacity:1; transform:translateY(-1px); }
     .hero-social i{ font-size:16px; line-height:1; }
 
-    /* ====== MENÚ (igual Hospedajes) ====== */
+    /* ====== MENÚ (horizontal SIEMPRE; sin hamburguesa) ====== */
     nav.topnav{
       display:flex;
-      justify-content:center;
       align-items:center;
-      flex-wrap:wrap;
-      gap:20px;
+      justify-content:center;
+      gap:16px;                     /* menos espacio entre ítems */
       background:var(--azul);
-      padding:12px 20px;
+      padding:10px 14px;
       font-family:'Warbler Text', serif;
       font-style:italic;
       position: static !important;
       top: auto !important;
       z-index:5;
       width:100%;
+
+      /* Claves para mantenerlo horizontal en móvil */
+      flex-wrap:nowrap;                 /* NO apilar en columnas */
+      overflow-x:auto;                  /* scroll horizontal si no entra */
+      -webkit-overflow-scrolling:touch; /* scroll suave iOS */
+      scrollbar-width:none;             /* oculta barra (Firefox) */
     }
+    nav.topnav::-webkit-scrollbar{ display:none; } /* oculta barra (WebKit) */
+
     nav.topnav a{
       color:#fff;
       text-decoration:none;
-      font-size:25px;
-      padding:5px 10px;
-      transition:all 0.3s ease;
-      white-space:nowrap;
+      white-space:nowrap;            /* no cortar palabras */
+      font-size:18px;                /* más compacto para que entren */
+      letter-spacing:-0.2px;         /* compacta tipografía */
+      padding:4px 6px;               /* padding mínimo */
+      border-radius:6px;
+      transition:opacity .2s, transform .2s;
     }
-    nav.topnav a:hover{ text-decoration:underline; }
+    nav.topnav a:hover{
+      opacity:.9;
+      transform:translateY(-1px);
+      text-decoration:underline;
+    }
+    /* Aumenta progresivamente en pantallas más grandes */
+    @media (min-width:768px){
+      nav.topnav{ gap:18px; padding:12px 20px; }
+      nav.topnav a{ font-size:20px; padding:5px 8px; }
+    }
+    @media (min-width:1024px){
+      nav.topnav{ gap:20px; }
+      nav.topnav a{ font-size:22px; padding:6px 10px; }
+    }
 
     /* ====== CONTENIDO ====== */
     .contenido{
@@ -138,32 +160,15 @@
 
     /* ====== SOLO CELULAR ====== */
     @media (max-width:768px){
-      /* ✅ Ver la foto COMPLETA (sin recorte) */
-      .encabezado{
-        height:auto;           /* que tome la altura natural de la imagen */
-        margin-bottom: -8px;   /* la acerco un poquito al menú (baja la imagen) */
-      }
+      /* Portada ocupa el alto del dispositivo y se ve más la parte de abajo */
+      .encabezado{ height:100svh; }
       .encabezado img{
-        width:100%;
-        height:auto;           /* mantiene proporción original */
-        object-fit:contain;    /* garantiza que no se recorte nada */
-        object-position:center top; /* y la anclo arriba */
-        filter:brightness(60%);
+        object-fit:cover;
+        object-position: 50% 72%; /* mostrás más la parte inferior */
       }
-
-      nav.topnav a{ font-size:20px; }
-      .footer-content img{ max-width:80px; }
-      .footer-content p{ font-size:14px; }
+      /* Menú: mantiene horizontal; no modificamos estructura */
     }
-
-    @media (max-width:480px){
-      nav.topnav{
-        flex-direction:column;
-        gap:12px;
-        padding:10px 14px;
-      }
-      nav.topnav a{ font-size:16px; }
-    }
+    /* OJO: Eliminamos el media query que lo ponía en columna */
   </style>
 </head>
 <body>
@@ -181,7 +186,7 @@
     </div>
   </div>
 
-  <!-- MENÚ -->
+  <!-- MENÚ (horizontal siempre) -->
   <nav class="topnav">
     <a href="lugares.html">Lugares Turísticos</a>
     <a href="Hospedajes.html">Hospedajes</a>
@@ -206,12 +211,6 @@
 
 </body>
 </html>
-
-
-
-
-
-
 
 
 
