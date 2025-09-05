@@ -29,13 +29,13 @@
     /* ====== ENCABEZADO / PORTADA ====== */
     .encabezado{
       position:relative;
-      width:100%;
-      height:100vh;                 /* escritorio: pantalla completa */
+      width:80%;
+      height:50vh;                 /* escritorio: pantalla completa */
       overflow:hidden;
     }
     .encabezado img{
-      width:50%;
-      height:100%;
+      width:80%;
+      height:50%;
       object-fit:cover;             /* cubre sin deformarse ni “abrirse” a los costados */
       object-position: 50% var(--heroYDesktop, 50%);
       filter:brightness(60%);
@@ -83,7 +83,7 @@
     nav.topnav a{
       color:#fff;
       text-decoration:none;
-      font-size: clamp(14px, 1.8vw, 19px); /* texto más chico en móvil */
+      font-size: clamp(13px, 1.7vw, 17px); /* texto más chico en móvil */
       padding:2px 6px;             /* menos espacio interno */
       white-space:nowrap;
       letter-spacing:-0.2px;       /* compacta apenas */
@@ -144,7 +144,7 @@
       .encabezado{ height:100svh; }
       .encabezado img{
         object-fit:cover;
-        object-position: 100% var(--heroYMobile, 120%); /* ← mueve la foto SOLO hacia arriba/abajo */
+        object-position: 50% var(--heroYMobile, 70%); /* ← mueve la foto SOLO hacia arriba/abajo */
       }
 
       nav.topnav a{ font-size:16px; padding:2px 5px; }
@@ -157,7 +157,7 @@
 <body>
 
   <!-- ENCABEZADO (podés ajustar el encuadre móvil cambiando --heroYMobile) -->
-  <div class="encabezado" style="--heroYMobile: 120%; --heroYDesktop:100%;">
+  <div class="encabezado" style="--heroYMobile: 100%; --heroYDesktop:80%;">
     <img src="ps.jpg" alt="Corpus Christi">
     <div class="hero-social">
       <a href="https://www.instagram.com/municipalidaddecorpus/" target="_blank" rel="noopener" aria-label="Instagram">
@@ -194,6 +194,7 @@
 
 </body>
 </html>
+
 
 
 
