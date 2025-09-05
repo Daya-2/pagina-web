@@ -135,7 +135,7 @@
     .footer-content img{ max-width:100px; height:auto; }
     .footer-content p{
       margin:0;
-      font-size:clamp(14px, 2.2vw, 16px);
+      font-size:clamp(14px, 1.8vw, 16px);
     }
 
     /* ====== SOLO CELULAR ====== */
@@ -144,7 +144,7 @@
       .encabezado{ height:100svh; }
       .encabezado img{
         object-fit:cover;
-        object-position: 50% var(--heroYMobile, 70%); /* ← mueve la foto SOLO hacia arriba/abajo */
+        object-position: 30% var(--heroYMobile, 50%); /* ← mueve la foto SOLO hacia arriba/abajo */
       }
 
       nav.topnav a{ font-size:16px; padding:2px 5px; }
@@ -157,7 +157,7 @@
 <body>
 
   <!-- ENCABEZADO (podés ajustar el encuadre móvil cambiando --heroYMobile) -->
-  <div class="encabezado" style="--heroYMobile: 70%; --heroYDesktop: 50%;">
+  <div class="encabezado" style="--heroYMobile: 50%; --heroYDesktop: 30%;">
     <img src="ps.jpg" alt="Corpus Christi">
     <div class="hero-social">
       <a href="https://www.instagram.com/municipalidaddecorpus/" target="_blank" rel="noopener" aria-label="Instagram">
@@ -194,6 +194,7 @@
 
 </body>
 </html>
+
 
 
 
