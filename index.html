@@ -29,16 +29,16 @@
     /* ====== ENCABEZADO / PORTADA ====== */
     .encabezado{
       position:relative;
-      width:80%;
-      height:100vh;                 /* escritorio: pantalla completa */
+      width:100%;
+      height:100vh;           /* desktop */
       overflow:hidden;
     }
     .encabezado img{
-      width:120%;
-      height:80%;
-      object-fit:cover;             /* cubre sin deformarse ni “abrirse” a los costados */
-      object-position: 50% var(--heroYDesktop, 50%);
-      filter:brightness(70%);
+      width:100%;
+      height:100%;
+      object-fit:cover;       /* cubre el contenedor sin deformarse (desktop) */
+      object-position:center; /* centro en desktop */
+      filter:brightness(60%);
     }
 
     /* Íconos SOLO en la portada (esquina inferior derecha) */
@@ -63,31 +63,29 @@
     .hero-social a:hover{ opacity:1; transform:translateY(-1px); }
     .hero-social i{ font-size:16px; line-height:1; }
 
-    /* ====== MENÚ (horizontal, como Hospedajes, con letras/espacios más chicos) ====== */
+    /* ====== MENÚ (idéntico al de Hospedajes) ====== */
     nav.topnav{
       display:flex;
       justify-content:center;
       align-items:center;
-      gap:12px;                     /* menos separación entre opciones */
+      flex-wrap:wrap;
+      gap:20px;
       background:var(--azul);
-      padding:10px 12px;            /* menos padding */
+      padding:12px 20px;
       font-family:'Warbler Text', serif;
       font-style:italic;
+      position: static !important;
+      top: auto !important;
+      z-index:5;
       width:100%;
-      flex-wrap:nowrap;             /* evitar salto de línea */
-      overflow-x:auto;              /* si no entra, permite deslizar sin romper diseño */
-      -webkit-overflow-scrolling:touch;
-      scrollbar-width:none;
     }
-    nav.topnav::-webkit-scrollbar{ display:none; }
     nav.topnav a{
       color:#fff;
       text-decoration:none;
-      font-size: clamp(12px, 1.5vw, 15px); /* texto más chico en móvil */
-      padding:2px 6px;             /* menos espacio interno */
+      font-size:25px;
+      padding:5px 10px;
+      transition:all 0.3s ease;
       white-space:nowrap;
-      letter-spacing:-0.2px;       /* compacta apenas */
-      transition:opacity .2s, transform .2s;
     }
     nav.topnav a:hover{ text-decoration:underline; }
 
@@ -115,7 +113,7 @@
       color:#333;
     }
 
-    /* ====== FOOTER ====== */
+    /* ====== PIE ====== */
     footer{
       background:var(--azul-footer);
       color:#fff;
@@ -135,29 +133,56 @@
     .footer-content img{ max-width:100px; height:auto; }
     .footer-content p{
       margin:0;
-      font-size:clamp(14px, 1.8vw, 16px);
+      font-size:clamp(14px, 2.2vw, 16px);
     }
 
     /* ====== SOLO CELULAR ====== */
     @media (max-width:768px){
-      /* Llenar alto real del celu y encuadre vertical ajustable */
-      .encabezado{ height:100svh; }
+      /* Portada: imagen COMPLETA, centrada y más cerca del menú */
+      .encabezado{
+        height: 88svh;                /* ocupa casi toda la pantalla */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background:#000;
+      }
       .encabezado img{
-        object-fit:cover;
-        object-position: 50% var(--heroYMobile, 70%); /* ← mueve la foto SOLO hacia arriba/abajo */
+        width: auto;                  /* NO se estira a los costados */
+        height: 100%;                 /* se ajusta solo para ABAJO */
+        object-fit: contain;          /* muestra la imagen completa */
+        object-position: center;
       }
 
-      nav.topnav a{ font-size:16px; padding:2px 5px; }
+      /* Menú horizontal más compacto */
+      nav.topnav{
+        gap: 10px;
+        padding: 10px 12px;
+        flex-wrap: nowrap;            /* no apilar */
+        overflow-x: auto;             /* scroll si no entra */
+        -webkit-overflow-scrolling: touch;
+      }
+      nav.topnav a{
+        font-size: 16px;
+        padding: 4px 6px;
+        letter-spacing: 0;
+        white-space: nowrap;
+      }
+
+      .footer-content img{ max-width:80px; }
+      .footer-content p{ font-size:14px; }
     }
+
+    /* Aún más compacto en pantallas muy angostas */
     @media (max-width:380px){
-      nav.topnav a{ font-size:15px; }
+      nav.topnav a{ font-size:15px; padding:3px 5px; }
+      nav.topnav{ gap:8px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ENCABEZADO (podés ajustar el encuadre móvil cambiando --heroYMobile) -->
-  <div class="encabezado" style="--heroYMobile: 100%; --heroYDesktop:80%;">
+  <!-- ENCABEZADO -->
+  <div class="encabezado">
     <img src="ps.jpg" alt="Corpus Christi">
     <div class="hero-social">
       <a href="https://www.instagram.com/municipalidaddecorpus/" target="_blank" rel="noopener" aria-label="Instagram">
@@ -194,11 +219,6 @@
 
 </body>
 </html>
-
-
-
-
-
 
 
 
